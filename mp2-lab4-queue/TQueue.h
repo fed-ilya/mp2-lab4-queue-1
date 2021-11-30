@@ -2,7 +2,8 @@
 #include "Exception.h"
 
 template <class T>
-class TQueue {
+class TQueue
+{
 private:
 	T* arr;
 	//Максимальное число элементов
@@ -25,6 +26,8 @@ public:
 
 	void Push(T element);
 	T Pop();
+
+	void Clear();
 
 	friend std::ostream& operator<<(std::ostream& out, const TQueue& q)
 	{
@@ -49,12 +52,13 @@ TQueue<T>::TQueue(int _MaxSize)
 	//Нельзя создать очередь с размером < 2
 	if (_MaxSize <= 1) {
 		throw Exception(__FILE__, __FUNCTION__,
-				__LINE__, "Queue MaxSize cannot be < 2");
+			__LINE__, "Queue MaxSize cannot be < 2");
 	}
 
 	MaxSize = _MaxSize;
-	Count = 0;
 	arr = new T[MaxSize];
+
+	Count = 0;
 	tail = -1, head = 0;
 }
 
@@ -65,7 +69,7 @@ TQueue<T>::TQueue(const TQueue<T>& other)
 	Count = other.Count;
 	arr = new T[MaxSize];
 	tail = other.tail, head = other.head;
-	
+
 	//TODO улучшить (копировать только активную часть)
 	for (int i = 0; i < MaxSize; i++)
 		arr[i] = other.arr[i];
@@ -78,7 +82,8 @@ TQueue<T>::~TQueue()
 }
 
 template <class T>
-TQueue<T>& TQueue<T>::operator=(const TQueue<T>& other) {
+TQueue<T>& TQueue<T>::operator=(const TQueue<T>& other)
+{
 	if (this == &other)
 		return *this;
 
@@ -152,4 +157,11 @@ T TQueue<T>::Pop()
 
 	Count--;
 	return temp;
+}
+
+template <class T>
+void TQueue<T>::Clear()
+{
+	Count = 0;
+	tail = -1, head = 0;
 }
