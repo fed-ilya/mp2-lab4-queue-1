@@ -12,4 +12,4 @@
 К проекту подключена библиотека Google Test для проверки работы класса TQueue.
 
 
-![Console main screenshot](https://github.com/alexChurkin/mp2-lab4-queue/raw/main/ConsoleMain.png)
+![Console main screenshot](https://github.com/alexChurkin/mp2-lab4-queue/raw/master/ConsoleMain.png)
