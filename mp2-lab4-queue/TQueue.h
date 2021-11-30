@@ -1,5 +1,33 @@
 #pragma once
-#include "Exception.h"
+#include <iostream>
+#include <string>
+
+/* ................... TQueueException ................... */
+
+class TQueueException
+{
+private:
+	std::string desc;
+
+public:
+	TQueueException(std::string _desc)
+	{
+		desc = _desc;
+	}
+	TQueueException(const TQueueException& e)
+	{
+		desc = e.desc;
+	}
+
+	friend std::ostream& operator<<(std::ostream& os, const TQueueException& e)
+	{
+		os << "Exception message: " << e.desc << '\n';
+		return os;
+	}
+};
+
+
+/* ....................... TQueue ........................ */
 
 template <class T>
 class TQueue
@@ -17,6 +45,9 @@ public:
 	TQueue(const TQueue<T>& other);
 	~TQueue();
 	TQueue<T>& operator=(const TQueue<T>& other);
+
+	bool operator==(const TQueue<T>& other) const;
+	bool operator!=(const TQueue<T>& other) const;
 
 	bool IsEmpty();
 	bool IsNotEmpty();
@@ -51,8 +82,7 @@ TQueue<T>::TQueue(int _MaxSize)
 {
 	//Нельзя создать очередь с размером < 2
 	if (_MaxSize <= 1) {
-		throw Exception(__FILE__, __FUNCTION__,
-			__LINE__, "Queue MaxSize cannot be < 2");
+		throw TQueueException("Queue MaxSize cannot be < 2");
 	}
 
 	MaxSize = _MaxSize;
@@ -66,13 +96,17 @@ template <class T>
 TQueue<T>::TQueue(const TQueue<T>& other)
 {
 	MaxSize = other.MaxSize;
-	Count = other.Count;
 	arr = new T[MaxSize];
+
+	Count = other.Count;
 	tail = other.tail, head = other.head;
 
-	//TODO улучшить (копировать только активную часть)
-	for (int i = 0; i < MaxSize; i++)
+	//Копируется только активная часть
+	for (int tCount = Count, i = head; tCount > 0; tCount--)
+	{
 		arr[i] = other.arr[i];
+		i = (++i) % MaxSize;
+	}
 }
 
 template <class T>
@@ -95,10 +129,37 @@ TQueue<T>& TQueue<T>::operator=(const TQueue<T>& other)
 	Count = other.Count;
 	tail = other.tail, head = other.head;
 
-	//TODO улучшить (копировать только активную часть)
-	for (int i = 0; i < MaxSize; i++)
+	//Копируется только активная часть
+	for (int tCount = Count, i = head; tCount > 0; tCount--)
+	{
 		arr[i] = other.arr[i];
+		i = (++i) % MaxSize;
+	}
+
 	return *this;
+}
+
+template <class T>
+bool TQueue<T>::operator==(const TQueue<T>& other) const
+{
+	if (MaxSize != other.MaxSize) return false;
+	if (Count != other.Count) return false;
+	if (head != other.head) return false;
+	if (tail != other.tail) return false;
+
+	for (int tCount = Count, i = head; tCount > 0; tCount--)
+	{
+		if (arr[i] != other.arr[i]) return false;
+		i = (++i) % MaxSize;
+	}
+
+	return true;
+}
+
+template <class T>
+bool TQueue<T>::operator!=(const TQueue<T>& other) const
+{
+	return !operator==(other);
 }
 
 template <class T>
@@ -129,8 +190,7 @@ template <class T>
 void TQueue<T>::Push(T element)
 {
 	if (IsFull())
-		throw Exception(__FILE__, __FUNCTION__,
-			__LINE__, "Can't push to the full queue");
+		throw TQueueException("Can't push to a full queue");
 
 	/*
 	По сути эквивалентно:
@@ -149,8 +209,7 @@ template <class T>
 T TQueue<T>::Pop()
 {
 	if (IsEmpty())
-		throw Exception(__FILE__, __FUNCTION__,
-			__LINE__, "Can't pop from an empty queue");
+		throw TQueueException("Can't pop from an empty queue");
 
 	T temp = arr[head];
 	head = (++head) % MaxSize;

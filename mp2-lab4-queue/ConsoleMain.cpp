@@ -59,26 +59,40 @@ int main()
     {
         q.Push(4000);
     }
-    catch (Exception e)
+    catch (TQueueException e)
     {
         cout << "\n" << e << "\n";
     }
 
-    q.Pop();
-    cout << q << '\n';
+    cout << "Let's copy to \"other\" variable and continue:\n\n";
+    TQueue<int> other(q);
+    cout << other << '\n';
 
-    q.Pop();
-    cout << q << '\n';
+    other.Pop();
+    cout << other << '\n';
 
-    q.Pop();
-    cout << q << "\n\n";
+    other.Pop();
+    cout << other << '\n';
+
+    other.Pop();
+    cout << other << "\n\n";
 
     cout << "Trying to pop again:\n";
     try
     {
-        q.Pop();
+        other.Pop();
     }
-    catch (Exception e)
+    catch (TQueueException e)
+    {
+        cout << "\n" << e << "\n\n";
+    }
+
+    cout << "Trying to create queue with MaxSize < 2:\n";
+    try
+    {
+        TQueue<char> q2(-2);
+    }
+    catch (TQueueException e)
     {
         cout << "\n" << e << "\n";
     }
