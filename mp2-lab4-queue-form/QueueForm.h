@@ -321,6 +321,7 @@ namespace mp2lab4queueform {
 			this->labelQueueSize->Text = L"0";
 			this->labelQueueSize->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			this->labelQueueSize->Visible = false;
+			this->labelQueueSize->Click += gcnew System::EventHandler(this, &QueueForm::labelQueueSize_Click);
 			// 
 			// QueueForm
 			// 
@@ -461,7 +462,7 @@ namespace mp2lab4queueform {
 			for (int i = 0; i < QueueStartSize; i++)
 				queue.Push(1);
 
-
+			timer_Tick(nullptr, nullptr);
 			timer->Start();
 		}
 
@@ -476,6 +477,7 @@ namespace mp2lab4queueform {
 			pbBackground->Invalidate();
 
 			labelQueueSize->Visible = false;
+			labelQueueSize->Text = "0";
 			label5->Visible = false;
 			label6->Visible = false;
 			labelPushed->Visible = false;
@@ -607,6 +609,7 @@ namespace mp2lab4queueform {
 
 			labelPushed->Text = msclr::interop::marshal_as<String^>(std::to_string(pushStat));
 			labelPopped->Text = msclr::interop::marshal_as<String^>(std::to_string(popStat));
+			labelQueueSize->Text = msclr::interop::marshal_as<String^>(std::to_string(queue.GetCount()));
 
 			angleStart = 360.0f * ((float) queue.GetHead() / (float) queue.GetMaxSize());
 			angleFinish = 360.0f * ((float) queue.GetCount() / (float) queue.GetMaxSize());
@@ -623,6 +626,21 @@ namespace mp2lab4queueform {
 			ColoredPen->Width = 13.0F;
 
 			gr->DrawArc(ColoredPen, 136, 300, 160, 160, angleStart, angleFinish);
+		}
+		Void labelQueueSize_Click(Object^ sender, EventArgs^ e)
+		{
+			if (timer->Interval == 400)
+			{
+				timer->Interval = 200;
+			}
+			else if (timer->Interval == 200)
+			{
+				timer->Interval = 50;
+			}
+			else if (timer->Interval == 50)
+			{
+				timer->Interval = 400;
+			}
 		}
 };
 }
