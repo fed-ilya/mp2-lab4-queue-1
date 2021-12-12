@@ -48,6 +48,10 @@ public:
 	bool operator==(const TQueue<T>& other) const;
 	bool operator!=(const TQueue<T>& other) const;
 
+	int GetMaxSize();
+	int GetCount();
+	int GetHead();
+
 	bool IsEmpty();
 	bool IsNotEmpty();
 
@@ -159,6 +163,24 @@ template <class T>
 bool TQueue<T>::operator!=(const TQueue<T>& other) const
 {
 	return !operator==(other);
+}
+
+template<class T>
+int TQueue<T>::GetMaxSize()
+{
+	return MaxSize;
+}
+
+template<class T>
+int TQueue<T>::GetCount()
+{
+	return count;
+}
+
+template<class T>
+int TQueue<T>::GetHead()
+{
+	return head;
 }
 
 template <class T>

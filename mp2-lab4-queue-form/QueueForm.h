@@ -2,6 +2,7 @@
 #include <msclr\marshal_cppstd.h>
 #include "TextBoxFilters.h"
 #include "..\mp2-lab4-queue\TQueue.h"
+#include "Randomex.h"
 
 namespace mp2lab4queueform {
 
@@ -15,8 +16,16 @@ namespace mp2lab4queueform {
 	TQueue<int> queue;
 	int MaxQueueSize = -1;
 	int QueueStartSize = -1;
-	float PushProb = -1.0;
-	float PopProb = -1.0;
+	float PushProb = -1.0F;
+	float PopProb = -1.0F;
+
+	int pushStat = 0;
+	int popStat = 0;
+
+	int angleStart = 0;
+	int angleFinish = 0;
+
+	bool IsRunning = false;
 
 
 	public ref class QueueForm : public System::Windows::Forms::Form
@@ -39,8 +48,11 @@ namespace mp2lab4queueform {
 			}
 		}
 	private: System::Windows::Forms::PictureBox^ pbBackground;
-	private: System::Windows::Forms::Label^ label8;
-	private: System::Windows::Forms::Label^ label7;
+	private: System::Windows::Forms::Label^ labelPopped;
+
+	private: System::Windows::Forms::Label^ labelPushed;
+
+
 	private: System::Windows::Forms::TextBox^ tbPopProb;
 	private: System::Windows::Forms::TextBox^ tbSize;
 	private: System::Windows::Forms::TextBox^ tbMaxSize;
@@ -56,6 +68,7 @@ namespace mp2lab4queueform {
 	private: System::Windows::Forms::Label^ labelQueueSize;
 
 
+
 	private: System::ComponentModel::IContainer^ components;
 
 	private:
@@ -69,8 +82,8 @@ namespace mp2lab4queueform {
 			this->components = (gcnew System::ComponentModel::Container());
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(QueueForm::typeid));
 			this->pbBackground = (gcnew System::Windows::Forms::PictureBox());
-			this->label8 = (gcnew System::Windows::Forms::Label());
-			this->label7 = (gcnew System::Windows::Forms::Label());
+			this->labelPopped = (gcnew System::Windows::Forms::Label());
+			this->labelPushed = (gcnew System::Windows::Forms::Label());
 			this->tbPopProb = (gcnew System::Windows::Forms::TextBox());
 			this->tbSize = (gcnew System::Windows::Forms::TextBox());
 			this->tbMaxSize = (gcnew System::Windows::Forms::TextBox());
@@ -96,34 +109,35 @@ namespace mp2lab4queueform {
 			this->pbBackground->Size = System::Drawing::Size(430, 555);
 			this->pbBackground->TabIndex = 0;
 			this->pbBackground->TabStop = false;
+			this->pbBackground->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &QueueForm::pbBackground_Paint);
 			// 
-			// label8
+			// labelPopped
 			// 
-			this->label8->AutoSize = true;
-			this->label8->BackColor = System::Drawing::Color::Transparent;
-			this->label8->Font = (gcnew System::Drawing::Font(L"Comic Sans MS", 11.89565F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->labelPopped->AutoSize = true;
+			this->labelPopped->BackColor = System::Drawing::Color::Transparent;
+			this->labelPopped->Font = (gcnew System::Drawing::Font(L"Comic Sans MS", 11.89565F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->label8->ForeColor = System::Drawing::Color::MediumOrchid;
-			this->label8->Location = System::Drawing::Point(267, 515);
-			this->label8->Name = L"label8";
-			this->label8->Size = System::Drawing::Size(24, 26);
-			this->label8->TabIndex = 11;
-			this->label8->Text = L"0";
-			this->label8->Visible = false;
+			this->labelPopped->ForeColor = System::Drawing::Color::MediumOrchid;
+			this->labelPopped->Location = System::Drawing::Point(267, 515);
+			this->labelPopped->Name = L"labelPopped";
+			this->labelPopped->Size = System::Drawing::Size(24, 26);
+			this->labelPopped->TabIndex = 11;
+			this->labelPopped->Text = L"0";
+			this->labelPopped->Visible = false;
 			// 
-			// label7
+			// labelPushed
 			// 
-			this->label7->AutoSize = true;
-			this->label7->BackColor = System::Drawing::Color::Transparent;
-			this->label7->Font = (gcnew System::Drawing::Font(L"Comic Sans MS", 11.89565F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->labelPushed->AutoSize = true;
+			this->labelPushed->BackColor = System::Drawing::Color::Transparent;
+			this->labelPushed->Font = (gcnew System::Drawing::Font(L"Comic Sans MS", 11.89565F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->label7->ForeColor = System::Drawing::Color::MediumOrchid;
-			this->label7->Location = System::Drawing::Point(267, 487);
-			this->label7->Name = L"label7";
-			this->label7->Size = System::Drawing::Size(24, 26);
-			this->label7->TabIndex = 1;
-			this->label7->Text = L"0";
-			this->label7->Visible = false;
+			this->labelPushed->ForeColor = System::Drawing::Color::MediumOrchid;
+			this->labelPushed->Location = System::Drawing::Point(267, 487);
+			this->labelPushed->Name = L"labelPushed";
+			this->labelPushed->Size = System::Drawing::Size(24, 26);
+			this->labelPushed->TabIndex = 1;
+			this->labelPushed->Text = L"0";
+			this->labelPushed->Visible = false;
 			// 
 			// tbPopProb
 			// 
@@ -290,9 +304,9 @@ namespace mp2lab4queueform {
 			this->labelQueueSize->Font = (gcnew System::Drawing::Font(L"Comic Sans MS", 23.7913F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->labelQueueSize->ForeColor = System::Drawing::Color::MediumOrchid;
-			this->labelQueueSize->Location = System::Drawing::Point(16, 341);
+			this->labelQueueSize->Location = System::Drawing::Point(159, 351);
 			this->labelQueueSize->Name = L"labelQueueSize";
-			this->labelQueueSize->Size = System::Drawing::Size(406, 72);
+			this->labelQueueSize->Size = System::Drawing::Size(121, 55);
 			this->labelQueueSize->TabIndex = 13;
 			this->labelQueueSize->Text = L"0";
 			this->labelQueueSize->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
@@ -305,8 +319,8 @@ namespace mp2lab4queueform {
 			this->ClientSize = System::Drawing::Size(430, 555);
 			this->Controls->Add(this->labelQueueSize);
 			this->Controls->Add(this->btnStartStop);
-			this->Controls->Add(this->label8);
-			this->Controls->Add(this->label7);
+			this->Controls->Add(this->labelPopped);
+			this->Controls->Add(this->labelPushed);
 			this->Controls->Add(this->tbPopProb);
 			this->Controls->Add(this->tbSize);
 			this->Controls->Add(this->tbMaxSize);
@@ -331,172 +345,226 @@ namespace mp2lab4queueform {
 		}
 #pragma endregion
 
-	private:
-		bool IsRunning = false;
-
-	private: void SetTransparency()
-	{
-		label1->Parent = pbBackground;
-		label2->Parent = pbBackground;
-		label3->Parent = pbBackground;
-		label4->Parent = pbBackground;
-		label5->Parent = pbBackground;
-		label6->Parent = pbBackground;
-		label7->Parent = pbBackground;
-		label8->Parent = pbBackground;
-		tbMaxSize->Parent = pbBackground;
-		tbSize->Parent = pbBackground;
-		tbPushProb->Parent = pbBackground;
-		tbPopProb->Parent = pbBackground;
-		labelQueueSize->Parent = pbBackground;
-	}
-
-
-		   /* События для кнопок и полей ввода */
-	private: Void tbMaxSize_KeyPress(Object^ sender, KeyPressEventArgs^ e)
-	{
-		TextBoxFilters::NaturalNumber(sender, e);
-	}
-	private: Void tbSize_KeyPress(Object^ sender, KeyPressEventArgs^ e)
-	{
-		TextBoxFilters::NaturalNumber(sender, e);
-	}
-	private: Void tbPushProb_KeyPress(Object^ sender, KeyPressEventArgs^ e)
-	{
-		TextBoxFilters::NonNegativeDecimalNumber(sender, e);
-	}
-	private: Void tbPopProb_KeyPress(Object^ sender, KeyPressEventArgs^ e)
-	{
-		TextBoxFilters::NonNegativeDecimalNumber(sender, e);
-	}
-	private: System::Void btnStartStop_Click(Object^ sender, EventArgs^ e)
-	{
-		if (!IsRunning) Start();
-		else Stop();
-	}
-
-	private: void Start()
-	{
-		if (!ProcessInput()) return;
-
-		IsRunning = true;
-		labelQueueSize->Visible = true;
-		label5->Visible = true;
-		label6->Visible = true;
-		label7->Visible = true;
-		label8->Visible = true;
-		tbMaxSize->ReadOnly = true;
-		tbSize->ReadOnly = true;
-		tbPushProb->ReadOnly = true;
-		tbPopProb->ReadOnly = true;
-		btnStartStop->Text = "Остановить";
-
-		timer->Start();
-	}
-
-	private: void Stop()
-	{
-		IsRunning = false;
-		labelQueueSize->Visible = false;
-		label5->Visible = false;
-		label6->Visible = false;
-		label7->Visible = false;
-		label8->Visible = false;
-		tbMaxSize->ReadOnly = false;
-		tbSize->ReadOnly = false;
-		tbPushProb->ReadOnly = false;
-		tbPopProb->ReadOnly = false;
-		btnStartStop->Text = "Запуск";
-		timer->Stop();
-	}
-
-	/* Обновление UI по таймеру */
-	private: System::Void timer_Tick(Object^ sender, EventArgs^ e)
-	{
-
-	}
-
-	private: bool ProcessInput()
-	{
-		bool incorrect1 = false, incorrect2 = false;
-		bool incorrect3 = false, incorrect4 = false;
-
-		int _MaxQueueSize = -1;
-		int _QueueSize = -1;
-		float _PushProb = -1;
-		float _PopProb = -1;
-
-		try
+		void SetTransparency()
 		{
-			_MaxQueueSize = stoi(msclr::interop::marshal_as<std::string>(tbMaxSize->Text));
-			if (_MaxQueueSize <= 1)
+			label1->Parent = pbBackground;
+			label2->Parent = pbBackground;
+			label3->Parent = pbBackground;
+			label4->Parent = pbBackground;
+			label5->Parent = pbBackground;
+			label6->Parent = pbBackground;
+			labelPushed->Parent = pbBackground;
+			labelPopped->Parent = pbBackground;
+			tbMaxSize->Parent = pbBackground;
+			tbSize->Parent = pbBackground;
+			tbPushProb->Parent = pbBackground;
+			tbPopProb->Parent = pbBackground;
+			labelQueueSize->Parent = pbBackground;
+		}
+
+
+		/* События для кнопок и полей ввода */
+		Void tbMaxSize_KeyPress(Object^ sender, KeyPressEventArgs^ e)
+		{
+			TextBoxFilters::NaturalNumber(sender, e);
+		}
+		Void tbSize_KeyPress(Object^ sender, KeyPressEventArgs^ e)
+		{
+			TextBoxFilters::NaturalNumber(sender, e);
+		}
+		Void tbPushProb_KeyPress(Object^ sender, KeyPressEventArgs^ e)
+		{
+			TextBoxFilters::NonNegativeDecimalNumber(sender, e);
+		}
+		Void tbPopProb_KeyPress(Object^ sender, KeyPressEventArgs^ e)
+		{
+			TextBoxFilters::NonNegativeDecimalNumber(sender, e);
+		}
+		System::Void btnStartStop_Click(Object^ sender, EventArgs^ e)
+		{
+			if (!IsRunning) Start();
+			else Stop();
+		}
+
+		void Start()
+		{
+			if (!ProcessInput()) return;
+
+			IsRunning = true;
+			labelQueueSize->Visible = true;
+			label5->Visible = true;
+			label6->Visible = true;
+			labelPushed->Visible = true;
+			labelPopped->Visible = true;
+			tbMaxSize->ReadOnly = true;
+			tbSize->ReadOnly = true;
+			tbPushProb->ReadOnly = true;
+			tbPopProb->ReadOnly = true;
+			btnStartStop->Text = "Остановить";
+
+			for (int i = 0; i < QueueStartSize; i++)
+				queue.Push(1);
+
+
+			timer->Start();
+		}
+
+		void Stop()
+		{
+			timer->Stop();
+			IsRunning = false;
+			queue.Clear();
+
+			angleStart = 0;
+			angleFinish = 0;
+			pbBackground->Invalidate();
+
+			labelQueueSize->Visible = false;
+			label5->Visible = false;
+			label6->Visible = false;
+			labelPushed->Visible = false;
+			labelPushed->Text = "0";
+			pushStat = 0;
+			labelPopped->Visible = false;
+			labelPopped->Text = "0";
+			popStat = 0;
+			tbMaxSize->ReadOnly = false;
+			tbSize->ReadOnly = false;
+			tbPushProb->ReadOnly = false;
+			tbPopProb->ReadOnly = false;
+			btnStartStop->Text = "Запуск";
+		}
+
+		/* Обработка пользовательского ввода */
+		bool ProcessInput()
+		{
+			bool incorrect1 = false, incorrect2 = false;
+			bool incorrect3 = false, incorrect4 = false;
+
+			int _MaxQueueSize = -1;
+			int _QueueSize = -1;
+			float _PushProb = -1;
+			float _PopProb = -1;
+
+			try
+			{
+				_MaxQueueSize = stoi(msclr::interop::marshal_as<std::string>(tbMaxSize->Text));
+				if (_MaxQueueSize <= 1)
+				{
+					incorrect1 = true;
+					label1->ForeColor = ForeColor.Red;
+				}
+				else
+				{
+					label1->ForeColor = ForeColor.MediumOrchid;
+				}
+			}
+			catch (...)
 			{
 				incorrect1 = true;
 				label1->ForeColor = ForeColor.Red;
 			}
-			else
-			{
-				label1->ForeColor = ForeColor.MediumOrchid;
-			}
-		}
-		catch (...)
-		{
-			incorrect1 = true;
-			label1->ForeColor = ForeColor.Red;
-		}
 
-		
-		try
-		{
-			_QueueSize = stoi(msclr::interop::marshal_as<std::string>(tbSize->Text));
-			if (_QueueSize > _MaxQueueSize)
+
+			try
+			{
+				_QueueSize = stoi(msclr::interop::marshal_as<std::string>(tbSize->Text));
+				if (!incorrect1 && _QueueSize > _MaxQueueSize)
+				{
+					incorrect2 = true;
+					label2->ForeColor = ForeColor.Red;
+				}
+				else label2->ForeColor = ForeColor.MediumOrchid;
+			}
+			catch (...)
 			{
 				incorrect2 = true;
 				label2->ForeColor = ForeColor.Red;
-			} else label2->ForeColor = ForeColor.MediumOrchid;
-		}
-		catch (...)
-		{
-			incorrect2 = true;
-			label2->ForeColor = ForeColor.Red;
-		}
+			}
 
-		try
-		{
-			_PushProb = stof(msclr::interop::marshal_as<std::string>(tbPushProb->Text));
-			if (_PushProb > 1.0)
+			try
+			{
+				_PushProb = stof(msclr::interop::marshal_as<std::string>(tbPushProb->Text));
+				if (_PushProb > 1.0)
+				{
+					incorrect3 = true;
+					label3->ForeColor = ForeColor.Red;
+				}
+				else label3->ForeColor = ForeColor.MediumOrchid;
+			}
+			catch (...)
 			{
 				incorrect3 = true;
 				label3->ForeColor = ForeColor.Red;
-			} else label3->ForeColor = ForeColor.MediumOrchid;
-		}
-		catch (...)
-		{
-			incorrect3 = true;
-			label3->ForeColor = ForeColor.Red;
-		}
+			}
 
-		try
-		{
-			_PopProb = stof(msclr::interop::marshal_as<std::string>(tbPopProb->Text));
-			if (_PopProb > 1.0)
+			try
+			{
+				_PopProb = stof(msclr::interop::marshal_as<std::string>(tbPopProb->Text));
+				if (_PopProb > 1.0)
+				{
+					incorrect4 = true;
+					label4->ForeColor = ForeColor.Red;
+				}
+				else label4->ForeColor = ForeColor.MediumOrchid;
+			}
+			catch (...)
 			{
 				incorrect4 = true;
 				label4->ForeColor = ForeColor.Red;
-			} else label4->ForeColor = ForeColor.MediumOrchid;
+			}
+
+			if (incorrect1) tbMaxSize->Select();
+			else if (incorrect2) tbSize->Select();
+			else if (incorrect3) tbPushProb->Select();
+			else if (incorrect4) tbPopProb->Select();
+
+			bool iscorrect = !(incorrect1 || incorrect2 || incorrect3 || incorrect4);
+			if (iscorrect)
+			{
+				MaxQueueSize = _MaxQueueSize;
+				QueueStartSize = _QueueSize;
+				PushProb = _PushProb;
+				PopProb = _PopProb;
+			}
+			return iscorrect;
 		}
-		catch (...)
+
+		/* Обновление UI по таймеру */
+		System::Void timer_Tick(Object^ sender, EventArgs^ e)
 		{
-			incorrect4 = true;
-			label4->ForeColor = ForeColor.Red;
+			Randomex::Prepare();
+
+			bool ShouldPush = Randomex::RandBool(PushProb);
+			bool ShouldPop = Randomex::RandBool(PopProb);
+
+			if (ShouldPush && queue.IsNotFull()) {
+				queue.Push(1);
+				pushStat++;
+			}
+			if (ShouldPop && queue.IsNotEmpty()) {
+				queue.Pop();
+				popStat++;
+			}
+
+			labelPushed->Text = msclr::interop::marshal_as<String^>(std::to_string(pushStat));
+			labelPopped->Text = msclr::interop::marshal_as<String^>(std::to_string(popStat));
+
+			angleStart = 360.0f * ((float) queue.GetHead() / (float) queue.GetMaxSize());
+			angleFinish = 360.0f * ((float) queue.GetCount() / (float) queue.GetMaxSize());
+
+			pbBackground->Invalidate();
 		}
 
-		if (incorrect1) tbMaxSize->Select();
-		else if (incorrect2) tbSize->Select();
-		else if (incorrect3) tbPushProb->Select();
-		else if (incorrect4) tbPopProb->Select();
+		Void pbBackground_Paint(Object^ sender, PaintEventArgs^ e)
+		{
+			Graphics^ gr;
+			gr = pbBackground->CreateGraphics();
 
-		return !(incorrect1 || incorrect2 || incorrect3 || incorrect4);
-	}
-	};
+			Pen^ MediumOrchidPen = gcnew Pen(Color::MediumOrchid);
+			MediumOrchidPen->Width = 13.0F;
+
+			gr->DrawArc(MediumOrchidPen, 136, 300, 160, 160, angleStart, angleFinish);
+		}
+};
 }

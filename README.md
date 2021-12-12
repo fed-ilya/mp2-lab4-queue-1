@@ -9,7 +9,9 @@
 - Сравнение двух очередей (==, !=);
 - Очистка очереди.
 
+Реализована визуализация работы очереди.
 К проекту подключена библиотека Google Test для проверки работы класса TQueue.
 
+![Visualizer screenshot](https://github.com/alexChurkin/mp2-lab4-queue/raw/master/Visualizer.png)
 
 ![Console main screenshot](https://github.com/alexChurkin/mp2-lab4-queue/raw/master/ConsoleMain.png)
