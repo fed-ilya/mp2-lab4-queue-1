@@ -27,6 +27,8 @@ namespace mp2lab4queueform {
 
 	bool IsRunning = false;
 
+	bool FocusRecolorEnabled = true;
+
 
 	public ref class QueueForm : public System::Windows::Forms::Form
 	{
@@ -152,7 +154,9 @@ namespace mp2lab4queueform {
 			this->tbPopProb->TabIndex = 5;
 			this->tbPopProb->Text = L"0.6";
 			this->tbPopProb->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
+			this->tbPopProb->Enter += gcnew System::EventHandler(this, &QueueForm::tbPopProb_Enter);
 			this->tbPopProb->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &QueueForm::tbPopProb_KeyPress);
+			this->tbPopProb->Leave += gcnew System::EventHandler(this, &QueueForm::tbPopProb_Leave);
 			// 
 			// tbSize
 			// 
@@ -167,7 +171,9 @@ namespace mp2lab4queueform {
 			this->tbSize->TabIndex = 3;
 			this->tbSize->Text = L"20";
 			this->tbSize->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
+			this->tbSize->Enter += gcnew System::EventHandler(this, &QueueForm::tbSize_Enter);
 			this->tbSize->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &QueueForm::tbSize_KeyPress);
+			this->tbSize->Leave += gcnew System::EventHandler(this, &QueueForm::tbSize_Leave);
 			// 
 			// tbMaxSize
 			// 
@@ -182,7 +188,9 @@ namespace mp2lab4queueform {
 			this->tbMaxSize->TabIndex = 2;
 			this->tbMaxSize->Text = L"100";
 			this->tbMaxSize->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
+			this->tbMaxSize->Enter += gcnew System::EventHandler(this, &QueueForm::tbMaxSize_Enter);
 			this->tbMaxSize->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &QueueForm::tbMaxSize_KeyPress);
+			this->tbMaxSize->Leave += gcnew System::EventHandler(this, &QueueForm::tbMaxSize_Leave);
 			// 
 			// tbPushProb
 			// 
@@ -197,7 +205,9 @@ namespace mp2lab4queueform {
 			this->tbPushProb->TabIndex = 4;
 			this->tbPushProb->Text = L"0.4";
 			this->tbPushProb->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
+			this->tbPushProb->Enter += gcnew System::EventHandler(this, &QueueForm::tbPushProb_Enter);
 			this->tbPushProb->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &QueueForm::tbPushProb_KeyPress);
+			this->tbPushProb->Leave += gcnew System::EventHandler(this, &QueueForm::tbPushProb_Leave);
 			// 
 			// label6
 			// 
@@ -303,7 +313,7 @@ namespace mp2lab4queueform {
 			this->labelQueueSize->BackColor = System::Drawing::Color::Transparent;
 			this->labelQueueSize->Font = (gcnew System::Drawing::Font(L"Comic Sans MS", 23.7913F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->labelQueueSize->ForeColor = System::Drawing::Color::MediumOrchid;
+			this->labelQueueSize->ForeColor = System::Drawing::Color::DodgerBlue;
 			this->labelQueueSize->Location = System::Drawing::Point(159, 351);
 			this->labelQueueSize->Name = L"labelQueueSize";
 			this->labelQueueSize->Size = System::Drawing::Size(121, 55);
@@ -386,8 +396,54 @@ namespace mp2lab4queueform {
 			else Stop();
 		}
 
+		Void tbMaxSize_Enter(System::Object^ sender, System::EventArgs^ e)
+		{
+			if(FocusRecolorEnabled)
+				label1->ForeColor = Color::DodgerBlue;
+		}
+		Void tbMaxSize_Leave(System::Object^ sender, System::EventArgs^ e)
+		{
+			if (FocusRecolorEnabled)
+				label1->ForeColor = Color::MediumOrchid;
+		}
+
+		Void tbSize_Enter(System::Object^ sender, System::EventArgs^ e)
+		{
+			if (FocusRecolorEnabled)
+				label2->ForeColor = Color::DodgerBlue;
+		}
+		Void tbSize_Leave(System::Object^ sender, System::EventArgs^ e)
+		{
+			if (FocusRecolorEnabled)
+				label2->ForeColor = Color::MediumOrchid;
+		}
+
+		Void tbPushProb_Enter(System::Object^ sender, System::EventArgs^ e)
+		{
+			if (FocusRecolorEnabled)
+				label3->ForeColor = Color::DodgerBlue;
+		}
+		Void tbPushProb_Leave(System::Object^ sender, System::EventArgs^ e)
+		{
+			if (FocusRecolorEnabled)
+				label3->ForeColor = Color::MediumOrchid;
+		}
+
+		Void tbPopProb_Enter(System::Object^ sender, System::EventArgs^ e)
+		{
+			if (FocusRecolorEnabled)
+				label4->ForeColor = Color::DodgerBlue;
+		}
+		Void tbPopProb_Leave(System::Object^ sender, System::EventArgs^ e)
+		{
+			if (FocusRecolorEnabled)
+				label4->ForeColor = Color::MediumOrchid;
+		}
+
 		void Start()
 		{
+			FocusRecolorEnabled = false;
+
 			if (!ProcessInput()) return;
 
 			IsRunning = true;
@@ -433,6 +489,8 @@ namespace mp2lab4queueform {
 			tbPushProb->ReadOnly = false;
 			tbPopProb->ReadOnly = false;
 			btnStartStop->Text = "Запуск";
+
+			FocusRecolorEnabled = true;
 		}
 
 		/* Обработка пользовательского ввода */
@@ -561,10 +619,10 @@ namespace mp2lab4queueform {
 			Graphics^ gr;
 			gr = pbBackground->CreateGraphics();
 
-			Pen^ MediumOrchidPen = gcnew Pen(Color::MediumOrchid);
-			MediumOrchidPen->Width = 13.0F;
+			Pen^ ColoredPen = gcnew Pen(Color::DodgerBlue);
+			ColoredPen->Width = 13.0F;
 
-			gr->DrawArc(MediumOrchidPen, 136, 300, 160, 160, angleStart, angleFinish);
+			gr->DrawArc(ColoredPen, 136, 300, 160, 160, angleStart, angleFinish);
 		}
 };
 }
