@@ -16,9 +16,6 @@
     <Filter Include="Исходные файлы\TextBoxFilters">
       <UniqueIdentifier>{0c30a046-86ce-4a5d-b9fd-250f5f5361a6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Исходные файлы\Random">
-      <UniqueIdentifier>{2daf5e62-fef6-43c7-a051-10d3be9cf158}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="QueueForm.h">
@@ -26,9 +23,6 @@
     </ClInclude>
     <ClInclude Include="TextBoxFilters.h">
       <Filter>Исходные файлы\TextBoxFilters</Filter>
-    </ClInclude>
-    <ClInclude Include="Randomex.h">
-      <Filter>Исходные файлы\Random</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

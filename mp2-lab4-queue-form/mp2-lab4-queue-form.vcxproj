@@ -121,7 +121,6 @@
     <ClInclude Include="QueueForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="Randomex.h" />
     <ClInclude Include="TextBoxFilters.h" />
   </ItemGroup>
   <ItemGroup>

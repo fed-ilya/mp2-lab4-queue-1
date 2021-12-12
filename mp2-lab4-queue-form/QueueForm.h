@@ -2,7 +2,6 @@
 #include <msclr\marshal_cppstd.h>
 #include "TextBoxFilters.h"
 #include "..\mp2-lab4-queue\TQueue.h"
-#include "Randomex.h"
 
 namespace mp2lab4queueform {
 
@@ -37,6 +36,7 @@ namespace mp2lab4queueform {
 		{
 			InitializeComponent();
 			timer->Interval = 400;
+			rand = gcnew Random();
 			SetTransparency();
 			label1->Select();
 		}
@@ -49,6 +49,9 @@ namespace mp2lab4queueform {
 				delete components;
 			}
 		}
+	private:
+		Random^ rand;
+
 	private: System::Windows::Forms::PictureBox^ pbBackground;
 	private: System::Windows::Forms::Label^ labelPopped;
 
@@ -593,10 +596,9 @@ namespace mp2lab4queueform {
 		/* Обновление UI по таймеру */
 		System::Void timer_Tick(Object^ sender, EventArgs^ e)
 		{
-			Randomex::Prepare();
 
-			bool ShouldPush = Randomex::RandBool(PushProb);
-			bool ShouldPop = Randomex::RandBool(PopProb);
+			bool ShouldPush = rand->NextDouble() < PushProb;
+			bool ShouldPop = rand->NextDouble() < PopProb;
 
 			if (ShouldPush && queue.IsNotFull()) {
 				queue.Push(1);
