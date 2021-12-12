@@ -462,6 +462,9 @@ namespace mp2lab4queueform {
 			tbPopProb->ReadOnly = true;
 			btnStartStop->Text = "Остановить";
 
+			if (queue.GetMaxSize() != MaxQueueSize)
+				queue = TQueue<int>(MaxQueueSize);
+
 			for (int i = 0; i < QueueStartSize; i++)
 				queue.Push(1);
 
