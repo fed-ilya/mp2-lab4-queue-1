@@ -26,7 +26,6 @@ public:
 	}
 };
 
-
 /* ....................... TQueue ........................ */
 
 template <class T>
@@ -37,7 +36,7 @@ private:
 	//Максимальное число элементов
 	int MaxSize;
 	//Реальное число элементов
-	int Count;
+	int count;
 	int head, tail;
 
 public:
@@ -64,7 +63,7 @@ public:
 	{
 		out << "[ ";
 
-		for (int tCount = q.Count, i = q.head; tCount > 0; tCount--)
+		for (int tCount = q.count, i = q.head; tCount > 0; tCount--)
 		{
 			out << q.arr[i] << ' ';
 			i = (++i) % q.MaxSize;
@@ -88,7 +87,7 @@ TQueue<T>::TQueue(int _MaxSize)
 	MaxSize = _MaxSize;
 	arr = new T[MaxSize];
 
-	Count = 0;
+	count = 0;
 	tail = -1, head = 0;
 }
 
@@ -98,11 +97,11 @@ TQueue<T>::TQueue(const TQueue<T>& other)
 	MaxSize = other.MaxSize;
 	arr = new T[MaxSize];
 
-	Count = other.Count;
+	count = other.count;
 	tail = other.tail, head = other.head;
 
 	//Копируется только активная часть
-	for (int tCount = Count, i = head; tCount > 0; tCount--)
+	for (int tCount = count, i = head; tCount > 0; tCount--)
 	{
 		arr[i] = other.arr[i];
 		i = (++i) % MaxSize;
@@ -126,11 +125,11 @@ TQueue<T>& TQueue<T>::operator=(const TQueue<T>& other)
 		delete[] arr;
 		arr = new T[MaxSize];
 	}
-	Count = other.Count;
+	count = other.count;
 	tail = other.tail, head = other.head;
 
 	//Копируется только активная часть
-	for (int tCount = Count, i = head; tCount > 0; tCount--)
+	for (int tCount = count, i = head; tCount > 0; tCount--)
 	{
 		arr[i] = other.arr[i];
 		i = (++i) % MaxSize;
@@ -143,11 +142,11 @@ template <class T>
 bool TQueue<T>::operator==(const TQueue<T>& other) const
 {
 	if (MaxSize != other.MaxSize) return false;
-	if (Count != other.Count) return false;
+	if (count != other.count) return false;
 	if (head != other.head) return false;
 	if (tail != other.tail) return false;
 
-	for (int tCount = Count, i = head; tCount > 0; tCount--)
+	for (int tCount = count, i = head; tCount > 0; tCount--)
 	{
 		if (arr[i] != other.arr[i]) return false;
 		i = (++i) % MaxSize;
@@ -165,25 +164,25 @@ bool TQueue<T>::operator!=(const TQueue<T>& other) const
 template <class T>
 bool TQueue<T>::IsEmpty()
 {
-	return (Count == 0);
+	return (count == 0);
 }
 
 template <class T>
 bool TQueue<T>::IsNotEmpty()
 {
-	return (Count > 0);
+	return (count > 0);
 }
 
 template <class T>
 bool TQueue<T>::IsFull()
 {
-	return (Count == MaxSize);
+	return (count == MaxSize);
 }
 
 template <class T>
 bool TQueue<T>::IsNotFull()
 {
-	return (Count < MaxSize);
+	return (count < MaxSize);
 }
 
 template <class T>
@@ -193,7 +192,7 @@ void TQueue<T>::Push(T element)
 		throw TQueueException("Can't push to a full queue");
 
 	/*
-	По сути эквивалентно:
+	Эквивалентно:
 	tail++;
 	if (tail == MaxSize) {
 		tail = 0;
@@ -202,7 +201,7 @@ void TQueue<T>::Push(T element)
 
 	arr[tail] = element;
 
-	Count++;
+	count++;
 }
 
 template <class T>
@@ -214,13 +213,13 @@ T TQueue<T>::Pop()
 	T temp = arr[head];
 	head = (++head) % MaxSize;
 
-	Count--;
+	count--;
 	return temp;
 }
 
 template <class T>
 void TQueue<T>::Clear()
 {
-	Count = 0;
+	count = 0;
 	tail = -1, head = 0;
 }
