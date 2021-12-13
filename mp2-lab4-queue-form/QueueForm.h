@@ -602,15 +602,22 @@ namespace mp2lab4queueform {
 
 			bool ShouldPush = rand->NextDouble() < PushProb;
 			bool ShouldPop = rand->NextDouble() < PopProb;
+			bool Changed = false;
 
-			if (ShouldPush && queue.IsNotFull()) {
+			if (ShouldPush && queue.IsNotFull())
+			{
+				Changed = true;
 				queue.Push(1);
 				pushStat++;
 			}
-			if (ShouldPop && queue.IsNotEmpty()) {
+			if (ShouldPop && queue.IsNotEmpty())
+			{
+				Changed = true;
 				queue.Pop();
 				popStat++;
 			}
+
+			if (!Changed) return;
 
 			labelPushed->Text = msclr::interop::marshal_as<String^>(std::to_string(pushStat));
 			labelPopped->Text = msclr::interop::marshal_as<String^>(std::to_string(popStat));
@@ -632,6 +639,7 @@ namespace mp2lab4queueform {
 
 			gr->DrawArc(ColoredPen, 136, 300, 160, 160, angleStart, angleFinish);
 		}
+
 		Void labelQueueSize_Click(Object^ sender, EventArgs^ e)
 		{
 			if (timer->Interval == 400)
