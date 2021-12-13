@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mp2-lab4-queue-test", "mp2-
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mp2-lab4-queue-form", "mp2-lab4-queue-form\mp2-lab4-queue-form.vcxproj", "{9BFCBFC5-4132-4CD0-B701-674042C88EDB}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mp2-lab4-queue-processor", "mp2-lab4-queue-processor\mp2-lab4-queue-processor.vcxproj", "{F49882AD-F006-4D8C-9F16-3BEDF1AA6FCE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -41,6 +43,14 @@ Global
 		{9BFCBFC5-4132-4CD0-B701-674042C88EDB}.Release|x64.Build.0 = Release|x64
 		{9BFCBFC5-4132-4CD0-B701-674042C88EDB}.Release|x86.ActiveCfg = Release|Win32
 		{9BFCBFC5-4132-4CD0-B701-674042C88EDB}.Release|x86.Build.0 = Release|Win32
+		{F49882AD-F006-4D8C-9F16-3BEDF1AA6FCE}.Debug|x64.ActiveCfg = Debug|x64
+		{F49882AD-F006-4D8C-9F16-3BEDF1AA6FCE}.Debug|x64.Build.0 = Debug|x64
+		{F49882AD-F006-4D8C-9F16-3BEDF1AA6FCE}.Debug|x86.ActiveCfg = Debug|Win32
+		{F49882AD-F006-4D8C-9F16-3BEDF1AA6FCE}.Debug|x86.Build.0 = Debug|Win32
+		{F49882AD-F006-4D8C-9F16-3BEDF1AA6FCE}.Release|x64.ActiveCfg = Release|x64
+		{F49882AD-F006-4D8C-9F16-3BEDF1AA6FCE}.Release|x64.Build.0 = Release|x64
+		{F49882AD-F006-4D8C-9F16-3BEDF1AA6FCE}.Release|x86.ActiveCfg = Release|Win32
+		{F49882AD-F006-4D8C-9F16-3BEDF1AA6FCE}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
