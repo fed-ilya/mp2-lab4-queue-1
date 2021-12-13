@@ -468,7 +468,7 @@ namespace mp2lab4queueform {
 			for (int i = 0; i < QueueStartSize; i++)
 				queue.Push(1);
 
-			timer_Tick(nullptr, nullptr);
+			UpdateQueueView();
 			timer->Start();
 		}
 
@@ -599,7 +599,6 @@ namespace mp2lab4queueform {
 		/* Обновление UI по таймеру */
 		System::Void timer_Tick(Object^ sender, EventArgs^ e)
 		{
-
 			bool ShouldPush = rand->NextDouble() < PushProb;
 			bool ShouldPop = rand->NextDouble() < PopProb;
 			bool Changed = false;
@@ -617,14 +616,17 @@ namespace mp2lab4queueform {
 				popStat++;
 			}
 
-			if (!Changed) return;
+			if (Changed) UpdateQueueView();
+		}
 
+		void UpdateQueueView()
+		{
 			labelPushed->Text = msclr::interop::marshal_as<String^>(std::to_string(pushStat));
 			labelPopped->Text = msclr::interop::marshal_as<String^>(std::to_string(popStat));
 			labelQueueSize->Text = msclr::interop::marshal_as<String^>(std::to_string(queue.GetCount()));
 
-			angleStart = 360.0f * ((float) queue.GetHead() / (float) queue.GetMaxSize());
-			angleFinish = 360.0f * ((float) queue.GetCount() / (float) queue.GetMaxSize());
+			angleStart = 360.0f * ((float)queue.GetHead() / (float)queue.GetMaxSize());
+			angleFinish = 360.0f * ((float)queue.GetCount() / (float)queue.GetMaxSize());
 
 			pbBackground->Invalidate();
 		}
