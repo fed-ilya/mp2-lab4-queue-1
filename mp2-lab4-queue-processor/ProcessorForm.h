@@ -1,4 +1,5 @@
 #pragma once
+#include <msclr\marshal_cppstd.h>
 
 namespace mp2lab4queueprocessor {
 
@@ -16,7 +17,7 @@ namespace mp2lab4queueprocessor {
 		{
 			InitializeComponent();
 			SetTransparency();
-			procNumberSelector->SelectedIndex = 5;
+			selProcNumber->SelectedIndex = 5;
 			label1->Select();
 		}
 
@@ -29,9 +30,7 @@ namespace mp2lab4queueprocessor {
 			}
 		}
 	private: System::Windows::Forms::PictureBox^ pbBackground;
-	protected:
-
-	private: System::Windows::Forms::Button^ btnStart;
+	private: System::Windows::Forms::Button^ btnStartStop;
 	private: System::Windows::Forms::Button^ btnPauseResume;
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::Label^ label2;
@@ -39,10 +38,10 @@ namespace mp2lab4queueprocessor {
 	private: System::Windows::Forms::Label^ label4;
 	private: System::Windows::Forms::Label^ label5;
 	private: System::Windows::Forms::TextBox^ tbNewTaskProb;
-	private: System::Windows::Forms::TextBox^ tbClockCycleDur;
+	private: System::Windows::Forms::TextBox^ tbCCDur;
 	private: System::Windows::Forms::TextBox^ tbMinProcForTask;
 	private: System::Windows::Forms::TextBox^ tbMaxProcForTask;
-	private: System::Windows::Forms::ComboBox^ procNumberSelector;
+	private: System::Windows::Forms::ComboBox^ selProcNumber;
 	private: System::Windows::Forms::TextBox^ tbMinCC;
 	private: System::Windows::Forms::TextBox^ tbMaxCC;
 	private: System::Windows::Forms::Label^ label6;
@@ -81,13 +80,7 @@ namespace mp2lab4queueprocessor {
 	private: System::Windows::Forms::Timer^ pTimer;
 	private: System::ComponentModel::IContainer^ components;
 
-
-
-	protected:
-
 	private:
-
-
 #pragma region Windows Form Designer generated code
 		/// <summary>
 		/// Требуемый метод для поддержки конструктора — не изменяйте 
@@ -98,7 +91,7 @@ namespace mp2lab4queueprocessor {
 			this->components = (gcnew System::ComponentModel::Container());
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(ProcessorForm::typeid));
 			this->pbBackground = (gcnew System::Windows::Forms::PictureBox());
-			this->btnStart = (gcnew System::Windows::Forms::Button());
+			this->btnStartStop = (gcnew System::Windows::Forms::Button());
 			this->btnPauseResume = (gcnew System::Windows::Forms::Button());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
@@ -106,10 +99,10 @@ namespace mp2lab4queueprocessor {
 			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->tbNewTaskProb = (gcnew System::Windows::Forms::TextBox());
-			this->tbClockCycleDur = (gcnew System::Windows::Forms::TextBox());
+			this->tbCCDur = (gcnew System::Windows::Forms::TextBox());
 			this->tbMinProcForTask = (gcnew System::Windows::Forms::TextBox());
 			this->tbMaxProcForTask = (gcnew System::Windows::Forms::TextBox());
-			this->procNumberSelector = (gcnew System::Windows::Forms::ComboBox());
+			this->selProcNumber = (gcnew System::Windows::Forms::ComboBox());
 			this->tbMinCC = (gcnew System::Windows::Forms::TextBox());
 			this->tbMaxCC = (gcnew System::Windows::Forms::TextBox());
 			this->label6 = (gcnew System::Windows::Forms::Label());
@@ -159,27 +152,27 @@ namespace mp2lab4queueprocessor {
 			this->pbBackground->TabIndex = 0;
 			this->pbBackground->TabStop = false;
 			// 
-			// btnStart
+			// btnStartStop
 			// 
-			this->btnStart->BackColor = System::Drawing::Color::Teal;
-			this->btnStart->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->btnStart->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.77391F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->btnStartStop->BackColor = System::Drawing::Color::Teal;
+			this->btnStartStop->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnStartStop->Font = (gcnew System::Drawing::Font(L"Microsoft YaHei", 11.89565F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->btnStart->ForeColor = System::Drawing::Color::PaleGreen;
-			this->btnStart->Location = System::Drawing::Point(16, 20);
-			this->btnStart->Name = L"btnStart";
-			this->btnStart->Size = System::Drawing::Size(156, 38);
-			this->btnStart->TabIndex = 1;
-			this->btnStart->Text = L"Старт";
-			this->btnStart->UseVisualStyleBackColor = false;
-			this->btnStart->Click += gcnew System::EventHandler(this, &ProcessorForm::btnStart_Click);
+			this->btnStartStop->ForeColor = System::Drawing::Color::PaleGreen;
+			this->btnStartStop->Location = System::Drawing::Point(16, 20);
+			this->btnStartStop->Name = L"btnStartStop";
+			this->btnStartStop->Size = System::Drawing::Size(156, 38);
+			this->btnStartStop->TabIndex = 1;
+			this->btnStartStop->Text = L"Старт";
+			this->btnStartStop->UseVisualStyleBackColor = false;
+			this->btnStartStop->Click += gcnew System::EventHandler(this, &ProcessorForm::btnStartStop_Click);
 			// 
 			// btnPauseResume
 			// 
 			this->btnPauseResume->BackColor = System::Drawing::Color::Teal;
 			this->btnPauseResume->Enabled = false;
 			this->btnPauseResume->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->btnPauseResume->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.77391F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->btnPauseResume->Font = (gcnew System::Drawing::Font(L"Microsoft YaHei", 11.89565F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->btnPauseResume->ForeColor = System::Drawing::Color::PaleGreen;
 			this->btnPauseResume->Location = System::Drawing::Point(179, 20);
@@ -269,19 +262,19 @@ namespace mp2lab4queueprocessor {
 			this->tbNewTaskProb->Text = L"0.15";
 			this->tbNewTaskProb->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			// 
-			// tbClockCycleDur
+			// tbCCDur
 			// 
-			this->tbClockCycleDur->BackColor = System::Drawing::Color::Teal;
-			this->tbClockCycleDur->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.77391F, System::Drawing::FontStyle::Regular,
+			this->tbCCDur->BackColor = System::Drawing::Color::Teal;
+			this->tbCCDur->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.77391F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(204)));
-			this->tbClockCycleDur->ForeColor = System::Drawing::Color::White;
-			this->tbClockCycleDur->Location = System::Drawing::Point(235, 169);
-			this->tbClockCycleDur->MaxLength = 6;
-			this->tbClockCycleDur->Name = L"tbClockCycleDur";
-			this->tbClockCycleDur->Size = System::Drawing::Size(100, 32);
-			this->tbClockCycleDur->TabIndex = 9;
-			this->tbClockCycleDur->Text = L"400";
-			this->tbClockCycleDur->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
+			this->tbCCDur->ForeColor = System::Drawing::Color::White;
+			this->tbCCDur->Location = System::Drawing::Point(235, 169);
+			this->tbCCDur->MaxLength = 6;
+			this->tbCCDur->Name = L"tbCCDur";
+			this->tbCCDur->Size = System::Drawing::Size(100, 32);
+			this->tbCCDur->TabIndex = 9;
+			this->tbCCDur->Text = L"400";
+			this->tbCCDur->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			// 
 			// tbMinProcForTask
 			// 
@@ -311,24 +304,24 @@ namespace mp2lab4queueprocessor {
 			this->tbMaxProcForTask->Text = L"8";
 			this->tbMaxProcForTask->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			// 
-			// procNumberSelector
+			// selProcNumber
 			// 
-			this->procNumberSelector->BackColor = System::Drawing::Color::Teal;
-			this->procNumberSelector->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
-			this->procNumberSelector->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->procNumberSelector->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.89565F, System::Drawing::FontStyle::Regular,
+			this->selProcNumber->BackColor = System::Drawing::Color::Teal;
+			this->selProcNumber->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
+			this->selProcNumber->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->selProcNumber->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.89565F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(204)));
-			this->procNumberSelector->ForeColor = System::Drawing::Color::White;
-			this->procNumberSelector->FormattingEnabled = true;
-			this->procNumberSelector->Items->AddRange(gcnew cli::array< System::Object^  >(11) {
+			this->selProcNumber->ForeColor = System::Drawing::Color::White;
+			this->selProcNumber->FormattingEnabled = true;
+			this->selProcNumber->Items->AddRange(gcnew cli::array< System::Object^  >(11) {
 				L"1", L"2", L"3", L"4", L"6", L"8", L"12",
 					L"16", L"32", L"64", L"128"
 			});
-			this->procNumberSelector->Location = System::Drawing::Point(235, 85);
-			this->procNumberSelector->Name = L"procNumberSelector";
-			this->procNumberSelector->Size = System::Drawing::Size(100, 32);
-			this->procNumberSelector->TabIndex = 12;
-			this->procNumberSelector->SelectedIndexChanged += gcnew System::EventHandler(this, &ProcessorForm::procNumberSelector_SelectedIndexChanged);
+			this->selProcNumber->Location = System::Drawing::Point(235, 85);
+			this->selProcNumber->Name = L"selProcNumber";
+			this->selProcNumber->Size = System::Drawing::Size(100, 32);
+			this->selProcNumber->TabIndex = 12;
+			this->selProcNumber->SelectedIndexChanged += gcnew System::EventHandler(this, &ProcessorForm::selProcNumber_SelectedIndexChanged);
 			// 
 			// tbMinCC
 			// 
@@ -757,10 +750,10 @@ namespace mp2lab4queueprocessor {
 			this->Controls->Add(this->label6);
 			this->Controls->Add(this->tbMaxCC);
 			this->Controls->Add(this->tbMinCC);
-			this->Controls->Add(this->procNumberSelector);
+			this->Controls->Add(this->selProcNumber);
 			this->Controls->Add(this->tbMaxProcForTask);
 			this->Controls->Add(this->tbMinProcForTask);
-			this->Controls->Add(this->tbClockCycleDur);
+			this->Controls->Add(this->tbCCDur);
 			this->Controls->Add(this->tbNewTaskProb);
 			this->Controls->Add(this->label5);
 			this->Controls->Add(this->label4);
@@ -768,7 +761,7 @@ namespace mp2lab4queueprocessor {
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->btnPauseResume);
-			this->Controls->Add(this->btnStart);
+			this->Controls->Add(this->btnStartStop);
 			this->Controls->Add(this->pbBackground);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
@@ -818,25 +811,124 @@ namespace mp2lab4queueprocessor {
 		}
 
 
+		bool IsRunning = false, IsPaused = false;
 
+		int procNumberSelIndex = 5;
 
-		Void procNumberSelector_SelectedIndexChanged(Object^ sender, EventArgs^ e)
+		int procNumber = 8;
+		
+
+		Void selProcNumber_SelectedIndexChanged(Object^ sender, EventArgs^ e)
 		{
+			if (!IsRunning)
+			{
+				procNumberSelIndex = selProcNumber->SelectedIndex;
+				procNumber = stoi(msclr::interop::marshal_as<std::string>(
+					selProcNumber->GetItemText(selProcNumber->SelectedItem)
+				));
+			}
+			else
+			{
+				selProcNumber->SelectedIndex = procNumberSelIndex;
+			}
+		}
 
+		Void btnStartStop_Click(Object^ sender, EventArgs^ e)
+		{
+			if (!IsRunning)
+			{
+				if (ProcessInput())
+				{
+					IsRunning = true;
+
+					btnStartStop->Text = "Стоп";
+					btnPauseResume->Enabled = true;
+
+					tbNewTaskProb->ReadOnly = true;
+					tbCCDur->ReadOnly = true;
+					tbMinProcForTask->ReadOnly = true;
+					tbMaxProcForTask->ReadOnly = true;
+					tbMinCC->ReadOnly = true;
+					tbMaxCC->ReadOnly = true;
+					//TODO Prepare other views
+					Start();
+					
+				}
+			}
+			else
+			{
+				IsRunning = false;
+				IsPaused = false;
+
+				btnStartStop->Text = "Старт";
+				btnPauseResume->Text = "Пауза";
+				btnPauseResume->Enabled = false;
+
+				tbNewTaskProb->ReadOnly = false;
+				tbCCDur->ReadOnly = false;
+				tbMinProcForTask->ReadOnly = false;
+				tbMaxProcForTask->ReadOnly = false;
+				tbMinCC->ReadOnly = false;
+				tbMaxCC->ReadOnly = false;
+
+				//TODO Clear queue!
+				lCurrentLoad->Text = "0/" + procNumber;
+				lActiveTasks->Text = "0";
+				lQueueCount->Text = "0";
+				lTotalCC->Text = "0";
+				lWaitingCC->Text = "0";
+				lTotalTasks->Text = "0";
+				lFinishedTasks->Text = "0";
+				lAverageLoad->Text = "0/" + procNumber;
+			}
+
+		}
+
+		bool ProcessInput()
+		{
+			//TODO проверять и отображать ошибки при вводе
+			return true;
 		}
 
 
 
-		/* Самые важные события и их обработка */
-
-		Void btnStart_Click(System::Object^ sender, System::EventArgs^ e)
+		Void btnPauseResume_Click(Object^ sender, EventArgs^ e)
 		{
-
+			if (IsRunning)
+			{
+				if (!IsPaused)
+				{
+					IsPaused = true;
+					Pause();
+					btnPauseResume->Text = "Продолжить";
+				}
+				else
+				{
+					IsPaused = false;
+					Resume();
+					btnPauseResume->Text = "Пауза";
+				}
+			}
 		}
 
-		Void btnPauseResume_Click(System::Object^ sender, System::EventArgs^ e)
+		void Start()
 		{
+			pTimer->Start();
+		}
 
+		void Pause()
+		{
+			pTimer->Stop();
+		}
+
+		void Resume()
+		{
+			pTimer->Start();
+		}
+
+		void Stop()
+		{
+			pTimer->Stop();
 		}
 	};
 }
