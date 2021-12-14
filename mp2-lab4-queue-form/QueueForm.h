@@ -652,7 +652,6 @@ namespace mp2lab4queueform {
 			{
 				timer->Interval = 50;
 			}
-
 			else if (timer->Interval == 50)
 			{
 				timer->Interval = 20;

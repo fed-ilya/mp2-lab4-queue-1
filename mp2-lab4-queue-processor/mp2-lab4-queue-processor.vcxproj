@@ -111,7 +111,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Convertex.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="TextBoxFilters.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -121,9 +123,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Convertex.h" />
+    <ClInclude Include="DataStructs.h" />
     <ClInclude Include="ProcessorForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="TextBoxFilters.h" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ProcessorForm.resx">

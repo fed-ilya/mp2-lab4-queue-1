@@ -1,5 +1,7 @@
 #pragma once
 #include <msclr\marshal_cppstd.h>
+#include "TextBoxFilters.h"
+#include "Convertex.h"
 
 namespace mp2lab4queueprocessor {
 
@@ -37,7 +39,7 @@ namespace mp2lab4queueprocessor {
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::Label^ label4;
 	private: System::Windows::Forms::Label^ label5;
-	private: System::Windows::Forms::TextBox^ tbNewTaskProb;
+	private: System::Windows::Forms::TextBox^ tbTaskP;
 	private: System::Windows::Forms::TextBox^ tbCCDur;
 	private: System::Windows::Forms::TextBox^ tbMinProcForTask;
 	private: System::Windows::Forms::TextBox^ tbMaxProcForTask;
@@ -98,7 +100,7 @@ namespace mp2lab4queueprocessor {
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->label5 = (gcnew System::Windows::Forms::Label());
-			this->tbNewTaskProb = (gcnew System::Windows::Forms::TextBox());
+			this->tbTaskP = (gcnew System::Windows::Forms::TextBox());
 			this->tbCCDur = (gcnew System::Windows::Forms::TextBox());
 			this->tbMinProcForTask = (gcnew System::Windows::Forms::TextBox());
 			this->tbMaxProcForTask = (gcnew System::Windows::Forms::TextBox());
@@ -248,25 +250,26 @@ namespace mp2lab4queueprocessor {
 			this->label5->TabIndex = 7;
 			this->label5->Text = L"Тактов на задачу:";
 			// 
-			// tbNewTaskProb
+			// tbTaskP
 			// 
-			this->tbNewTaskProb->BackColor = System::Drawing::Color::Teal;
-			this->tbNewTaskProb->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.77391F, System::Drawing::FontStyle::Regular,
-				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(204)));
-			this->tbNewTaskProb->ForeColor = System::Drawing::Color::White;
-			this->tbNewTaskProb->Location = System::Drawing::Point(235, 127);
-			this->tbNewTaskProb->MaxLength = 6;
-			this->tbNewTaskProb->Name = L"tbNewTaskProb";
-			this->tbNewTaskProb->Size = System::Drawing::Size(100, 32);
-			this->tbNewTaskProb->TabIndex = 8;
-			this->tbNewTaskProb->Text = L"0.15";
-			this->tbNewTaskProb->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
+			this->tbTaskP->BackColor = System::Drawing::Color::Teal;
+			this->tbTaskP->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.77391F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->tbTaskP->ForeColor = System::Drawing::Color::White;
+			this->tbTaskP->Location = System::Drawing::Point(235, 127);
+			this->tbTaskP->MaxLength = 6;
+			this->tbTaskP->Name = L"tbTaskP";
+			this->tbTaskP->Size = System::Drawing::Size(100, 32);
+			this->tbTaskP->TabIndex = 8;
+			this->tbTaskP->Text = L"0.15";
+			this->tbTaskP->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
+			this->tbTaskP->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &ProcessorForm::tbNonNegativeDecimal_KeyPress);
 			// 
 			// tbCCDur
 			// 
 			this->tbCCDur->BackColor = System::Drawing::Color::Teal;
-			this->tbCCDur->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.77391F, System::Drawing::FontStyle::Regular,
-				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(204)));
+			this->tbCCDur->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.77391F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
 			this->tbCCDur->ForeColor = System::Drawing::Color::White;
 			this->tbCCDur->Location = System::Drawing::Point(235, 169);
 			this->tbCCDur->MaxLength = 6;
@@ -275,6 +278,7 @@ namespace mp2lab4queueprocessor {
 			this->tbCCDur->TabIndex = 9;
 			this->tbCCDur->Text = L"400";
 			this->tbCCDur->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
+			this->tbCCDur->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &ProcessorForm::tbNatural_KeyPress);
 			// 
 			// tbMinProcForTask
 			// 
@@ -289,6 +293,7 @@ namespace mp2lab4queueprocessor {
 			this->tbMinProcForTask->TabIndex = 10;
 			this->tbMinProcForTask->Text = L"1";
 			this->tbMinProcForTask->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
+			this->tbMinProcForTask->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &ProcessorForm::tbNatural_KeyPress);
 			// 
 			// tbMaxProcForTask
 			// 
@@ -303,6 +308,7 @@ namespace mp2lab4queueprocessor {
 			this->tbMaxProcForTask->TabIndex = 11;
 			this->tbMaxProcForTask->Text = L"8";
 			this->tbMaxProcForTask->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
+			this->tbMaxProcForTask->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &ProcessorForm::tbNatural_KeyPress);
 			// 
 			// selProcNumber
 			// 
@@ -336,6 +342,7 @@ namespace mp2lab4queueprocessor {
 			this->tbMinCC->TabIndex = 13;
 			this->tbMinCC->Text = L"1";
 			this->tbMinCC->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
+			this->tbMinCC->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &ProcessorForm::tbNatural_KeyPress);
 			// 
 			// tbMaxCC
 			// 
@@ -350,6 +357,7 @@ namespace mp2lab4queueprocessor {
 			this->tbMaxCC->TabIndex = 14;
 			this->tbMaxCC->Text = L"4";
 			this->tbMaxCC->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
+			this->tbMaxCC->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &ProcessorForm::tbNatural_KeyPress);
 			// 
 			// label6
 			// 
@@ -716,6 +724,7 @@ namespace mp2lab4queueprocessor {
 			// pTimer
 			// 
 			this->pTimer->Interval = 400;
+			this->pTimer->Tick += gcnew System::EventHandler(this, &ProcessorForm::pTimer_Tick);
 			// 
 			// ProcessorForm
 			// 
@@ -754,7 +763,7 @@ namespace mp2lab4queueprocessor {
 			this->Controls->Add(this->tbMaxProcForTask);
 			this->Controls->Add(this->tbMinProcForTask);
 			this->Controls->Add(this->tbCCDur);
-			this->Controls->Add(this->tbNewTaskProb);
+			this->Controls->Add(this->tbTaskP);
 			this->Controls->Add(this->label5);
 			this->Controls->Add(this->label4);
 			this->Controls->Add(this->label3);
@@ -777,6 +786,20 @@ namespace mp2lab4queueprocessor {
 
 		}
 #pragma endregion
+
+		bool IsRunning = false, IsPaused = false;
+
+		int procNumberSelIndex = 5;
+
+		int procNumber = 8;
+
+		float newTaskP = 0.15F;
+		int ccDur = 400;
+		int minProcForTask = 1;
+		int maxProcForTask = 8;
+		int minCC = 1;
+		int maxCC = 4;
+
 
 		void SetTransparency()
 		{
@@ -810,14 +833,6 @@ namespace mp2lab4queueprocessor {
 			label30->Parent = pbBackground;
 		}
 
-
-		bool IsRunning = false, IsPaused = false;
-
-		int procNumberSelIndex = 5;
-
-		int procNumber = 8;
-		
-
 		Void selProcNumber_SelectedIndexChanged(Object^ sender, EventArgs^ e)
 		{
 			if (!IsRunning)
@@ -825,12 +840,23 @@ namespace mp2lab4queueprocessor {
 				procNumberSelIndex = selProcNumber->SelectedIndex;
 				procNumber = stoi(msclr::interop::marshal_as<std::string>(
 					selProcNumber->GetItemText(selProcNumber->SelectedItem)
-				));
+					));
+				lCurrentLoad->Text = "0/" + procNumber;
+				lAverageLoad->Text = "0/" + procNumber;
 			}
 			else
 			{
 				selProcNumber->SelectedIndex = procNumberSelIndex;
 			}
+		}
+
+		Void tbNonNegativeDecimal_KeyPress(Object^ sender, KeyPressEventArgs^ e)
+		{
+			TextBoxFilters::NonNegativeDecimalNumber(sender, e);
+		}
+		Void tbNatural_KeyPress(Object^ sender, KeyPressEventArgs^ e)
+		{
+			TextBoxFilters::NaturalNumber(sender, e);
 		}
 
 		Void btnStartStop_Click(Object^ sender, EventArgs^ e)
@@ -839,58 +865,186 @@ namespace mp2lab4queueprocessor {
 			{
 				if (ProcessInput())
 				{
-					IsRunning = true;
-
-					btnStartStop->Text = "Стоп";
-					btnPauseResume->Enabled = true;
-
-					tbNewTaskProb->ReadOnly = true;
-					tbCCDur->ReadOnly = true;
-					tbMinProcForTask->ReadOnly = true;
-					tbMaxProcForTask->ReadOnly = true;
-					tbMinCC->ReadOnly = true;
-					tbMaxCC->ReadOnly = true;
-					//TODO Prepare other views
 					Start();
-					
 				}
 			}
 			else
 			{
-				IsRunning = false;
-				IsPaused = false;
-
-				btnStartStop->Text = "Старт";
-				btnPauseResume->Text = "Пауза";
-				btnPauseResume->Enabled = false;
-
-				tbNewTaskProb->ReadOnly = false;
-				tbCCDur->ReadOnly = false;
-				tbMinProcForTask->ReadOnly = false;
-				tbMaxProcForTask->ReadOnly = false;
-				tbMinCC->ReadOnly = false;
-				tbMaxCC->ReadOnly = false;
-
-				//TODO Clear queue!
-				lCurrentLoad->Text = "0/" + procNumber;
-				lActiveTasks->Text = "0";
-				lQueueCount->Text = "0";
-				lTotalCC->Text = "0";
-				lWaitingCC->Text = "0";
-				lTotalTasks->Text = "0";
-				lFinishedTasks->Text = "0";
-				lAverageLoad->Text = "0/" + procNumber;
+				Stop();
 			}
-
 		}
 
 		bool ProcessInput()
 		{
-			//TODO проверять и отображать ошибки при вводе
-			return true;
+
+			float _newTaskP = -1.0F;
+			int _ccDur = -1;
+			int _minProcForTask = -1;
+			int _maxProcForTask = -1;
+			int _minCC = -1;
+			int _maxCC = -1;
+
+			//Проверки ввода:
+
+			//Вероятность поступления задачи (-1.0F, если некорректна)
+			try
+			{
+				_newTaskP = Convertex::Read_float(tbTaskP);
+				if (_newTaskP != 0.0F && _newTaskP <= 1.0F)
+				{
+					label3->ForeColor = Color::PaleGreen;
+				}
+				else
+				{
+					_newTaskP = -1.0F;
+					label3->ForeColor = Color::Red;
+				}
+			}
+			catch (...)
+			{
+				label3->ForeColor = Color::Red;
+			}
+
+			//Длительность такта (-1, если некорректна)
+			try
+			{
+				_ccDur = Convertex::Read_int(tbCCDur);
+				if (_ccDur >= 1)
+				{
+					label2->ForeColor = Color::PaleGreen;
+				}
+				else
+				{
+					_ccDur = -1;
+					label2->ForeColor = Color::Red;
+				}
+			}
+			catch (...)
+			{
+				_ccDur = -1;
+				label2->ForeColor = Color::Red;
+			}
+
+
+			//Минимум процессоров на задачу (-1, если некорректно)
+			try
+			{
+				_minProcForTask = Convertex::Read_int(tbMinProcForTask);
+				if (_minProcForTask >= 1 && _minProcForTask <= procNumber)
+				{
+					label4->ForeColor = Color::PaleGreen;
+				}
+				else
+				{
+					_minProcForTask = -1;
+					label4->ForeColor = Color::Red;
+				}
+			}
+			catch (...)
+			{
+				_minProcForTask = -1;
+				label4->ForeColor = Color::Red;
+			}
+
+			//Максимум процессоров на задачу (-1, если некорректно)
+			try
+			{
+				_maxProcForTask = Convertex::Read_int(tbMaxProcForTask);
+				if (_maxProcForTask >= 1 && _maxProcForTask <= procNumber)
+				{
+					if (_minProcForTask != -1 && _minProcForTask <= _maxProcForTask)
+					{
+						label4->ForeColor = Color::PaleGreen;
+					}
+					else
+					{
+						_maxProcForTask = -1;
+						label4->ForeColor = Color::Red;
+					}
+				}
+				else
+				{
+					_maxProcForTask = -1;
+					label4->ForeColor = Color::Red;
+				}
+			}
+			catch (...)
+			{
+				_maxProcForTask = -1;
+				label4->ForeColor = Color::Red;
+			}
+
+			//Минимум тактов на задачу
+			try
+			{
+				_minCC = Convertex::Read_int(tbMinCC);
+				if (_minCC >= 1)
+				{
+					label5->ForeColor = Color::PaleGreen;
+				}
+				else
+				{
+					_minCC = -1;
+					label5->ForeColor = Color::Red;
+				}
+			}
+			catch (...)
+			{
+				_minCC = -1;
+				label5->ForeColor = Color::Red;
+			}
+
+			//Максимум тактов на задачу
+			try
+			{
+				_maxCC = Convertex::Read_int(tbMaxCC);
+				if (_maxCC >= 1)
+				{
+					if (_minCC != -1 && _minCC <= _maxCC)
+					{
+						label5->ForeColor = Color::PaleGreen;
+					}
+					else
+					{
+						_maxCC = -1;
+						label5->ForeColor = Color::Red;
+					}
+				}
+				else
+				{
+					_maxCC = -1;
+					label5->ForeColor = Color::Red;
+				}
+			}
+			catch (...)
+			{
+				_maxCC = -1;
+				label5->ForeColor = Color::Red;
+			}
+
+			bool correct = _newTaskP > 0.0F && _ccDur != -1 &&
+				_minProcForTask != -1 && _maxProcForTask != -1 &&
+				_minCC != -1 && _maxCC != -1;
+
+			if (_newTaskP <= 0.0F) tbTaskP->Select();
+			else if (_ccDur == -1) tbCCDur->Select();
+			else if (_minProcForTask == -1) tbMinProcForTask->Select();
+			else if (_maxProcForTask == -1) tbMaxProcForTask->Select();
+			else if (_minCC == -1) tbMinCC->Select();
+			else if (_maxCC == -1) tbMaxCC->Select();
+
+			if (correct)
+				{
+					newTaskP = _newTaskP;
+					ccDur = ccDur;
+					minProcForTask = _minProcForTask;
+					maxProcForTask = _maxProcForTask;
+					minCC = _minCC;
+					maxCC = _maxCC;
+				}
+
+			return correct;
 		}
-
-
 
 		Void btnPauseResume_Click(Object^ sender, EventArgs^ e)
 		{
@@ -911,9 +1065,57 @@ namespace mp2lab4queueprocessor {
 			}
 		}
 
+
+		Void pTimer_Tick(Object^ sender, EventArgs^ e)
+		{
+			//TODO
+		}
+
+
 		void Start()
 		{
+			IsRunning = true;
+
+			btnStartStop->Text = "Стоп";
+			btnPauseResume->Enabled = true;
+
+			tbTaskP->ReadOnly = true;
+			tbCCDur->ReadOnly = true;
+			tbMinProcForTask->ReadOnly = true;
+			tbMaxProcForTask->ReadOnly = true;
+			tbMinCC->ReadOnly = true;
+			tbMaxCC->ReadOnly = true;
+
 			pTimer->Start();
+		}
+
+		void Stop()
+		{
+			pTimer->Stop();
+
+			IsRunning = false;
+			IsPaused = false;
+
+			btnStartStop->Text = "Старт";
+			btnPauseResume->Text = "Пауза";
+			btnPauseResume->Enabled = false;
+
+			tbTaskP->ReadOnly = false;
+			tbCCDur->ReadOnly = false;
+			tbMinProcForTask->ReadOnly = false;
+			tbMaxProcForTask->ReadOnly = false;
+			tbMinCC->ReadOnly = false;
+			tbMaxCC->ReadOnly = false;
+
+			//TODO Clear UI and queue!
+			lCurrentLoad->Text = "0/" + procNumber;
+			lActiveTasks->Text = "0";
+			lQueueCount->Text = "0";
+			lTotalCC->Text = "0";
+			lWaitingCC->Text = "0";
+			lTotalTasks->Text = "0";
+			lFinishedTasks->Text = "0";
+			lAverageLoad->Text = "0/" + procNumber;
 		}
 
 		void Pause()
@@ -925,10 +1127,5 @@ namespace mp2lab4queueprocessor {
 		{
 			pTimer->Start();
 		}
-
-		void Stop()
-		{
-			pTimer->Stop();
-		}
-	};
+};
 }

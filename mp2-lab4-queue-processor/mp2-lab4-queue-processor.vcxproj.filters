@@ -13,14 +13,32 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Исходные файлы\TextHelpers">
+      <UniqueIdentifier>{73c3b139-9aa5-4a37-9b3b-b9c2eb71c47d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="TextBoxFilters.cpp">
+      <Filter>Исходные файлы\TextHelpers</Filter>
+    </ClCompile>
+    <ClCompile Include="Convertex.cpp">
+      <Filter>Исходные файлы\TextHelpers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ProcessorForm.h">
+      <Filter>Исходные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="TextBoxFilters.h">
+      <Filter>Исходные файлы\TextHelpers</Filter>
+    </ClInclude>
+    <ClInclude Include="Convertex.h">
+      <Filter>Исходные файлы\TextHelpers</Filter>
+    </ClInclude>
+    <ClInclude Include="DataStructs.h">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
   </ItemGroup>
