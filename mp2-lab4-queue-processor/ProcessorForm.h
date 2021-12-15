@@ -24,10 +24,10 @@ namespace mp2lab4queueprocessor {
 		{
 			InitializeComponent();
 			SetTransparency();
-			selProcNumber->SelectedIndex = 5;
+			selProcNumber->SelectedIndex = 15;
 			label1->Select();
 
-			DrawProcessors(8);
+			DrawProcessors(16);
 		}
 
 	protected:
@@ -89,7 +89,7 @@ namespace mp2lab4queueprocessor {
 	private: System::Windows::Forms::Timer^ pTimer;
 	private: System::Windows::Forms::Panel^ panelProcessors;
 
-	private: System::Windows::Forms::Button^ btnProc1;
+
 
 	private: System::ComponentModel::IContainer^ components;
 
@@ -146,12 +146,10 @@ namespace mp2lab4queueprocessor {
 			this->dataGridViewTextBoxColumn2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->pTimer = (gcnew System::Windows::Forms::Timer(this->components));
 			this->panelProcessors = (gcnew System::Windows::Forms::Panel());
-			this->btnProc1 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbBackground))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView2))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView3))->BeginInit();
-			this->panelProcessors->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// pbBackground
@@ -317,7 +315,7 @@ namespace mp2lab4queueprocessor {
 			this->tbMaxProcForTask->Name = L"tbMaxProcForTask";
 			this->tbMaxProcForTask->Size = System::Drawing::Size(100, 32);
 			this->tbMaxProcForTask->TabIndex = 11;
-			this->tbMaxProcForTask->Text = L"8";
+			this->tbMaxProcForTask->Text = L"16";
 			this->tbMaxProcForTask->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			this->tbMaxProcForTask->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &ProcessorForm::tbNatural_KeyPress);
 			// 
@@ -330,9 +328,9 @@ namespace mp2lab4queueprocessor {
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(204)));
 			this->selProcNumber->ForeColor = System::Drawing::Color::White;
 			this->selProcNumber->FormattingEnabled = true;
-			this->selProcNumber->Items->AddRange(gcnew cli::array< System::Object^  >(10) {
-				L"1", L"2", L"3", L"4", L"6", L"8", L"12",
-					L"16", L"32", L"64"
+			this->selProcNumber->Items->AddRange(gcnew cli::array< System::Object^  >(20) {
+				L"1", L"2", L"3", L"4", L"5", L"6", L"7", L"8",
+					L"9", L"10", L"11", L"12", L"13", L"14", L"15", L"16", L"32", L"48", L"64", L"256"
 			});
 			this->selProcNumber->Location = System::Drawing::Point(235, 85);
 			this->selProcNumber->Name = L"selProcNumber";
@@ -742,25 +740,10 @@ namespace mp2lab4queueprocessor {
 			this->panelProcessors->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(31)), static_cast<System::Int32>(static_cast<System::Byte>(31)),
 				static_cast<System::Int32>(static_cast<System::Byte>(31)));
 			this->panelProcessors->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->panelProcessors->Controls->Add(this->btnProc1);
 			this->panelProcessors->Location = System::Drawing::Point(362, 20);
 			this->panelProcessors->Name = L"panelProcessors";
 			this->panelProcessors->Size = System::Drawing::Size(640, 510);
 			this->panelProcessors->TabIndex = 44;
-			// 
-			// btnProc1
-			// 
-			this->btnProc1->BackColor = System::Drawing::Color::DarkOrchid;
-			this->btnProc1->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->btnProc1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 23.7913F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(204)));
-			this->btnProc1->ForeColor = System::Drawing::Color::White;
-			this->btnProc1->Location = System::Drawing::Point(417, 286);
-			this->btnProc1->Name = L"btnProc1";
-			this->btnProc1->Size = System::Drawing::Size(200, 200);
-			this->btnProc1->TabIndex = 0;
-			this->btnProc1->Text = L"132: 4";
-			this->btnProc1->UseVisualStyleBackColor = false;
 			// 
 			// ProcessorForm
 			// 
@@ -810,6 +793,7 @@ namespace mp2lab4queueprocessor {
 			this->Controls->Add(this->pbBackground);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
+			this->MaximizeBox = false;
 			this->Name = L"ProcessorForm";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"Процессорная";
@@ -817,7 +801,6 @@ namespace mp2lab4queueprocessor {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView2))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView3))->EndInit();
-			this->panelProcessors->ResumeLayout(false);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -892,6 +875,7 @@ namespace mp2lab4queueprocessor {
 		{
 			TextBoxFilters::NonNegativeDecimalNumber(sender, e);
 		}
+
 		Void tbNatural_KeyPress(Object^ sender, KeyPressEventArgs^ e)
 		{
 			TextBoxFilters::NaturalNumber(sender, e);
@@ -1072,14 +1056,14 @@ namespace mp2lab4queueprocessor {
 			else if (_maxCC == -1) tbMaxCC->Select();
 
 			if (correct)
-				{
-					newTaskP = _newTaskP;
-					ccDur = ccDur;
-					minProcForTask = _minProcForTask;
-					maxProcForTask = _maxProcForTask;
-					minCC = _minCC;
-					maxCC = _maxCC;
-				}
+			{
+				newTaskP = _newTaskP;
+				ccDur = ccDur;
+				minProcForTask = _minProcForTask;
+				maxProcForTask = _maxProcForTask;
+				minCC = _minCC;
+				maxCC = _maxCC;
+			}
 
 			return correct;
 		}
@@ -1106,9 +1090,8 @@ namespace mp2lab4queueprocessor {
 
 		Void pTimer_Tick(Object^ sender, EventArgs^ e)
 		{
-			//TODO Generate new Task and update 
+			//TODO Generate new Task and update
 		}
-
 
 		void Start()
 		{
@@ -1153,6 +1136,12 @@ namespace mp2lab4queueprocessor {
 			lTotalTasks->Text = "0";
 			lFinishedTasks->Text = "0";
 			lAverageLoad->Text = "0/" + procNumber;
+
+			for (int i = 0; i < procBtns->Length; i++)
+			{
+				procBtns[i]->BackColor = Color::Teal;
+				procBtns[i]->Text = "";
+			}
 		}
 
 		void Pause()
@@ -1179,39 +1168,90 @@ namespace mp2lab4queueprocessor {
 			}
 
 			//Добавление новых процессоров
+
 			procBtns = gcnew array<Button^>(n);
 
-			int w, h, rowSize, currentRow;
+			int startX = 80, startY = 15;
 
+			//1 процессор
 			if (n == 1)
 			{
-				w = 480, h = 480;
-
+				DrawProcTable(startX, startY, 480, -1, 1, 1, 1);
 			}
-
-			for (int i = 0; i < procBtns->Length; i++)
+			//2-3-4 процессора
+			else if (n <= 4)
 			{
-				Button^ procBtn = gcnew Button();
-
-				procBtn->BackColor = System::Drawing::Color::Teal;
-				procBtn->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-				procBtn->Font = (
-					gcnew System::Drawing::Font(L"Microsoft Sans Serif",
-						23.7913F, System::Drawing::FontStyle::Regular,
-						System::Drawing::GraphicsUnit::Point,
-						static_cast<System::Byte>(204)));
-				procBtn->ForeColor = System::Drawing::Color::White;
-				procBtn->Location = System::Drawing::Point(17, 17 + 20*i);
-				procBtn->Name = L"btnProc" + i;
-				procBtn->Size = System::Drawing::Size(200, 200);
-				procBtn->TabIndex = 0;
-				procBtn->Text = L"0 : 0";
-				procBtn->UseVisualStyleBackColor = false;
-
-				this->panelProcessors->Controls->Add(procBtn);
-
-				procBtns[i] = procBtn;
+				if (n == 2)
+				{
+					DrawProcTable(startX, startY + 115 + 9, 230, 20, 2, 2, n);
+				}
+				else
+				{
+					DrawProcTable(startX, startY, 230, 20, 2, 2, n);
+				}
+			}
+			//5-6-7-8-9
+			else if (n <= 9)
+			{
+				if (n <= 6)
+				{
+					DrawProcTable(startX, startY + 85, 148, 18, 3, 3, n);
+				}
+				else
+				{
+					DrawProcTable(startX, startY, 148, 18, 3, 3, n);
+				}
+			}
+			//10-11-12-13-14-15-16
+			else if (n <= 16)
+			{
+				DrawProcTable(startX, startY, 111, 12, 4, 4, n);
+			}
+			else if (n <= 64)
+			{
+				DrawProcTable(startX, startY, 53, 8, 8, 8, n);
+			}
+			else if (n <= 256)
+			{
+				DrawProcTable(startX, startY, 15, 16, 16, 16, n);
 			}
 		}
-};
+
+		void DrawProcTable(int startX, int startY, int wh, int space, int m, int n, int count)
+		{
+			int counter = 0;
+
+			for (int i = 0; i < m; i++)
+			{
+				for (int j = 0; j < n; j++)
+				{
+					if (counter == count) break;
+					Button^ procBtn = MakeProcButton(wh, wh,
+						startX + (wh + space) * j, startY + (wh + space) * i);
+					this->panelProcessors->Controls->Add(procBtn);
+					procBtns[counter] = procBtn;
+					counter++;
+				}
+			}
+		}
+
+		//Создание кнопки. На вход: ширина, высота, позиция на экране
+		Button^ MakeProcButton(int w, int h, int cX, int cY)
+		{
+			Button^ procBtn = gcnew Button();
+
+			procBtn->BackColor = System::Drawing::Color::Teal;
+			procBtn->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			procBtn->Font = (
+				gcnew System::Drawing::Font(L"Microsoft Sans Serif",
+					23.7913F, System::Drawing::FontStyle::Regular,
+					System::Drawing::GraphicsUnit::Point,
+					static_cast<System::Byte>(204)));
+			procBtn->ForeColor = System::Drawing::Color::White;
+			procBtn->Location = System::Drawing::Point(cX, cY);
+			procBtn->Size = System::Drawing::Size(w, h);
+			procBtn->UseVisualStyleBackColor = false;
+			return procBtn;
+		}
+	};
 }
