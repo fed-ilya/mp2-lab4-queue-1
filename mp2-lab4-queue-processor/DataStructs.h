@@ -1,15 +1,15 @@
 #pragma once
-struct ProcInfo
+struct Processor
 {
-	int taskId;     //id задачи
-	int stepCount;  //Число тактов - всего
-	int taskCount;  //Число тактов - данная задача
-	int waitingTime;//Число тактов простоя
+	int taskId;		   //id выполняемой задачи
+	int ccCount;	   //Число тактов - всего
+	int ccForTaskCount;//Число тактов - данная задача
+	int waitingTime;   //Число тактов простоя
 
-	bool waiting;   //Флаг - занят или свободен
+	bool isWaiting;	   //Флаг - занят или свободен
 };
 
-struct TaskInfo
+struct Task
 {
 	int id;			//id
 	int stepCount;	//Число сделанных тактов
