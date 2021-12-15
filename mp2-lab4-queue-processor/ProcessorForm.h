@@ -80,6 +80,7 @@ namespace mp2lab4queueprocessor {
 	private: System::Windows::Forms::DataGridView^ dataGridView3;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ dataGridViewTextBoxColumn2;
 	private: System::Windows::Forms::Timer^ pTimer;
+	private: System::Windows::Forms::Panel^ panel1;
 	private: System::ComponentModel::IContainer^ components;
 
 	private:
@@ -137,6 +138,7 @@ namespace mp2lab4queueprocessor {
 			this->dataGridView3 = (gcnew System::Windows::Forms::DataGridView());
 			this->dataGridViewTextBoxColumn2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->pTimer = (gcnew System::Windows::Forms::Timer(this->components));
+			this->panel1 = (gcnew System::Windows::Forms::Panel());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbBackground))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView2))->BeginInit();
@@ -149,7 +151,7 @@ namespace mp2lab4queueprocessor {
 			this->pbBackground->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pbBackground.Image")));
 			this->pbBackground->Location = System::Drawing::Point(0, 0);
 			this->pbBackground->Name = L"pbBackground";
-			this->pbBackground->Size = System::Drawing::Size(1262, 731);
+			this->pbBackground->Size = System::Drawing::Size(1226, 731);
 			this->pbBackground->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
 			this->pbBackground->TabIndex = 0;
 			this->pbBackground->TabStop = false;
@@ -506,11 +508,11 @@ namespace mp2lab4queueprocessor {
 			// 
 			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(1) { this->Logs });
-			this->dataGridView1->Location = System::Drawing::Point(338, 576);
+			this->dataGridView1->Location = System::Drawing::Point(362, 576);
 			this->dataGridView1->Name = L"dataGridView1";
 			this->dataGridView1->RowHeadersWidth = 49;
 			this->dataGridView1->RowTemplate->Height = 24;
-			this->dataGridView1->Size = System::Drawing::Size(912, 136);
+			this->dataGridView1->Size = System::Drawing::Size(848, 136);
 			this->dataGridView1->TabIndex = 27;
 			// 
 			// Logs
@@ -530,7 +532,7 @@ namespace mp2lab4queueprocessor {
 			this->label18->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.01739F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->label18->ForeColor = System::Drawing::Color::PaleGreen;
-			this->label18->Location = System::Drawing::Point(1063, 17);
+			this->label18->Location = System::Drawing::Point(1023, 17);
 			this->label18->Name = L"label18";
 			this->label18->Size = System::Drawing::Size(91, 20);
 			this->label18->TabIndex = 28;
@@ -543,7 +545,7 @@ namespace mp2lab4queueprocessor {
 			this->label19->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.01739F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->label19->ForeColor = System::Drawing::Color::PaleGreen;
-			this->label19->Location = System::Drawing::Point(1161, 17);
+			this->label19->Location = System::Drawing::Point(1121, 17);
 			this->label19->Name = L"label19";
 			this->label19->Size = System::Drawing::Size(89, 20);
 			this->label19->TabIndex = 29;
@@ -553,11 +555,11 @@ namespace mp2lab4queueprocessor {
 			// 
 			this->dataGridView2->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 			this->dataGridView2->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(1) { this->dataGridViewTextBoxColumn1 });
-			this->dataGridView2->Location = System::Drawing::Point(1067, 44);
+			this->dataGridView2->Location = System::Drawing::Point(1027, 44);
 			this->dataGridView2->Name = L"dataGridView2";
 			this->dataGridView2->RowHeadersWidth = 49;
 			this->dataGridView2->RowTemplate->Height = 24;
-			this->dataGridView2->Size = System::Drawing::Size(87, 523);
+			this->dataGridView2->Size = System::Drawing::Size(87, 486);
 			this->dataGridView2->TabIndex = 30;
 			// 
 			// dataGridViewTextBoxColumn1
@@ -694,7 +696,7 @@ namespace mp2lab4queueprocessor {
 			this->label30->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.89565F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->label30->ForeColor = System::Drawing::Color::PaleGreen;
-			this->label30->Location = System::Drawing::Point(334, 543);
+			this->label30->Location = System::Drawing::Point(358, 543);
 			this->label30->Name = L"label30";
 			this->label30->Size = System::Drawing::Size(102, 24);
 			this->label30->TabIndex = 42;
@@ -704,11 +706,11 @@ namespace mp2lab4queueprocessor {
 			// 
 			this->dataGridView3->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 			this->dataGridView3->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(1) { this->dataGridViewTextBoxColumn2 });
-			this->dataGridView3->Location = System::Drawing::Point(1165, 44);
+			this->dataGridView3->Location = System::Drawing::Point(1125, 44);
 			this->dataGridView3->Name = L"dataGridView3";
 			this->dataGridView3->RowHeadersWidth = 49;
 			this->dataGridView3->RowTemplate->Height = 24;
-			this->dataGridView3->Size = System::Drawing::Size(85, 523);
+			this->dataGridView3->Size = System::Drawing::Size(85, 486);
 			this->dataGridView3->TabIndex = 43;
 			// 
 			// dataGridViewTextBoxColumn2
@@ -726,11 +728,22 @@ namespace mp2lab4queueprocessor {
 			this->pTimer->Interval = 400;
 			this->pTimer->Tick += gcnew System::EventHandler(this, &ProcessorForm::pTimer_Tick);
 			// 
+			// panel1
+			// 
+			this->panel1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(31)), static_cast<System::Int32>(static_cast<System::Byte>(31)),
+				static_cast<System::Int32>(static_cast<System::Byte>(31)));
+			this->panel1->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->panel1->Location = System::Drawing::Point(362, 20);
+			this->panel1->Name = L"panel1";
+			this->panel1->Size = System::Drawing::Size(640, 510);
+			this->panel1->TabIndex = 44;
+			// 
 			// ProcessorForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1262, 731);
+			this->ClientSize = System::Drawing::Size(1226, 731);
+			this->Controls->Add(this->panel1);
 			this->Controls->Add(this->dataGridView3);
 			this->Controls->Add(this->label30);
 			this->Controls->Add(this->lCurrentLoad);
