@@ -128,7 +128,8 @@
     <ClInclude Include="ProcessorForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="StatisticsStruct.h" />
+    <ClInclude Include="ProcFarm.h" />
+    <ClInclude Include="Randomex.h" />
     <ClInclude Include="TextBoxFilters.h" />
   </ItemGroup>
   <ItemGroup>

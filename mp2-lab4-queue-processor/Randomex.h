@@ -1,19 +1,25 @@
 #pragma once
 #include <cstdlib>
 
-ref class Randomex {
+ref class Randomex
+{
 private:
-	static Random^ rand01 = gcnew Random();
-	Randomex();
+	System::Random^ rand01;
 public:
 
-	//Generates random int in [rangeMin, rangeMax]
-	static int RandInt(int rangeMin, int rangeMax)
+	Randomex()
 	{
-		return (int) ((double)rand() / (RAND_MAX + 1) * (rangeMax - rangeMin) + rangeMin);
+		srand(time(NULL));
+		rand01 = gcnew System::Random();
 	}
 
-	static bool RandBool(double probability)
+	//Generates random int in [rangeMin, rangeMax]
+	int RandInt(int rangeMin, int rangeMax)
+	{
+		return (int)((double)rand() / (RAND_MAX + 1) * (rangeMax - rangeMin) + rangeMin);
+	}
+
+	bool RandBool(double probability)
 	{
 		return rand01->NextDouble() < probability;
 	}
