@@ -85,8 +85,7 @@ public:
 		dgLogs->Rows->Add("Hello" + i);
 		dgLogs->FirstDisplayedScrollingRowIndex = dgLogs->RowCount - 1;
 
-		dgLogs->Rows[i]->DefaultCellStyle->ForeColor =
-			System::Drawing::Color::FromArgb(rand() % 255, rand() % 255, rand() % 255);
+		dgLogs->Rows[i]->DefaultCellStyle->ForeColor = Randomex::RandColor();
 
 		i++;
 

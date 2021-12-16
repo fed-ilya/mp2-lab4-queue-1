@@ -105,13 +105,13 @@ namespace mp2lab4queueprocessor {
 		{
 			this->components = (gcnew System::ComponentModel::Container());
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(ProcessorForm::typeid));
-			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle1 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle2 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle3 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle4 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle5 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle6 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle7 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle8 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle9 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle10 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle11 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle12 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle13 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle14 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
 			this->pbBackground = (gcnew System::Windows::Forms::PictureBox());
 			this->btnStartStop = (gcnew System::Windows::Forms::Button());
 			this->btnPauseResume = (gcnew System::Windows::Forms::Button());
@@ -531,29 +531,29 @@ namespace mp2lab4queueprocessor {
 			this->dgLogs->AllowUserToResizeRows = false;
 			this->dgLogs->BackgroundColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(31)), static_cast<System::Int32>(static_cast<System::Byte>(31)),
 				static_cast<System::Int32>(static_cast<System::Byte>(31)));
-			dataGridViewCellStyle1->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
-			dataGridViewCellStyle1->BackColor = System::Drawing::Color::White;
-			dataGridViewCellStyle1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.139131F, System::Drawing::FontStyle::Regular,
+			dataGridViewCellStyle8->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
+			dataGridViewCellStyle8->BackColor = System::Drawing::Color::White;
+			dataGridViewCellStyle8->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.139131F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(204)));
-			dataGridViewCellStyle1->ForeColor = System::Drawing::SystemColors::WindowText;
-			dataGridViewCellStyle1->SelectionBackColor = System::Drawing::SystemColors::MenuHighlight;
-			dataGridViewCellStyle1->SelectionForeColor = System::Drawing::SystemColors::ControlDarkDark;
-			dataGridViewCellStyle1->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
-			this->dgLogs->ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+			dataGridViewCellStyle8->ForeColor = System::Drawing::SystemColors::WindowText;
+			dataGridViewCellStyle8->SelectionBackColor = System::Drawing::SystemColors::MenuHighlight;
+			dataGridViewCellStyle8->SelectionForeColor = System::Drawing::SystemColors::ControlDarkDark;
+			dataGridViewCellStyle8->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
+			this->dgLogs->ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
 			this->dgLogs->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 			this->dgLogs->ColumnHeadersVisible = false;
 			this->dgLogs->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(1) { this->Logs });
-			dataGridViewCellStyle2->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
-			dataGridViewCellStyle2->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(31)), static_cast<System::Int32>(static_cast<System::Byte>(31)),
+			dataGridViewCellStyle9->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
+			dataGridViewCellStyle9->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(31)), static_cast<System::Int32>(static_cast<System::Byte>(31)),
 				static_cast<System::Int32>(static_cast<System::Byte>(31)));
-			dataGridViewCellStyle2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.765218F, System::Drawing::FontStyle::Regular,
+			dataGridViewCellStyle9->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.765218F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(204)));
-			dataGridViewCellStyle2->ForeColor = System::Drawing::Color::LightSkyBlue;
-			dataGridViewCellStyle2->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(31)),
+			dataGridViewCellStyle9->ForeColor = System::Drawing::Color::LightSkyBlue;
+			dataGridViewCellStyle9->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(31)),
 				static_cast<System::Int32>(static_cast<System::Byte>(31)), static_cast<System::Int32>(static_cast<System::Byte>(31)));
-			dataGridViewCellStyle2->SelectionForeColor = System::Drawing::Color::LightSkyBlue;
-			dataGridViewCellStyle2->WrapMode = System::Windows::Forms::DataGridViewTriState::False;
-			this->dgLogs->DefaultCellStyle = dataGridViewCellStyle2;
+			dataGridViewCellStyle9->SelectionForeColor = System::Drawing::Color::LightSkyBlue;
+			dataGridViewCellStyle9->WrapMode = System::Windows::Forms::DataGridViewTriState::False;
+			this->dgLogs->DefaultCellStyle = dataGridViewCellStyle9;
 			this->dgLogs->GridColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(64)), static_cast<System::Int32>(static_cast<System::Byte>(64)),
 				static_cast<System::Int32>(static_cast<System::Byte>(64)));
 			this->dgLogs->Location = System::Drawing::Point(361, 576);
@@ -563,9 +563,9 @@ namespace mp2lab4queueprocessor {
 			this->dgLogs->RowHeadersVisible = false;
 			this->dgLogs->RowHeadersWidth = 49;
 			this->dgLogs->RowHeadersWidthSizeMode = System::Windows::Forms::DataGridViewRowHeadersWidthSizeMode::DisableResizing;
-			dataGridViewCellStyle3->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(31)), static_cast<System::Int32>(static_cast<System::Byte>(31)),
-				static_cast<System::Int32>(static_cast<System::Byte>(31)));
-			this->dgLogs->RowsDefaultCellStyle = dataGridViewCellStyle3;
+			dataGridViewCellStyle10->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(31)),
+				static_cast<System::Int32>(static_cast<System::Byte>(31)), static_cast<System::Int32>(static_cast<System::Byte>(31)));
+			this->dgLogs->RowsDefaultCellStyle = dataGridViewCellStyle10;
 			this->dgLogs->RowTemplate->Height = 24;
 			this->dgLogs->RowTemplate->ReadOnly = true;
 			this->dgLogs->ScrollBars = System::Windows::Forms::ScrollBars::None;
@@ -619,17 +619,17 @@ namespace mp2lab4queueprocessor {
 			this->dgActive->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 			this->dgActive->ColumnHeadersVisible = false;
 			this->dgActive->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(1) { this->dataGridViewTextBoxColumn1 });
-			dataGridViewCellStyle4->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
-			dataGridViewCellStyle4->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(31)), static_cast<System::Int32>(static_cast<System::Byte>(31)),
-				static_cast<System::Int32>(static_cast<System::Byte>(31)));
-			dataGridViewCellStyle4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.765218F, System::Drawing::FontStyle::Regular,
-				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(204)));
-			dataGridViewCellStyle4->ForeColor = System::Drawing::Color::LightSkyBlue;
-			dataGridViewCellStyle4->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(31)),
+			dataGridViewCellStyle11->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
+			dataGridViewCellStyle11->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(31)),
 				static_cast<System::Int32>(static_cast<System::Byte>(31)), static_cast<System::Int32>(static_cast<System::Byte>(31)));
-			dataGridViewCellStyle4->SelectionForeColor = System::Drawing::Color::LightSkyBlue;
-			dataGridViewCellStyle4->WrapMode = System::Windows::Forms::DataGridViewTriState::False;
-			this->dgActive->DefaultCellStyle = dataGridViewCellStyle4;
+			dataGridViewCellStyle11->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.765218F, System::Drawing::FontStyle::Regular,
+				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(204)));
+			dataGridViewCellStyle11->ForeColor = System::Drawing::Color::LightSkyBlue;
+			dataGridViewCellStyle11->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(31)),
+				static_cast<System::Int32>(static_cast<System::Byte>(31)), static_cast<System::Int32>(static_cast<System::Byte>(31)));
+			dataGridViewCellStyle11->SelectionForeColor = System::Drawing::Color::LightSkyBlue;
+			dataGridViewCellStyle11->WrapMode = System::Windows::Forms::DataGridViewTriState::False;
+			this->dgActive->DefaultCellStyle = dataGridViewCellStyle11;
 			this->dgActive->GridColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(64)), static_cast<System::Int32>(static_cast<System::Byte>(64)),
 				static_cast<System::Int32>(static_cast<System::Byte>(64)));
 			this->dgActive->Location = System::Drawing::Point(1027, 44);
@@ -639,9 +639,9 @@ namespace mp2lab4queueprocessor {
 			this->dgActive->RowHeadersVisible = false;
 			this->dgActive->RowHeadersWidth = 49;
 			this->dgActive->RowHeadersWidthSizeMode = System::Windows::Forms::DataGridViewRowHeadersWidthSizeMode::DisableResizing;
-			dataGridViewCellStyle5->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(31)), static_cast<System::Int32>(static_cast<System::Byte>(31)),
-				static_cast<System::Int32>(static_cast<System::Byte>(31)));
-			this->dgActive->RowsDefaultCellStyle = dataGridViewCellStyle5;
+			dataGridViewCellStyle12->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(31)),
+				static_cast<System::Int32>(static_cast<System::Byte>(31)), static_cast<System::Int32>(static_cast<System::Byte>(31)));
+			this->dgActive->RowsDefaultCellStyle = dataGridViewCellStyle12;
 			this->dgActive->RowTemplate->Height = 24;
 			this->dgActive->ScrollBars = System::Windows::Forms::ScrollBars::None;
 			this->dgActive->Size = System::Drawing::Size(87, 486);
@@ -742,7 +742,7 @@ namespace mp2lab4queueprocessor {
 			this->lAverageLoad->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.89565F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(204)));
 			this->lAverageLoad->ForeColor = System::Drawing::Color::LightSkyBlue;
-			this->lAverageLoad->Location = System::Drawing::Point(203, 688);
+			this->lAverageLoad->Location = System::Drawing::Point(218, 688);
 			this->lAverageLoad->Name = L"lAverageLoad";
 			this->lAverageLoad->Size = System::Drawing::Size(35, 24);
 			this->lAverageLoad->TabIndex = 39;
@@ -768,7 +768,7 @@ namespace mp2lab4queueprocessor {
 			this->lCurrentLoad->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.89565F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(204)));
 			this->lCurrentLoad->ForeColor = System::Drawing::Color::LightSkyBlue;
-			this->lCurrentLoad->Location = System::Drawing::Point(205, 427);
+			this->lCurrentLoad->Location = System::Drawing::Point(218, 427);
 			this->lCurrentLoad->Name = L"lCurrentLoad";
 			this->lCurrentLoad->Size = System::Drawing::Size(35, 24);
 			this->lCurrentLoad->TabIndex = 41;
@@ -798,17 +798,17 @@ namespace mp2lab4queueprocessor {
 			this->dgQueue->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 			this->dgQueue->ColumnHeadersVisible = false;
 			this->dgQueue->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(1) { this->dataGridViewTextBoxColumn2 });
-			dataGridViewCellStyle6->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
-			dataGridViewCellStyle6->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(31)), static_cast<System::Int32>(static_cast<System::Byte>(31)),
-				static_cast<System::Int32>(static_cast<System::Byte>(31)));
-			dataGridViewCellStyle6->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.765218F, System::Drawing::FontStyle::Regular,
-				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(204)));
-			dataGridViewCellStyle6->ForeColor = System::Drawing::Color::LightSkyBlue;
-			dataGridViewCellStyle6->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(31)),
+			dataGridViewCellStyle13->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
+			dataGridViewCellStyle13->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(31)),
 				static_cast<System::Int32>(static_cast<System::Byte>(31)), static_cast<System::Int32>(static_cast<System::Byte>(31)));
-			dataGridViewCellStyle6->SelectionForeColor = System::Drawing::Color::LightSkyBlue;
-			dataGridViewCellStyle6->WrapMode = System::Windows::Forms::DataGridViewTriState::False;
-			this->dgQueue->DefaultCellStyle = dataGridViewCellStyle6;
+			dataGridViewCellStyle13->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.765218F, System::Drawing::FontStyle::Regular,
+				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(204)));
+			dataGridViewCellStyle13->ForeColor = System::Drawing::Color::LightSkyBlue;
+			dataGridViewCellStyle13->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(31)),
+				static_cast<System::Int32>(static_cast<System::Byte>(31)), static_cast<System::Int32>(static_cast<System::Byte>(31)));
+			dataGridViewCellStyle13->SelectionForeColor = System::Drawing::Color::LightSkyBlue;
+			dataGridViewCellStyle13->WrapMode = System::Windows::Forms::DataGridViewTriState::False;
+			this->dgQueue->DefaultCellStyle = dataGridViewCellStyle13;
 			this->dgQueue->GridColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(64)), static_cast<System::Int32>(static_cast<System::Byte>(64)),
 				static_cast<System::Int32>(static_cast<System::Byte>(64)));
 			this->dgQueue->Location = System::Drawing::Point(1123, 44);
@@ -818,9 +818,9 @@ namespace mp2lab4queueprocessor {
 			this->dgQueue->RowHeadersVisible = false;
 			this->dgQueue->RowHeadersWidth = 49;
 			this->dgQueue->RowHeadersWidthSizeMode = System::Windows::Forms::DataGridViewRowHeadersWidthSizeMode::DisableResizing;
-			dataGridViewCellStyle7->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(31)), static_cast<System::Int32>(static_cast<System::Byte>(31)),
-				static_cast<System::Int32>(static_cast<System::Byte>(31)));
-			this->dgQueue->RowsDefaultCellStyle = dataGridViewCellStyle7;
+			dataGridViewCellStyle14->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(31)),
+				static_cast<System::Int32>(static_cast<System::Byte>(31)), static_cast<System::Int32>(static_cast<System::Byte>(31)));
+			this->dgQueue->RowsDefaultCellStyle = dataGridViewCellStyle14;
 			this->dgQueue->RowTemplate->Height = 24;
 			this->dgQueue->ScrollBars = System::Windows::Forms::ScrollBars::None;
 			this->dgQueue->Size = System::Drawing::Size(87, 486);
