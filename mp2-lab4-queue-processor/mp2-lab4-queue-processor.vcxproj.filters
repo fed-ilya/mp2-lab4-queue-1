@@ -41,5 +41,8 @@
     <ClInclude Include="DataStructs.h">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
+    <ClInclude Include="StatisticsStruct.h">
+      <Filter>Исходные файлы</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

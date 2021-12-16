@@ -4,6 +4,7 @@
 
 #include "DataStructs.h"
 #include "..\mp2-lab4-queue\TQueue.h"
+#include "Randomex.h"
 
 namespace mp2lab4queueprocessor {
 
@@ -19,6 +20,9 @@ namespace mp2lab4queueprocessor {
 
 	public ref class ProcessorForm : public System::Windows::Forms::Form
 	{
+	private:
+		Random^ rand;
+
 	public:
 		ProcessorForm(void)
 		{
@@ -285,7 +289,7 @@ namespace mp2lab4queueprocessor {
 			this->tbCCDur->Name = L"tbCCDur";
 			this->tbCCDur->Size = System::Drawing::Size(100, 32);
 			this->tbCCDur->TabIndex = 9;
-			this->tbCCDur->Text = L"400";
+			this->tbCCDur->Text = L"250";
 			this->tbCCDur->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			this->tbCCDur->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &ProcessorForm::tbNatural_KeyPress);
 			// 
@@ -328,9 +332,9 @@ namespace mp2lab4queueprocessor {
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(204)));
 			this->selProcNumber->ForeColor = System::Drawing::Color::White;
 			this->selProcNumber->FormattingEnabled = true;
-			this->selProcNumber->Items->AddRange(gcnew cli::array< System::Object^  >(20) {
+			this->selProcNumber->Items->AddRange(gcnew cli::array< System::Object^  >(22) {
 				L"1", L"2", L"3", L"4", L"5", L"6", L"7", L"8",
-					L"9", L"10", L"11", L"12", L"13", L"14", L"15", L"16", L"32", L"48", L"64", L"256"
+					L"9", L"10", L"11", L"12", L"13", L"14", L"15", L"16", L"25", L"32", L"36", L"48", L"64", L"256"
 			});
 			this->selProcNumber->Location = System::Drawing::Point(235, 85);
 			this->selProcNumber->Name = L"selProcNumber";
@@ -820,6 +824,8 @@ namespace mp2lab4queueprocessor {
 		int minCC = 1;
 		int maxCC = 4;
 
+		int lastTaskId = 0;
+
 		void SetTransparency()
 		{
 			label1->Parent = pbBackground;
@@ -865,10 +871,7 @@ namespace mp2lab4queueprocessor {
 
 				DrawProcessors(procNumber);
 			}
-			else
-			{
-				selProcNumber->SelectedIndex = procNumberSelIndex;
-			}
+			else selProcNumber->SelectedIndex = procNumberSelIndex;
 		}
 
 		Void tbNonNegativeDecimal_KeyPress(Object^ sender, KeyPressEventArgs^ e)
@@ -1090,7 +1093,21 @@ namespace mp2lab4queueprocessor {
 
 		Void pTimer_Tick(Object^ sender, EventArgs^ e)
 		{
-			//TODO Generate new Task and update
+			//Новое задание поступает с заданной P
+			bool isNewTask = Randomex::RandBool(newTaskP);
+
+			
+
+			if (isNewTask)
+			{
+				Task newTask{};
+				newTask.id = ++lastTaskId;
+				newTask.procCount = Randomex::RandInt(minProcForTask, maxProcForTask);
+				newTask.ccTotal = Randomex::RandInt(minCC, maxCC);
+				newTask.ccCompleted = 0;
+				qTasks.Push(newTask);
+
+			}
 		}
 
 		void Start()
@@ -1107,6 +1124,7 @@ namespace mp2lab4queueprocessor {
 			tbMinCC->ReadOnly = true;
 			tbMaxCC->ReadOnly = true;
 
+			pTimer->Interval = ccDur;
 			pTimer->Start();
 		}
 
@@ -1116,6 +1134,7 @@ namespace mp2lab4queueprocessor {
 			IsRunning = false;
 			IsPaused = false;
 			qTasks.Clear();
+			lastTaskId = -1;
 
 			btnStartStop->Text = "Старт";
 			btnPauseResume->Text = "Пауза";
@@ -1207,11 +1226,21 @@ namespace mp2lab4queueprocessor {
 			{
 				DrawProcTable(startX, startY, 111, 12, 4, 4, n);
 			}
+			//25
+			else if (n <= 25)
+			{
+				DrawProcTable(startX, startY, 84, 15, 5, 5, n);
+			}
+			//32, 36
+			else if (n <= 36)
+			{
+				DrawProcTable(startX, startY, 70, 12, 6, 6, n);
+			}
 			else if (n <= 64)
 			{
 				DrawProcTable(startX, startY, 53, 8, 8, 8, n);
 			}
-			else if (n <= 256)
+			else if (n == 256)
 			{
 				DrawProcTable(startX, startY, 15, 16, 16, 16, n);
 			}

@@ -31,14 +31,18 @@ namespace mp2lab4queueform {
 
 	public ref class QueueForm : public System::Windows::Forms::Form
 	{
+	private:
+		Random^ rand;
+
 	public:
 		QueueForm(void)
 		{
 			InitializeComponent();
-			timer->Interval = 400;
-			rand = gcnew Random();
 			SetTransparency();
 			label1->Select();
+
+			timer->Interval = 400;
+			rand = gcnew Random();
 		}
 
 	protected:
@@ -49,8 +53,6 @@ namespace mp2lab4queueform {
 				delete components;
 			}
 		}
-	private:
-		Random^ rand;
 
 	private: System::Windows::Forms::PictureBox^ pbBackground;
 	private: System::Windows::Forms::Label^ labelPopped;
