@@ -50,5 +50,8 @@
     <ClInclude Include="ProcFarm.h">
       <Filter>Исходные файлы\Data</Filter>
     </ClInclude>
+    <ClInclude Include="DataGridViewExtensions.h">
+      <Filter>Исходные файлы\Helpers</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

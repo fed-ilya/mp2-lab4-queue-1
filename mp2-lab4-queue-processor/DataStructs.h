@@ -3,9 +3,9 @@ struct Processor
 {
 	int taskId;		   //id выполняемой задачи
 	int ccCount;	   //Всего тактов работы
-	int waitingTime;   //Всего тактов простоя
+	int ccWaiting;	   //Всего тактов простоя
 
-	int ccOfTaskCount; //Число тактов - данная задача
+	int ccOfTaskCount; //Тактов осталось по данной задаче
 
 	bool isWaiting;	   //Флаг - занят или свободен
 };
@@ -15,7 +15,7 @@ struct Task
 	int id;			   //id
 	int procCount;	   //Число процессоров
 	int ccTotal;	   //Общее число тактов
-	int ccCompleted;   //Число выполненных тактов
+	//int ccCompleted;   //Число выполненных тактов
 };
 
 struct Stat {
@@ -37,11 +37,11 @@ struct Stat {
 	//В среднем нагружено процессоров
 	int averageLoad = 0;
 
-	void Clear()
+	/*void Clear()
 	{
 		currentLoad = tasksActive = tasksQueue = 0;
 		totalCCs = totalWaitingCCs = 0;
 		tasksReceived = tasksCompleted = 0;
 		averageLoad = 0;
-	}
+	}*/
 };

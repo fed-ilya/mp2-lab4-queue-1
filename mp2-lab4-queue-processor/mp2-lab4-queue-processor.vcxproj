@@ -124,6 +124,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Convertex.h" />
+    <ClInclude Include="DataGridViewExtensions.h" />
     <ClInclude Include="DataStructs.h" />
     <ClInclude Include="ProcessorForm.h">
       <FileType>CppForm</FileType>
