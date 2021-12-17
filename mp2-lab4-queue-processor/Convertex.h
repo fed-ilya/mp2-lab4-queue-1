@@ -9,10 +9,14 @@ private:
 
 public:
 	static std::string StringTo_string(System::String^ str);
-
 	static int StringTo_int(System::String^ str);
 	static float StringTo_float(System::String^ str);
 	static double StringTo_double(System::String^ str);
+
+	static System::String^ stringTo_String(std::string str);
+	static System::String^ intTo_String(int number);
+	static System::String^ floatTo_String(float number);
+	static System::String^ doubleTo_String(double number);
 
 	static std::string Read_string(System::Windows::Forms::TextBox^ tb);
 	static int Read_int(System::Windows::Forms::TextBox^ tb);

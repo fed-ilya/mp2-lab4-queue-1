@@ -16,6 +16,9 @@
     <Filter Include="Исходные файлы\Helpers">
       <UniqueIdentifier>{73c3b139-9aa5-4a37-9b3b-b9c2eb71c47d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\Data">
+      <UniqueIdentifier>{a68cd8e1-8d40-4f3a-a551-d034e89c99f5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -38,14 +41,14 @@
     <ClInclude Include="Convertex.h">
       <Filter>Исходные файлы\Helpers</Filter>
     </ClInclude>
-    <ClInclude Include="DataStructs.h">
-      <Filter>Исходные файлы</Filter>
-    </ClInclude>
     <ClInclude Include="Randomex.h">
       <Filter>Исходные файлы\Helpers</Filter>
     </ClInclude>
+    <ClInclude Include="DataStructs.h">
+      <Filter>Исходные файлы\Data</Filter>
+    </ClInclude>
     <ClInclude Include="ProcFarm.h">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Исходные файлы\Data</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

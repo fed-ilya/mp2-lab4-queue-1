@@ -6,6 +6,7 @@ using namespace System::Windows::Forms;
 
 /* Extensions for String^ */
 
+//Part 1
 std::string Convertex::StringTo_string(System::String^ str)
 {
 	return msclr::interop::marshal_as<std::string>(str);
@@ -26,6 +27,26 @@ double Convertex::StringTo_double(System::String^ str)
 	return std::stod(msclr::interop::marshal_as<std::string>(str));
 }
 
+//Part 2 (reversed conversions)
+System::String^ Convertex::stringTo_String(std::string str)
+{
+	return msclr::interop::marshal_as<System::String^>(str);
+}
+
+System::String^ Convertex::intTo_String(int number)
+{
+	return Convertex::stringTo_String(std::to_string(number));
+}
+
+System::String^ Convertex::floatTo_String(float number)
+{
+	return Convertex::stringTo_String(std::to_string(number));
+}
+
+System::String^ Convertex::doubleTo_String(double number)
+{
+	return Convertex::stringTo_String(std::to_string(number));
+}
 
 /* Extensions for TextBox^ */
 

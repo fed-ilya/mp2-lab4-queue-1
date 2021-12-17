@@ -1005,6 +1005,14 @@ namespace mp2lab4queueprocessor {
 				lCurrentLoad->Text = "0/" + procNumber;
 				lAverageLoad->Text = "0/" + procNumber;
 
+				try
+				{
+					int _maxProcForTask = Convertex::Read_int(tbMaxProcForTask);
+					if (_maxProcForTask > procNumber)
+						tbMaxProcForTask->Text = Convertex::intTo_String(procNumber);
+				}
+				catch (...) {}
+
 				DrawProcessors(procNumber);
 			}
 			else selProcNumber->SelectedIndex = procNumberSelIndex;

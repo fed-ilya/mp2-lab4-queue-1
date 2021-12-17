@@ -23,6 +23,8 @@ struct Stat {
 	int currentLoad = 0;
 	//Выполняется задач
 	int tasksActive = 0;
+	//Задач в очереди
+	int tasksQueue = 0;
 
 	//Суммарное число тактов работы (всех процессоров)
 	int totalCCs = 0;
@@ -37,6 +39,7 @@ struct Stat {
 
 	void Clear()
 	{
+		currentLoad = tasksActive = tasksQueue = 0;
 		totalCCs = totalWaitingCCs = 0;
 		tasksReceived = tasksCompleted = 0;
 		averageLoad = 0;
