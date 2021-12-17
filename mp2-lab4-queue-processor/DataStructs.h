@@ -34,13 +34,5 @@ struct Stat {
 	//Суммарно задач выполнено
 	int tasksCompleted = 0;
 	//В среднем нагружено процессоров
-	int averageLoad = 0;
-
-	/*void Clear()
-	{
-		currentLoad = tasksActive = tasksQueue = 0;
-		totalCCs = totalWaitingCCs = 0;
-		tasksReceived = tasksCompleted = 0;
-		averageLoad = 0;
-	}*/
+	double averageLoad = 0;
 };

@@ -16,7 +16,7 @@ public:
 	//Generates random int in [rangeMin, rangeMax]
 	static int RandInt(int rangeMin, int rangeMax)
 	{
-		return (int)((double)rand() / (RAND_MAX + 1) * (rangeMax - rangeMin) + rangeMin);
+		return (int)((double)rand() / (RAND_MAX + 1) * ((rangeMax + 1) - rangeMin) + rangeMin);
 	}
 
 	//Generates random boolean with probability

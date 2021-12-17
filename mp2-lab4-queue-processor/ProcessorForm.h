@@ -1,7 +1,6 @@
 #pragma once
 #include "TextBoxFilters.h"
 #include "Convertex.h"
-
 #include "DataStructs.h"
 #include "..\mp2-lab4-queue\TQueue.h"
 #include "ProcFarm.h"
@@ -19,7 +18,9 @@ namespace mp2lab4queueprocessor {
 	{
 	private:
 		cli::array<Button^>^ procBtns = nullptr;
-		ProcFarm^ pFarm;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ dataGridViewTextBoxColumn1;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ dataGridViewTextBoxColumn2;
+		   ProcFarm^ pFarm;
 
 	public:
 		ProcessorForm(void)
@@ -45,8 +46,8 @@ namespace mp2lab4queueprocessor {
 		}
 
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Logs;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ dataGridViewTextBoxColumn1;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ dataGridViewTextBoxColumn2;
+
+
 
 	private: System::Windows::Forms::PictureBox^ pbBackground;
 	private: System::Windows::Forms::Button^ btnStartStop;
@@ -143,7 +144,6 @@ namespace mp2lab4queueprocessor {
 			this->label18 = (gcnew System::Windows::Forms::Label());
 			this->label19 = (gcnew System::Windows::Forms::Label());
 			this->dgActive = (gcnew System::Windows::Forms::DataGridView());
-			this->dataGridViewTextBoxColumn1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->lActiveTasks = (gcnew System::Windows::Forms::Label());
 			this->lQueueCount = (gcnew System::Windows::Forms::Label());
 			this->lTotalCC = (gcnew System::Windows::Forms::Label());
@@ -155,9 +155,10 @@ namespace mp2lab4queueprocessor {
 			this->lCurrentLoad = (gcnew System::Windows::Forms::Label());
 			this->label30 = (gcnew System::Windows::Forms::Label());
 			this->dgQueue = (gcnew System::Windows::Forms::DataGridView());
-			this->dataGridViewTextBoxColumn2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->pTimer = (gcnew System::Windows::Forms::Timer(this->components));
 			this->panelProcessors = (gcnew System::Windows::Forms::Panel());
+			this->dataGridViewTextBoxColumn1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->dataGridViewTextBoxColumn2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbBackground))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgLogs))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgActive))->BeginInit();
@@ -589,7 +590,7 @@ namespace mp2lab4queueprocessor {
 			this->label18->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.01739F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->label18->ForeColor = System::Drawing::Color::PaleGreen;
-			this->label18->Location = System::Drawing::Point(1023, 17);
+			this->label18->Location = System::Drawing::Point(1001, 17);
 			this->label18->Name = L"label18";
 			this->label18->Size = System::Drawing::Size(91, 20);
 			this->label18->TabIndex = 28;
@@ -602,7 +603,7 @@ namespace mp2lab4queueprocessor {
 			this->label19->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.01739F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->label19->ForeColor = System::Drawing::Color::PaleGreen;
-			this->label19->Location = System::Drawing::Point(1121, 17);
+			this->label19->Location = System::Drawing::Point(1108, 17);
 			this->label19->Name = L"label19";
 			this->label19->Size = System::Drawing::Size(89, 20);
 			this->label19->TabIndex = 29;
@@ -619,7 +620,7 @@ namespace mp2lab4queueprocessor {
 			this->dgActive->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 			this->dgActive->ColumnHeadersVisible = false;
 			this->dgActive->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(1) { this->dataGridViewTextBoxColumn1 });
-			dataGridViewCellStyle4->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
+			dataGridViewCellStyle4->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleCenter;
 			dataGridViewCellStyle4->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(31)), static_cast<System::Int32>(static_cast<System::Byte>(31)),
 				static_cast<System::Int32>(static_cast<System::Byte>(31)));
 			dataGridViewCellStyle4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.765218F, System::Drawing::FontStyle::Regular,
@@ -632,7 +633,7 @@ namespace mp2lab4queueprocessor {
 			this->dgActive->DefaultCellStyle = dataGridViewCellStyle4;
 			this->dgActive->GridColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(64)), static_cast<System::Int32>(static_cast<System::Byte>(64)),
 				static_cast<System::Int32>(static_cast<System::Byte>(64)));
-			this->dgActive->Location = System::Drawing::Point(1027, 44);
+			this->dgActive->Location = System::Drawing::Point(1005, 44);
 			this->dgActive->MultiSelect = false;
 			this->dgActive->Name = L"dgActive";
 			this->dgActive->ReadOnly = true;
@@ -644,18 +645,8 @@ namespace mp2lab4queueprocessor {
 			this->dgActive->RowsDefaultCellStyle = dataGridViewCellStyle5;
 			this->dgActive->RowTemplate->Height = 24;
 			this->dgActive->ScrollBars = System::Windows::Forms::ScrollBars::None;
-			this->dgActive->Size = System::Drawing::Size(87, 486);
+			this->dgActive->Size = System::Drawing::Size(100, 486);
 			this->dgActive->TabIndex = 30;
-			// 
-			// dataGridViewTextBoxColumn1
-			// 
-			this->dataGridViewTextBoxColumn1->HeaderText = L"Лог процессорной";
-			this->dataGridViewTextBoxColumn1->MaxInputLength = 1000;
-			this->dataGridViewTextBoxColumn1->MinimumWidth = 84;
-			this->dataGridViewTextBoxColumn1->Name = L"dataGridViewTextBoxColumn1";
-			this->dataGridViewTextBoxColumn1->ReadOnly = true;
-			this->dataGridViewTextBoxColumn1->Resizable = System::Windows::Forms::DataGridViewTriState::False;
-			this->dataGridViewTextBoxColumn1->Width = 84;
 			// 
 			// lActiveTasks
 			// 
@@ -664,7 +655,7 @@ namespace mp2lab4queueprocessor {
 			this->lActiveTasks->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.89565F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(204)));
 			this->lActiveTasks->ForeColor = System::Drawing::Color::LightSkyBlue;
-			this->lActiveTasks->Location = System::Drawing::Point(218, 455);
+			this->lActiveTasks->Location = System::Drawing::Point(210, 455);
 			this->lActiveTasks->Name = L"lActiveTasks";
 			this->lActiveTasks->Size = System::Drawing::Size(20, 24);
 			this->lActiveTasks->TabIndex = 32;
@@ -677,7 +668,7 @@ namespace mp2lab4queueprocessor {
 			this->lQueueCount->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.89565F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->lQueueCount->ForeColor = System::Drawing::Color::LightSkyBlue;
-			this->lQueueCount->Location = System::Drawing::Point(218, 483);
+			this->lQueueCount->Location = System::Drawing::Point(210, 483);
 			this->lQueueCount->Name = L"lQueueCount";
 			this->lQueueCount->Size = System::Drawing::Size(20, 24);
 			this->lQueueCount->TabIndex = 33;
@@ -690,7 +681,7 @@ namespace mp2lab4queueprocessor {
 			this->lTotalCC->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.89565F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->lTotalCC->ForeColor = System::Drawing::Color::LightSkyBlue;
-			this->lTotalCC->Location = System::Drawing::Point(218, 576);
+			this->lTotalCC->Location = System::Drawing::Point(210, 576);
 			this->lTotalCC->Name = L"lTotalCC";
 			this->lTotalCC->Size = System::Drawing::Size(20, 24);
 			this->lTotalCC->TabIndex = 34;
@@ -703,7 +694,7 @@ namespace mp2lab4queueprocessor {
 			this->lWaitingCC->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.89565F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->lWaitingCC->ForeColor = System::Drawing::Color::LightSkyBlue;
-			this->lWaitingCC->Location = System::Drawing::Point(218, 604);
+			this->lWaitingCC->Location = System::Drawing::Point(210, 604);
 			this->lWaitingCC->Name = L"lWaitingCC";
 			this->lWaitingCC->Size = System::Drawing::Size(20, 24);
 			this->lWaitingCC->TabIndex = 35;
@@ -716,7 +707,7 @@ namespace mp2lab4queueprocessor {
 			this->lTotalTasks->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.89565F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->lTotalTasks->ForeColor = System::Drawing::Color::LightSkyBlue;
-			this->lTotalTasks->Location = System::Drawing::Point(218, 632);
+			this->lTotalTasks->Location = System::Drawing::Point(210, 632);
 			this->lTotalTasks->Name = L"lTotalTasks";
 			this->lTotalTasks->Size = System::Drawing::Size(20, 24);
 			this->lTotalTasks->TabIndex = 36;
@@ -729,7 +720,7 @@ namespace mp2lab4queueprocessor {
 			this->lFinishedTasks->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.89565F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(204)));
 			this->lFinishedTasks->ForeColor = System::Drawing::Color::LightSkyBlue;
-			this->lFinishedTasks->Location = System::Drawing::Point(218, 660);
+			this->lFinishedTasks->Location = System::Drawing::Point(210, 660);
 			this->lFinishedTasks->Name = L"lFinishedTasks";
 			this->lFinishedTasks->Size = System::Drawing::Size(20, 24);
 			this->lFinishedTasks->TabIndex = 37;
@@ -742,7 +733,7 @@ namespace mp2lab4queueprocessor {
 			this->lAverageLoad->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.89565F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(204)));
 			this->lAverageLoad->ForeColor = System::Drawing::Color::LightSkyBlue;
-			this->lAverageLoad->Location = System::Drawing::Point(218, 688);
+			this->lAverageLoad->Location = System::Drawing::Point(210, 688);
 			this->lAverageLoad->Name = L"lAverageLoad";
 			this->lAverageLoad->Size = System::Drawing::Size(35, 24);
 			this->lAverageLoad->TabIndex = 39;
@@ -768,7 +759,7 @@ namespace mp2lab4queueprocessor {
 			this->lCurrentLoad->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.89565F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(204)));
 			this->lCurrentLoad->ForeColor = System::Drawing::Color::LightSkyBlue;
-			this->lCurrentLoad->Location = System::Drawing::Point(218, 427);
+			this->lCurrentLoad->Location = System::Drawing::Point(210, 427);
 			this->lCurrentLoad->Name = L"lCurrentLoad";
 			this->lCurrentLoad->Size = System::Drawing::Size(35, 24);
 			this->lCurrentLoad->TabIndex = 41;
@@ -811,7 +802,7 @@ namespace mp2lab4queueprocessor {
 			this->dgQueue->DefaultCellStyle = dataGridViewCellStyle6;
 			this->dgQueue->GridColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(64)), static_cast<System::Int32>(static_cast<System::Byte>(64)),
 				static_cast<System::Int32>(static_cast<System::Byte>(64)));
-			this->dgQueue->Location = System::Drawing::Point(1123, 44);
+			this->dgQueue->Location = System::Drawing::Point(1112, 44);
 			this->dgQueue->MultiSelect = false;
 			this->dgQueue->Name = L"dgQueue";
 			this->dgQueue->ReadOnly = true;
@@ -823,18 +814,8 @@ namespace mp2lab4queueprocessor {
 			this->dgQueue->RowsDefaultCellStyle = dataGridViewCellStyle7;
 			this->dgQueue->RowTemplate->Height = 24;
 			this->dgQueue->ScrollBars = System::Windows::Forms::ScrollBars::None;
-			this->dgQueue->Size = System::Drawing::Size(87, 486);
+			this->dgQueue->Size = System::Drawing::Size(100, 486);
 			this->dgQueue->TabIndex = 43;
-			// 
-			// dataGridViewTextBoxColumn2
-			// 
-			this->dataGridViewTextBoxColumn2->HeaderText = L"Лог процессорной";
-			this->dataGridViewTextBoxColumn2->MaxInputLength = 1000;
-			this->dataGridViewTextBoxColumn2->MinimumWidth = 84;
-			this->dataGridViewTextBoxColumn2->Name = L"dataGridViewTextBoxColumn2";
-			this->dataGridViewTextBoxColumn2->ReadOnly = true;
-			this->dataGridViewTextBoxColumn2->Resizable = System::Windows::Forms::DataGridViewTriState::False;
-			this->dataGridViewTextBoxColumn2->Width = 84;
 			// 
 			// pTimer
 			// 
@@ -846,10 +827,30 @@ namespace mp2lab4queueprocessor {
 			this->panelProcessors->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(31)), static_cast<System::Int32>(static_cast<System::Byte>(31)),
 				static_cast<System::Int32>(static_cast<System::Byte>(31)));
 			this->panelProcessors->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->panelProcessors->Location = System::Drawing::Point(362, 20);
+			this->panelProcessors->Location = System::Drawing::Point(351, 20);
 			this->panelProcessors->Name = L"panelProcessors";
 			this->panelProcessors->Size = System::Drawing::Size(640, 510);
 			this->panelProcessors->TabIndex = 44;
+			// 
+			// dataGridViewTextBoxColumn1
+			// 
+			this->dataGridViewTextBoxColumn1->HeaderText = L"Лог процессорной";
+			this->dataGridViewTextBoxColumn1->MaxInputLength = 1000;
+			this->dataGridViewTextBoxColumn1->MinimumWidth = 97;
+			this->dataGridViewTextBoxColumn1->Name = L"dataGridViewTextBoxColumn1";
+			this->dataGridViewTextBoxColumn1->ReadOnly = true;
+			this->dataGridViewTextBoxColumn1->Resizable = System::Windows::Forms::DataGridViewTriState::False;
+			this->dataGridViewTextBoxColumn1->Width = 97;
+			// 
+			// dataGridViewTextBoxColumn2
+			// 
+			this->dataGridViewTextBoxColumn2->HeaderText = L"Лог процессорной";
+			this->dataGridViewTextBoxColumn2->MaxInputLength = 1000;
+			this->dataGridViewTextBoxColumn2->MinimumWidth = 97;
+			this->dataGridViewTextBoxColumn2->Name = L"dataGridViewTextBoxColumn2";
+			this->dataGridViewTextBoxColumn2->ReadOnly = true;
+			this->dataGridViewTextBoxColumn2->Resizable = System::Windows::Forms::DataGridViewTriState::False;
+			this->dataGridViewTextBoxColumn2->Width = 97;
 			// 
 			// ProcessorForm
 			// 
@@ -1328,7 +1329,8 @@ namespace mp2lab4queueprocessor {
 		{
 			Button^ procBtn = gcnew Button();
 
-			procBtn->BackColor = System::Drawing::Color::Teal;
+			procBtn->BackColor = System::Drawing::Color::FromArgb(51, 51, 51);
+
 			procBtn->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			procBtn->Font = (
 				gcnew System::Drawing::Font(L"Microsoft Sans Serif",
@@ -1339,6 +1341,7 @@ namespace mp2lab4queueprocessor {
 			procBtn->Location = System::Drawing::Point(cX, cY);
 			procBtn->Size = System::Drawing::Size(w, h);
 			procBtn->UseVisualStyleBackColor = false;
+			procBtn->ForeColor = System::Drawing::Color::FromArgb(120, 120, 120);
 			return procBtn;
 		}
 
@@ -1413,7 +1416,7 @@ namespace mp2lab4queueprocessor {
 
 			for (int i = 0; i < procBtns->Length; i++)
 			{
-				procBtns[i]->BackColor = Color::Teal;
+				procBtns[i]->BackColor = System::Drawing::Color::FromArgb(51, 51, 51);
 				procBtns[i]->Text = "";
 			}
 		}

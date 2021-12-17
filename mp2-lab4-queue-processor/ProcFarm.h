@@ -12,13 +12,14 @@ private:
 	Randomex^ randomex;
 
 	int n;
-	float newTaskP = 0.15;
+	float newTaskP = 0.15f;
 	int minProcForTask = 1, maxProcForTask = 16;
 	int minCC = 1, maxCC = 4;
 
 	//Процессоры и их статистика
 	Processor* processors;
 	Stat* stat;
+	int ticksCount = 0;
 
 	//Последний заданный id
 	int lastTaskId = 0;
@@ -82,7 +83,7 @@ public:
 
 	int GetAverageLoad()
 	{
-		return stat->averageLoad;
+		return (int) stat->averageLoad;
 	}
 
 	void SetNewTaskP(float _newTaskP)
@@ -107,10 +108,8 @@ public:
 		System::Windows::Forms::DataGridView^ dgActive,
 		System::Windows::Forms::DataGridView^ dgQueue)
 	{
-		//Обновление прогресса текущих заданий на процессорах, удаление завершённых
-		stat->currentLoad = 0;
-
-
+		ticksCount++;
+		//1. Обновление прогресса текущих задач на процессорах, удаление завершённых
 
 		for (int i = 0; i < n; i++)
 		{
@@ -124,12 +123,11 @@ public:
 			//Для работающих
 			else
 			{
-				stat->currentLoad++;
 				stat->totalCCs++;
 
 				processors[i].ccCount++;
 				processors[i].ccOfTaskCount--;
-				
+
 				auto it = std::find(
 					activeTasksIds->begin(),
 					activeTasksIds->end(),
@@ -138,8 +136,7 @@ public:
 				//Всё ещё выполняет задачу
 				if (processors[i].ccOfTaskCount > 0)
 				{
-					//TODO Update remained CCs count (UI)
-					int index = std::distance(activeTasksIds->begin(), it);
+					_int64 index = std::distance(activeTasksIds->begin(), it);
 
 					dgActive->Rows[index]->Cells[0]->Value =
 						processors[i].taskId + " : " + processors[i].ccOfTaskCount;
@@ -151,28 +148,42 @@ public:
 					{
 						stat->tasksCompleted++;
 
-						int index = std::distance(activeTasksIds->begin(), it);
+						_int64 index = std::distance(activeTasksIds->begin(), it);
 						activeTasksIds->erase(it);
 						stat->tasksActive--;
 
-						int k = index;
-						dgActive->Rows->RemoveAt(index);
+						dgActive->Rows->RemoveAt((int) index);
 
 						AddRowWithScroll(dgLogs, System::Drawing::Color::Aquamarine,
 							"Задача " + std::to_string(processors[i].taskId) + " успешно выполнена.");
 					}
 
+
+					stat->currentLoad--;
 					processors[i].taskId = -1;
 					processors[i].isWaiting = true;
-					procViews[i]->BackColor = System::Drawing::Color::Teal;
+					procViews[i]->BackColor = System::Drawing::Color::FromArgb(51, 51, 51);
 				}
 			}
-			
+
 		}
 
+		//2. Поступление новой задачи с вероятностью P
+		if (randomex->RandBool(newTaskP))
+		{
+			stat->tasksReceived++;
 
+			Task newTask{};
+			newTask.id = ++lastTaskId;
+			newTask.procCount = randomex->RandInt(minProcForTask, maxProcForTask);
+			newTask.ccTotal = randomex->RandInt(minCC, maxCC);
+			qTasks->Push(newTask);
 
-		//Получение задачи из очереди и её обработка
+			AddRow(dgQueue, Randomex::RandColor(),
+				newTask.id + " : " + newTask.procCount + " : " + newTask.ccTotal);
+		}
+
+		//3. Получение задачи из очереди и её обработка
 		if (qTasks->IsNotEmpty())
 		{
 			Task t = qTasks->Pop();
@@ -183,8 +194,10 @@ public:
 			//Можно выполнить немедленно
 			if ((n - stat->currentLoad) >= t.procCount)
 			{
-				activeTasksIds->push_back(t.id);
+				stat->currentLoad += t.procCount;
 				stat->tasksActive++;
+
+				activeTasksIds->push_back(t.id);
 
 				AddRowWithScroll(dgActive, tColor, t.id + " : " + t.ccTotal);
 
@@ -212,25 +225,11 @@ public:
 
 				AddRowWithScroll(dgLogs, System::Drawing::Color::Orange,
 					"Задача " + t.id + " отложена (недостаточно свободных процессоров).");
-				AddRowWithScroll(dgQueue, tColor, t.id + " : " + t.procCount + " : " + t.ccTotal);
+				AddRow(dgQueue, tColor, t.id + " : " + t.procCount + " : " + t.ccTotal);
 			}
 		}
 
-		
-		//Поступление нового с вероятностью P
-		if (randomex->RandBool(newTaskP))
-		{
-			stat->tasksReceived++;
-
-			Task newTask{};
-			newTask.id = ++lastTaskId;
-			newTask.procCount = randomex->RandInt(minProcForTask, maxProcForTask);
-			newTask.ccTotal = randomex->RandInt(minCC, maxCC);
-			qTasks->Push(newTask);
-			
-
-			AddRowWithScroll(dgQueue, Randomex::RandColor(),
-				newTask.id + " : " + newTask.procCount + " : " + newTask.ccTotal);
-		}
+		stat->averageLoad =
+			stat->averageLoad * (((double)ticksCount - 1) / ticksCount) + ((double) stat->currentLoad / ticksCount);
 	}
 };

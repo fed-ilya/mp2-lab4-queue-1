@@ -1,41 +1,47 @@
 #pragma once
 #include "Convertex.h"
 
-//Adds a new element with textColor and scrolls DataGridView to it
-void AddRowWithScroll(
+/* More common functions */
+
+//Adds a new row with custom textColor
+int AddRow(
 	System::Windows::Forms::DataGridView^ dgv,
 	System::Drawing::Color textColor,
 	...cli::array<System::String^>^ row)
 {
-	//Adding
 	dgv->Rows->Add(row);
-	int lastIndex = dgv->RowCount - 1;
-	dgv->Rows[lastIndex]->DefaultCellStyle->ForeColor = textColor;
-	dgv->Rows[lastIndex]->DefaultCellStyle->SelectionForeColor = textColor;
-	//Scrolling
-	dgv->FirstDisplayedScrollingRowIndex = lastIndex;
+	int newRowIndex = dgv->RowCount - 1;
+
+	dgv->Rows[newRowIndex]->DefaultCellStyle->ForeColor = textColor;
+	dgv->Rows[newRowIndex]->DefaultCellStyle->SelectionForeColor = textColor;
+	return newRowIndex;
 }
 
-void AddRowWithScroll(
+//Adds a new row with custom textColor and scrolls to it
+int AddRowWithScroll(
+	System::Windows::Forms::DataGridView^ dgv,
+	System::Drawing::Color textColor,
+	...cli::array<System::String^>^ row)
+{
+	int newRowIndex = AddRow(dgv, textColor, row);
+	dgv->FirstDisplayedScrollingRowIndex = newRowIndex;
+	return newRowIndex;
+}
+
+/* Functions that are convenient for this project */
+
+int AddRow(
 	System::Windows::Forms::DataGridView^ dgv,
 	System::Drawing::Color textColor,
 	std::string row)
 {
-	AddRowWithScroll(dgv, textColor, Convertex::stringTo_String(row));
+	return AddRow(dgv, textColor, Convertex::stringTo_String(row));
 }
 
-
-void RemoveFirstRow(System::Windows::Forms::DataGridView^ dgv)
+int AddRowWithScroll(
+	System::Windows::Forms::DataGridView^ dgv,
+	System::Drawing::Color textColor,
+	std::string row)
 {
-	dgv->Rows->RemoveAt(0);
-}
-
-void RemoveRow(System::Windows::Forms::DataGridView^ dgv, int rowIndex)
-{
-	dgv->Rows->RemoveAt(rowIndex);
-}
-
-void RemoveLastRow(System::Windows::Forms::DataGridView^ dgv)
-{
-	dgv->Rows->RemoveAt(dgv->RowCount - 1);
+	return AddRowWithScroll(dgv, textColor, Convertex::stringTo_String(row));
 }
