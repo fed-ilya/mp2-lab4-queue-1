@@ -120,9 +120,8 @@ public:
 				processors[i].ccWaiting++;
 				stat->totalWaitingCCs++;
 			}
-			//Для работающих
 
-			
+			//Для работающих
 			else
 			{
 				stat->currentLoad++;
@@ -130,7 +129,7 @@ public:
 
 				processors[i].ccCount++;
 				processors[i].ccOfTaskCount--;
-				/*
+				
 				auto it = std::find(
 					activeTasksIds->begin(),
 					activeTasksIds->end(),
@@ -139,21 +138,24 @@ public:
 				//Всё ещё выполняет задачу
 				if (processors[i].ccOfTaskCount > 0)
 				{
-					//TODO Update remained ccs (UI)
+					//TODO Update remained CCs count (UI)
 					int index = std::distance(activeTasksIds->begin(), it);
-					dgActive->Rows[i]->Cells[0]->Value =
+
+					dgActive->Rows[index]->Cells[0]->Value =
 						processors[i].taskId + " : " + processors[i].ccOfTaskCount;
 				}
 				//Выполнил задачу
 				else
 				{
-					stat->tasksCompleted++;
-
 					if (it != activeTasksIds->end())
 					{
-						activeTasksIds->erase(it);
+						stat->tasksCompleted++;
 
 						int index = std::distance(activeTasksIds->begin(), it);
+						activeTasksIds->erase(it);
+						stat->tasksActive--;
+
+						int k = index;
 						dgActive->Rows->RemoveAt(index);
 
 						AddRowWithScroll(dgLogs, System::Drawing::Color::Aquamarine,
@@ -163,8 +165,7 @@ public:
 					processors[i].taskId = -1;
 					processors[i].isWaiting = true;
 					procViews[i]->BackColor = System::Drawing::Color::Teal;
-					dgLogs->Rows[i]->DefaultCellStyle->ForeColor = Randomex::RandColor();
-				}*/
+				}
 			}
 			
 		}
@@ -182,11 +183,13 @@ public:
 			//Можно выполнить немедленно
 			if ((n - stat->currentLoad) >= t.procCount)
 			{
-				AddRowWithScroll(dgActive, tColor, t.id + " : " + t.procCount);
+				activeTasksIds->push_back(t.id);
+				stat->tasksActive++;
+
+				AddRowWithScroll(dgActive, tColor, t.id + " : " + t.ccTotal);
 
 				AddRowWithScroll(dgLogs, System::Drawing::Color::DeepSkyBlue,
-					"Задача " + t.id + ", требующая " + t.procCount
-						+ " процессоров, отправлена на процессоры.");
+					"Задача " + t.id + " успешно отправлена на процессоры.");
 
 				for (int i = 0, selCount = 0; selCount < t.procCount; i++)
 				{
@@ -207,7 +210,9 @@ public:
 			{
 				qTasks->Push(t);
 
-				AddRowWithScroll(dgQueue, tColor, t.id + " : " + t.procCount);
+				AddRowWithScroll(dgLogs, System::Drawing::Color::Orange,
+					"Задача " + t.id + " отложена (недостаточно свободных процессоров).");
+				AddRowWithScroll(dgQueue, tColor, t.id + " : " + t.procCount + " : " + t.ccTotal);
 			}
 		}
 
@@ -215,17 +220,17 @@ public:
 		//Поступление нового с вероятностью P
 		if (randomex->RandBool(newTaskP))
 		{
+			stat->tasksReceived++;
+
 			Task newTask{};
 			newTask.id = ++lastTaskId;
 			newTask.procCount = randomex->RandInt(minProcForTask, maxProcForTask);
 			newTask.ccTotal = randomex->RandInt(minCC, maxCC);
-			//newTask.ccCompleted = 0;
 			qTasks->Push(newTask);
 			
 
 			AddRowWithScroll(dgQueue, Randomex::RandColor(),
-				newTask.id + " : " + newTask.procCount);
-			//TODO Insert to queue and to ui
+				newTask.id + " : " + newTask.procCount + " : " + newTask.ccTotal);
 		}
 	}
 };

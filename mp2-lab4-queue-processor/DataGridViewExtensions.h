@@ -23,3 +23,19 @@ void AddRowWithScroll(
 {
 	AddRowWithScroll(dgv, textColor, Convertex::stringTo_String(row));
 }
+
+
+void RemoveFirstRow(System::Windows::Forms::DataGridView^ dgv)
+{
+	dgv->Rows->RemoveAt(0);
+}
+
+void RemoveRow(System::Windows::Forms::DataGridView^ dgv, int rowIndex)
+{
+	dgv->Rows->RemoveAt(rowIndex);
+}
+
+void RemoveLastRow(System::Windows::Forms::DataGridView^ dgv)
+{
+	dgv->Rows->RemoveAt(dgv->RowCount - 1);
+}

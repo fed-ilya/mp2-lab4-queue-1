@@ -14,8 +14,7 @@ struct Task
 {
 	int id;			   //id
 	int procCount;	   //Число процессоров
-	int ccTotal;	   //Общее число тактов
-	//int ccCompleted;   //Число выполненных тактов
+	int ccTotal;	   //Количество тактов для выполнения
 };
 
 struct Stat {
