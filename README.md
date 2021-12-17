@@ -9,8 +9,13 @@
 - Сравнение двух очередей (==, !=);
 - Очистка очереди.
 
-Реализована визуализация работы очереди.
+Реализована визуализация работы очереди в двух вариантах:
+- Очередь с кольцевым буфером;
+- Процессорная.
+
 К проекту подключена библиотека Google Test для проверки работы класса TQueue.
+
+![Processors screenshot](https://github.com/alexChurkin/mp2-lab4-queue/raw/master/Visualizer.png)
 
 ![Visualizer screenshot](https://github.com/alexChurkin/mp2-lab4-queue/raw/master/Visualizer.png)
 
