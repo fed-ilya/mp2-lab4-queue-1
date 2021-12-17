@@ -15,8 +15,8 @@
 
 К проекту подключена библиотека Google Test для проверки работы класса TQueue.
 
-![Processors screenshot](https://github.com/alexChurkin/mp2-lab4-queue/raw/master/Visualizer.png)
-
 ![Visualizer screenshot](https://github.com/alexChurkin/mp2-lab4-queue/raw/master/Visualizer.png)
+
+![Processors screenshot](https://github.com/alexChurkin/mp2-lab4-queue/raw/master/Processors.png)
 
 ![Console main screenshot](https://github.com/alexChurkin/mp2-lab4-queue/raw/master/ConsoleMain.png)
