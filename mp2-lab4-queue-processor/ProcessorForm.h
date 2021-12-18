@@ -18,9 +18,9 @@ namespace mp2lab4queueprocessor {
 	{
 	private:
 		cli::array<Button^>^ procBtns = nullptr;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ dataGridViewTextBoxColumn1;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ dataGridViewTextBoxColumn2;
-		   ProcFarm^ pFarm;
+		ProcFarm^ pFarm;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Logs;
+		   ToolTip^ toolTip;
 
 	public:
 		ProcessorForm(void)
@@ -29,6 +29,7 @@ namespace mp2lab4queueprocessor {
 			this->dgLogs->MouseWheel += gcnew MouseEventHandler(this, &ProcessorForm::dgLogs_MouseWheel);
 			this->dgActive->MouseWheel += gcnew MouseEventHandler(this, &ProcessorForm::dgActive_MouseWheel);
 			this->dgQueue->MouseWheel += gcnew MouseEventHandler(this, &ProcessorForm::dgQueue_MouseWheel);
+			toolTip = gcnew ToolTip();
 
 			SetTransparency();
 			selProcNumber->SelectedIndex = 15;
@@ -45,10 +46,9 @@ namespace mp2lab4queueprocessor {
 			}
 		}
 
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Logs;
 
-
-
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ dataGridViewTextBoxColumn1;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ dataGridViewTextBoxColumn2;
 	private: System::Windows::Forms::PictureBox^ pbBackground;
 	private: System::Windows::Forms::Button^ btnStartStop;
 	private: System::Windows::Forms::Button^ btnPauseResume;
@@ -80,7 +80,6 @@ namespace mp2lab4queueprocessor {
 	private: System::Windows::Forms::Label^ label18;
 	private: System::Windows::Forms::Label^ label19;
 	private: System::Windows::Forms::DataGridView^ dgActive;
-
 
 	private: System::Windows::Forms::Label^ lActiveTasks;
 	private: System::Windows::Forms::Label^ lQueueCount;
@@ -140,10 +139,10 @@ namespace mp2lab4queueprocessor {
 			this->label16 = (gcnew System::Windows::Forms::Label());
 			this->label17 = (gcnew System::Windows::Forms::Label());
 			this->dgLogs = (gcnew System::Windows::Forms::DataGridView());
-			this->Logs = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->label18 = (gcnew System::Windows::Forms::Label());
 			this->label19 = (gcnew System::Windows::Forms::Label());
 			this->dgActive = (gcnew System::Windows::Forms::DataGridView());
+			this->dataGridViewTextBoxColumn1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->lActiveTasks = (gcnew System::Windows::Forms::Label());
 			this->lQueueCount = (gcnew System::Windows::Forms::Label());
 			this->lTotalCC = (gcnew System::Windows::Forms::Label());
@@ -155,10 +154,10 @@ namespace mp2lab4queueprocessor {
 			this->lCurrentLoad = (gcnew System::Windows::Forms::Label());
 			this->label30 = (gcnew System::Windows::Forms::Label());
 			this->dgQueue = (gcnew System::Windows::Forms::DataGridView());
+			this->dataGridViewTextBoxColumn2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->pTimer = (gcnew System::Windows::Forms::Timer(this->components));
 			this->panelProcessors = (gcnew System::Windows::Forms::Panel());
-			this->dataGridViewTextBoxColumn1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->dataGridViewTextBoxColumn2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Logs = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbBackground))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgLogs))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgActive))->BeginInit();
@@ -557,7 +556,7 @@ namespace mp2lab4queueprocessor {
 			this->dgLogs->DefaultCellStyle = dataGridViewCellStyle2;
 			this->dgLogs->GridColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(64)), static_cast<System::Int32>(static_cast<System::Byte>(64)),
 				static_cast<System::Int32>(static_cast<System::Byte>(64)));
-			this->dgLogs->Location = System::Drawing::Point(361, 576);
+			this->dgLogs->Location = System::Drawing::Point(351, 576);
 			this->dgLogs->MultiSelect = false;
 			this->dgLogs->Name = L"dgLogs";
 			this->dgLogs->ReadOnly = true;
@@ -570,18 +569,8 @@ namespace mp2lab4queueprocessor {
 			this->dgLogs->RowTemplate->Height = 24;
 			this->dgLogs->RowTemplate->ReadOnly = true;
 			this->dgLogs->ScrollBars = System::Windows::Forms::ScrollBars::None;
-			this->dgLogs->Size = System::Drawing::Size(849, 136);
+			this->dgLogs->Size = System::Drawing::Size(859, 136);
 			this->dgLogs->TabIndex = 27;
-			// 
-			// Logs
-			// 
-			this->Logs->HeaderText = L"Лог процессорной";
-			this->Logs->MaxInputLength = 1000;
-			this->Logs->MinimumWidth = 845;
-			this->Logs->Name = L"Logs";
-			this->Logs->ReadOnly = true;
-			this->Logs->Resizable = System::Windows::Forms::DataGridViewTriState::False;
-			this->Logs->Width = 846;
 			// 
 			// label18
 			// 
@@ -647,6 +636,16 @@ namespace mp2lab4queueprocessor {
 			this->dgActive->ScrollBars = System::Windows::Forms::ScrollBars::None;
 			this->dgActive->Size = System::Drawing::Size(100, 486);
 			this->dgActive->TabIndex = 30;
+			// 
+			// dataGridViewTextBoxColumn1
+			// 
+			this->dataGridViewTextBoxColumn1->HeaderText = L"Лог процессорной";
+			this->dataGridViewTextBoxColumn1->MaxInputLength = 1000;
+			this->dataGridViewTextBoxColumn1->MinimumWidth = 97;
+			this->dataGridViewTextBoxColumn1->Name = L"dataGridViewTextBoxColumn1";
+			this->dataGridViewTextBoxColumn1->ReadOnly = true;
+			this->dataGridViewTextBoxColumn1->Resizable = System::Windows::Forms::DataGridViewTriState::False;
+			this->dataGridViewTextBoxColumn1->Width = 97;
 			// 
 			// lActiveTasks
 			// 
@@ -772,7 +771,7 @@ namespace mp2lab4queueprocessor {
 			this->label30->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.89565F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->label30->ForeColor = System::Drawing::Color::PaleGreen;
-			this->label30->Location = System::Drawing::Point(358, 543);
+			this->label30->Location = System::Drawing::Point(347, 543);
 			this->label30->Name = L"label30";
 			this->label30->Size = System::Drawing::Size(102, 24);
 			this->label30->TabIndex = 42;
@@ -817,6 +816,16 @@ namespace mp2lab4queueprocessor {
 			this->dgQueue->Size = System::Drawing::Size(100, 486);
 			this->dgQueue->TabIndex = 43;
 			// 
+			// dataGridViewTextBoxColumn2
+			// 
+			this->dataGridViewTextBoxColumn2->HeaderText = L"Лог процессорной";
+			this->dataGridViewTextBoxColumn2->MaxInputLength = 1000;
+			this->dataGridViewTextBoxColumn2->MinimumWidth = 97;
+			this->dataGridViewTextBoxColumn2->Name = L"dataGridViewTextBoxColumn2";
+			this->dataGridViewTextBoxColumn2->ReadOnly = true;
+			this->dataGridViewTextBoxColumn2->Resizable = System::Windows::Forms::DataGridViewTriState::False;
+			this->dataGridViewTextBoxColumn2->Width = 97;
+			// 
 			// pTimer
 			// 
 			this->pTimer->Interval = 400;
@@ -832,25 +841,15 @@ namespace mp2lab4queueprocessor {
 			this->panelProcessors->Size = System::Drawing::Size(640, 510);
 			this->panelProcessors->TabIndex = 44;
 			// 
-			// dataGridViewTextBoxColumn1
+			// Logs
 			// 
-			this->dataGridViewTextBoxColumn1->HeaderText = L"Лог процессорной";
-			this->dataGridViewTextBoxColumn1->MaxInputLength = 1000;
-			this->dataGridViewTextBoxColumn1->MinimumWidth = 97;
-			this->dataGridViewTextBoxColumn1->Name = L"dataGridViewTextBoxColumn1";
-			this->dataGridViewTextBoxColumn1->ReadOnly = true;
-			this->dataGridViewTextBoxColumn1->Resizable = System::Windows::Forms::DataGridViewTriState::False;
-			this->dataGridViewTextBoxColumn1->Width = 97;
-			// 
-			// dataGridViewTextBoxColumn2
-			// 
-			this->dataGridViewTextBoxColumn2->HeaderText = L"Лог процессорной";
-			this->dataGridViewTextBoxColumn2->MaxInputLength = 1000;
-			this->dataGridViewTextBoxColumn2->MinimumWidth = 97;
-			this->dataGridViewTextBoxColumn2->Name = L"dataGridViewTextBoxColumn2";
-			this->dataGridViewTextBoxColumn2->ReadOnly = true;
-			this->dataGridViewTextBoxColumn2->Resizable = System::Windows::Forms::DataGridViewTriState::False;
-			this->dataGridViewTextBoxColumn2->Width = 97;
+			this->Logs->HeaderText = L"Лог процессорной";
+			this->Logs->MaxInputLength = 1000;
+			this->Logs->MinimumWidth = 856;
+			this->Logs->Name = L"Logs";
+			this->Logs->ReadOnly = true;
+			this->Logs->Resizable = System::Windows::Forms::DataGridViewTriState::False;
+			this->Logs->Width = 856;
 			// 
 			// ProcessorForm
 			// 
@@ -1306,7 +1305,8 @@ namespace mp2lab4queueprocessor {
 			}
 		}
 
-		void DrawProcTable(int startX, int startY, int wh, int space, int m, int n, int count)
+
+		void DrawProcTable(int startX, int startY, int wh, int spaceX, int spaceY, int m, int n, int count)
 		{
 			int counter = 0;
 
@@ -1316,12 +1316,16 @@ namespace mp2lab4queueprocessor {
 				{
 					if (counter == count) break;
 					Button^ procBtn = MakeProcButton(wh, wh,
-						startX + (wh + space) * j, startY + (wh + space) * i);
+						startX + (wh + spaceX) * j, startY + (wh + spaceY) * i);
 					this->panelProcessors->Controls->Add(procBtn);
 					procBtns[counter] = procBtn;
 					counter++;
 				}
 			}
+		}
+		void DrawProcTable(int startX, int startY, int wh, int space, int m, int n, int count)
+		{
+			DrawProcTable(startX, startY, wh, space, space, m, n, count);
 		}
 
 		//Создание кнопки. На вход: ширина, высота, позиция на экране
@@ -1349,7 +1353,7 @@ namespace mp2lab4queueprocessor {
 		//Один такт
 		Void pTimer_Tick(Object^ sender, EventArgs^ e)
 		{
-			pFarm->Tick(procBtns, dgLogs, dgActive, dgQueue);
+			pFarm->Tick(procBtns, dgLogs, dgActive, dgQueue, toolTip);
 			lCurrentLoad->Text = pFarm->GetCurrentLoad() + "/" + procNumber;
 			lActiveTasks->Text = Convert::ToString(pFarm->GetActiveTasksCount());
 			lQueueCount->Text = Convert::ToString(pFarm->GetQueueTasksCount());
@@ -1418,6 +1422,8 @@ namespace mp2lab4queueprocessor {
 			{
 				procBtns[i]->BackColor = System::Drawing::Color::FromArgb(51, 51, 51);
 				procBtns[i]->Text = "";
+				
+				toolTip->SetToolTip(procBtns[i], "");
 			}
 		}
 

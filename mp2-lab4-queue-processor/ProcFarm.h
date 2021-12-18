@@ -106,8 +106,10 @@ public:
 	void Tick(cli::array<System::Windows::Forms::Button^>^ procViews,
 		System::Windows::Forms::DataGridView^ dgLogs,
 		System::Windows::Forms::DataGridView^ dgActive,
-		System::Windows::Forms::DataGridView^ dgQueue)
+		System::Windows::Forms::DataGridView^ dgQueue,
+		System::Windows::Forms::ToolTip^ toolTip)
 	{
+		int prevTicksCount = ticksCount;
 		ticksCount++;
 		//1. Обновление прогресса текущих задач на процессорах, удаление завершённых
 
@@ -118,6 +120,11 @@ public:
 			{
 				processors[i].ccWaiting++;
 				stat->totalWaitingCCs++;
+
+				toolTip->SetToolTip(procViews[i],
+					"Процессор " + (i + 1) + ": ожидает\n" +
+					"Тактов работы: " + processors[i].ccCount +"\n"
+					"Тактов ожидания: " + processors[i].ccWaiting);
 			}
 
 			//Для работающих
@@ -140,6 +147,11 @@ public:
 
 					dgActive->Rows[index]->Cells[0]->Value =
 						processors[i].taskId + " : " + processors[i].ccOfTaskCount;
+
+					toolTip->SetToolTip(procViews[i],
+						"Процессор " + (i + 1) + ": выполняет задачу " + processors[i].taskId + "\n" +
+						"Тактов работы: " + processors[i].ccCount + "\n" +
+						"Тактов ожидания: " + processors[i].ccWaiting);
 				}
 				//Выполнил задачу
 				else
@@ -163,9 +175,13 @@ public:
 					processors[i].taskId = -1;
 					processors[i].isWaiting = true;
 					procViews[i]->BackColor = System::Drawing::Color::FromArgb(51, 51, 51);
+
+					toolTip->SetToolTip(procViews[i],
+						"Процессор " + (i + 1) + ": ожидает" + "\n" +
+						"Тактов работы: " + processors[i].ccCount + "\n" +
+						"Тактов ожидания: " + processors[i].ccWaiting);
 				}
 			}
-
 		}
 
 		//2. Поступление новой задачи с вероятностью P
@@ -215,6 +231,11 @@ public:
 						processors[i].ccOfTaskCount = t.ccTotal;
 
 						procViews[i]->BackColor = tColor;
+
+						toolTip->SetToolTip(procViews[i],
+							"Процессор " + (i + 1) + ": выполняет задачу " + processors[i].taskId + "\n" +
+							"Тактов работы: " + processors[i].ccCount + "\n"
+							"Тактов ожидания: " + processors[i].ccWaiting);
 					}
 				}
 			}
@@ -230,6 +251,7 @@ public:
 		}
 
 		stat->averageLoad =
-			stat->averageLoad * (((double)ticksCount - 1) / ticksCount) + ((double) stat->currentLoad / ticksCount);
+			stat->averageLoad * (((double)prevTicksCount) / ticksCount)
+				+ ((double) stat->currentLoad / ticksCount);
 	}
 };

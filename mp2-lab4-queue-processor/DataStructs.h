@@ -1,13 +1,11 @@
 #pragma once
 struct Processor
 {
-	int taskId;		   //id выполняемой задачи
-	int ccCount;	   //Всего тактов работы
-	int ccWaiting;	   //Всего тактов простоя
-
-	int ccOfTaskCount; //Тактов осталось по данной задаче
-
-	bool isWaiting;	   //Флаг - занят или свободен
+	int taskId;			  //id выполняемой задачи
+	int ccCount = 0;	  //Всего тактов работы
+	int ccWaiting = 0;	  //Всего тактов простоя
+	int ccOfTaskCount = 0;//Тактов осталось по данной задаче
+	bool isWaiting;		  //Флаг - занят или свободен
 };
 
 struct Task
