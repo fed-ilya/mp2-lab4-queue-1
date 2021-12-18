@@ -1,18 +1,18 @@
 #pragma once
 struct Processor
 {
-	int taskId;			  //id выполняемой задачи
-	int ccCount = 0;	  //Всего тактов работы
-	int ccWaiting = 0;	  //Всего тактов простоя
-	int ccOfTaskCount = 0;//Тактов осталось по данной задаче
-	bool isWaiting;		  //Флаг - занят или свободен
+	int taskId = -1;	    //id выполняемой задачи
+	int ccCount = 0;	    //Всего тактов работы
+	int ccWaiting = 0;	    //Всего тактов простоя
+	int ccOfTaskCount = 0;  //Тактов осталось по данной задаче
+	bool isWaiting = true; //Флаг - занят или свободен
 };
 
 struct Task
 {
-	int id;			   //id
-	int procCount;	   //Число процессоров
-	int ccTotal;	   //Количество тактов для выполнения
+	int id;		  //id
+	int procCount;//Число процессоров
+	int ccTotal;  //Количество тактов для выполнения
 };
 
 struct Stat {

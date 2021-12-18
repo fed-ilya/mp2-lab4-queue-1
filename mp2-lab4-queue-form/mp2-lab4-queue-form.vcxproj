@@ -121,6 +121,7 @@
     <ClInclude Include="QueueForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="resource.h" />
     <ClInclude Include="TextBoxFilters.h" />
   </ItemGroup>
   <ItemGroup>
@@ -136,6 +137,12 @@
     <ProjectReference Include="..\mp2-lab4-queue\mp2-lab4-queue.vcxproj">
       <Project>{bf7b6c6f-16f0-40e0-aa28-8633530099ec}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="mp2-lab4-queue-form.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="img\queue_icon.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
