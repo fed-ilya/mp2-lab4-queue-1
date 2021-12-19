@@ -36,6 +36,7 @@
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="test_tlqueue.cpp" />
     <ClCompile Include="test_tqueue.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -47,6 +48,9 @@
   <ItemGroup>
     <ProjectReference Include="..\mp2-lab4-queue\mp2-lab4-queue.vcxproj">
       <Project>{bf7b6c6f-16f0-40e0-aa28-8633530099ec}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\queue-with-list\queue-with-list.vcxproj">
+      <Project>{85a5246c-b8ff-419b-9a55-f8b94b8e5172}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

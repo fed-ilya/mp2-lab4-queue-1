@@ -11,6 +11,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mp2-lab4-queue-form", "mp2-
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mp2-lab4-queue-processor", "mp2-lab4-queue-processor\mp2-lab4-queue-processor.vcxproj", "{F49882AD-F006-4D8C-9F16-3BEDF1AA6FCE}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "queue-with-list", "queue-with-list\queue-with-list.vcxproj", "{85A5246C-B8FF-419B-9A55-F8B94B8E5172}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -51,6 +53,14 @@ Global
 		{F49882AD-F006-4D8C-9F16-3BEDF1AA6FCE}.Release|x64.Build.0 = Release|x64
 		{F49882AD-F006-4D8C-9F16-3BEDF1AA6FCE}.Release|x86.ActiveCfg = Release|Win32
 		{F49882AD-F006-4D8C-9F16-3BEDF1AA6FCE}.Release|x86.Build.0 = Release|Win32
+		{85A5246C-B8FF-419B-9A55-F8B94B8E5172}.Debug|x64.ActiveCfg = Debug|x64
+		{85A5246C-B8FF-419B-9A55-F8B94B8E5172}.Debug|x64.Build.0 = Debug|x64
+		{85A5246C-B8FF-419B-9A55-F8B94B8E5172}.Debug|x86.ActiveCfg = Debug|Win32
+		{85A5246C-B8FF-419B-9A55-F8B94B8E5172}.Debug|x86.Build.0 = Debug|Win32
+		{85A5246C-B8FF-419B-9A55-F8B94B8E5172}.Release|x64.ActiveCfg = Release|x64
+		{85A5246C-B8FF-419B-9A55-F8B94B8E5172}.Release|x64.Build.0 = Release|x64
+		{85A5246C-B8FF-419B-9A55-F8B94B8E5172}.Release|x86.ActiveCfg = Release|Win32
+		{85A5246C-B8FF-419B-9A55-F8B94B8E5172}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
