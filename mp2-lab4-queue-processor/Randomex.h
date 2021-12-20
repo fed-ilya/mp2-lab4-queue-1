@@ -28,6 +28,6 @@ public:
 	//Generates random RGB color
 	static System::Drawing::Color RandColor()
 	{
-		return System::Drawing::Color::FromArgb(rand() % 255, rand() % 255, rand() % 255);
+		return System::Drawing::Color::FromArgb(RandInt(50, 255), RandInt(50, 255), RandInt(50, 255));
 	}
 };
