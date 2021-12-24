@@ -114,7 +114,7 @@ TLQueue<T>& TLQueue<T>::operator=(const TLQueue<T>& other)
 
 	Clear();
 	CopyNodesFrom(other);
-	size = other->size;
+	size = other.size;
 }
 
 template <class T>

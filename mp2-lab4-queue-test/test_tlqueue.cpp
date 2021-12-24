@@ -130,9 +130,9 @@ TEST(TLQueue, can_push_and_pop_three)
 	ASSERT_NO_THROW(q.Push(n2));
 	ASSERT_NO_THROW(q.Push(n3));
 
-	ASSERT_NO_THROW(q.Pop() == n1);
-	ASSERT_NO_THROW(q.Pop() == n2);
-	ASSERT_NO_THROW(q.Pop() == n3);
+	EXPECT_EQ(q.Pop(), n1);
+	EXPECT_EQ(q.Pop(), n2);
+	EXPECT_EQ(q.Pop(), n3);
 }
 
 TEST(TLQueue, cant_pop_from_an_empty_queue)
