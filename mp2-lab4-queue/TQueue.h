@@ -33,9 +33,7 @@ class TQueue
 {
 private:
 	T* arr;
-	//Максимальное число элементов
 	int MaxSize;
-	//Реальное число элементов
 	int count;
 	int head, tail;
 
@@ -83,7 +81,6 @@ public:
 template <class T>
 TQueue<T>::TQueue(int _MaxSize)
 {
-	//Нельзя создать очередь с размером < 2
 	if (_MaxSize <= 1) {
 		throw TQueueException("Queue MaxSize cannot be < 2");
 	}
@@ -104,7 +101,7 @@ TQueue<T>::TQueue(const TQueue<T>& other)
 	count = other.count;
 	tail = other.tail, head = other.head;
 
-	//Копируется только активная часть
+	//Копирование активной части очереди
 	for (int tCount = count, i = head; tCount > 0; tCount--)
 	{
 		arr[i] = other.arr[i];
@@ -132,7 +129,7 @@ TQueue<T>& TQueue<T>::operator=(const TQueue<T>& other)
 	count = other.count;
 	tail = other.tail, head = other.head;
 
-	//Копируется только активная часть
+	//Копирование активной части очереди
 	for (int tCount = count, i = head; tCount > 0; tCount--)
 	{
 		arr[i] = other.arr[i];
@@ -213,12 +210,6 @@ void TQueue<T>::Push(T element)
 	if (IsFull())
 		throw TQueueException("Can't push to a full queue");
 
-	/*
-	Эквивалентно:
-	tail++;
-	if (tail == MaxSize) {
-		tail = 0;
-	}*/
 	tail = (++tail) % MaxSize;
 
 	arr[tail] = element;

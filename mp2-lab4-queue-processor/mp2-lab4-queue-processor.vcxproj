@@ -145,6 +145,11 @@
   <ItemGroup>
     <Image Include="img\proc_icon.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\queue-with-list\queue-with-list.vcxproj">
+      <Project>{85a5246c-b8ff-419b-9a55-f8b94b8e5172}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

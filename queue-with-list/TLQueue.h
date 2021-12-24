@@ -49,6 +49,7 @@ class TLQueue
 private:
 	TNode<T>* pFirst;
 	TNode<T>* pLast;
+	int size;
 
 public:
 	TLQueue();
@@ -56,6 +57,7 @@ public:
 	TLQueue<T>& operator=(const TLQueue<T>& other);
 	~TLQueue();
 
+	int GetSize() const;
 	bool IsEmpty() const;
 	bool IsNotEmpty() const;
 
@@ -92,12 +94,15 @@ template <class T>
 TLQueue<T>::TLQueue()
 {
 	pFirst = pLast = nullptr;
+	size = 0;
 }
 
 template <class T>
 TLQueue<T>::TLQueue(const TLQueue& other)
 {
 	pFirst = pLast = nullptr;
+	size = other.size;
+
 	CopyNodesFrom(other);
 }
 
@@ -109,12 +114,19 @@ TLQueue<T>& TLQueue<T>::operator=(const TLQueue<T>& other)
 
 	Clear();
 	CopyNodesFrom(other);
+	size = other->size;
 }
 
 template <class T>
 TLQueue<T>::~TLQueue()
 {
 	Clear();
+}
+
+template <class T>
+int TLQueue<T>::GetSize() const
+{
+	return size;
 }
 
 template <class T>
@@ -141,6 +153,7 @@ void TLQueue<T>::Push(T element)
 	else
 		pFirst = newNode;
 	pLast = newNode;
+	size++;
 }
 
 template <class T>
@@ -158,6 +171,7 @@ T TLQueue<T>::Pop()
 	if (pFirst == nullptr)
 		pLast = nullptr;
 
+	size--;
 	return value;
 }
 

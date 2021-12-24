@@ -80,10 +80,6 @@ namespace mp2lab4queueform {
 
 	private:
 #pragma region Windows Form Designer generated code
-		/// <summary>
-		/// “ребуемый метод дл€ поддержки конструктора Ч не измен€йте 
-		/// содержимое этого метода с помощью редактора кода.
-		/// </summary>
 		void InitializeComponent(void)
 		{
 			this->components = (gcnew System::ComponentModel::Container());
@@ -379,7 +375,8 @@ namespace mp2lab4queueform {
 		}
 
 
-		/* —обыти€ дл€ кнопок и полей ввода */
+		/* UI events handling */
+
 		Void tbMaxSize_KeyPress(Object^ sender, KeyPressEventArgs^ e)
 		{
 			TextBoxFilters::NaturalNumber(sender, e);
@@ -446,6 +443,26 @@ namespace mp2lab4queueform {
 				label4->ForeColor = Color::MediumOrchid;
 		}
 
+		Void labelQueueSize_Click(Object^ sender, EventArgs^ e)
+		{
+			if (timer->Interval == 400)
+			{
+				timer->Interval = 200;
+			}
+			else if (timer->Interval == 200)
+			{
+				timer->Interval = 50;
+			}
+			else if (timer->Interval == 50)
+			{
+				timer->Interval = 20;
+			}
+			else if (timer->Interval == 20)
+			{
+				timer->Interval = 400;
+			}
+		}
+
 		void Start()
 		{
 			FocusRecolorEnabled = false;
@@ -503,7 +520,7 @@ namespace mp2lab4queueform {
 			FocusRecolorEnabled = true;
 		}
 
-		/* ќбработка пользовательского ввода */
+		/* User input checks */
 		bool ProcessInput()
 		{
 			bool incorrect1 = false, incorrect2 = false;
@@ -598,7 +615,7 @@ namespace mp2lab4queueform {
 			return iscorrect;
 		}
 
-		/* ќбновление UI по таймеру */
+		/* Timer update */
 		System::Void timer_Tick(Object^ sender, EventArgs^ e)
 		{
 			bool ShouldPush = rand->NextDouble() < PushProb;
@@ -621,6 +638,7 @@ namespace mp2lab4queueform {
 			if (Changed) UpdateQueueView();
 		}
 
+		/* Queue view painting */
 		void UpdateQueueView()
 		{
 			labelPushed->Text = msclr::interop::marshal_as<String^>(std::to_string(pushStat));
@@ -642,26 +660,6 @@ namespace mp2lab4queueform {
 			ColoredPen->Width = 13.0F;
 
 			gr->DrawArc(ColoredPen, 136, 300, 160, 160, angleStart, angleFinish);
-		}
-
-		Void labelQueueSize_Click(Object^ sender, EventArgs^ e)
-		{
-			if (timer->Interval == 400)
-			{
-				timer->Interval = 200;
-			}
-			else if (timer->Interval == 200)
-			{
-				timer->Interval = 50;
-			}
-			else if (timer->Interval == 50)
-			{
-				timer->Interval = 20;
-			}
-			else if (timer->Interval == 20)
-			{
-				timer->Interval = 400;
-			}
 		}
 };
 }

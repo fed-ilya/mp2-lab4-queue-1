@@ -10,7 +10,7 @@ void TextBoxFilters::AllowOnlyOne(TextBox^ sender, KeyPressEventArgs^ e, char ch
 	}
 }
 
-/* These functions provide convenient TextBox input filtering */
+/* Convenient TextBox input filtering */
 
 void TextBoxFilters::NaturalNumber(Object^ sender, KeyPressEventArgs^ e)
 {

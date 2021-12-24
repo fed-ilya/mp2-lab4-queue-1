@@ -1,9 +1,6 @@
 #pragma once
 #include "Convertex.h"
 
-/* More common functions */
-
-//Adds a new row with custom textColor
 int AddRow(
 	System::Windows::Forms::DataGridView^ dgv,
 	System::Drawing::Color textColor,
@@ -17,7 +14,6 @@ int AddRow(
 	return newRowIndex;
 }
 
-//Adds a new row with custom textColor and scrolls to it
 int AddRowWithScroll(
 	System::Windows::Forms::DataGridView^ dgv,
 	System::Drawing::Color textColor,
@@ -28,8 +24,7 @@ int AddRowWithScroll(
 	return newRowIndex;
 }
 
-/* Functions that are convenient for this project */
-
+//Adds a new row with custom textColor
 int AddRow(
 	System::Windows::Forms::DataGridView^ dgv,
 	System::Drawing::Color textColor,
@@ -38,6 +33,7 @@ int AddRow(
 	return AddRow(dgv, textColor, Convertex::stringTo_String(row));
 }
 
+//Adds a new row with custom textColor and scrolls to it
 int AddRowWithScroll(
 	System::Windows::Forms::DataGridView^ dgv,
 	System::Drawing::Color textColor,

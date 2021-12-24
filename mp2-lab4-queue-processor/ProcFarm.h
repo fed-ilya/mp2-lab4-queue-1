@@ -1,7 +1,7 @@
 #pragma once
 #include "Randomex.h"
 #include "DataStructs.h"
-#include "..\mp2-lab4-queue\TQueue.h"
+#include "..\queue-with-list\TLQueue.h"
 #include "DataGridViewExtensions.h"
 #include <vector>
 #include <algorithm>
@@ -11,21 +11,25 @@ ref class ProcFarm
 private:
 	Randomex^ randomex;
 
+	//Farm settings
 	int n;
 	float newTaskP = 0.15f;
 	int minProcForTask = 1, maxProcForTask = 16;
 	int minCC = 1, maxCC = 4;
 
-	//Процессоры и их статистика
-	Processor* processors;
+	//Farm statistics
 	Stat* stat;
 	int ticksCount = 0;
 
-	//Последний заданный id
+	//Farm processors
+	Processor* processors;
+
+	//Last assigned id
 	int lastTaskId = 0;
 
-	//Очередь задач (TODO заменить на очередь без размера)
-	TQueue<Task>* qTasks = new TQueue<Task>(100000);
+	//Tasks queue
+	TLQueue<Task>* qTasks = new TLQueue<Task>();
+	//Ids of active (executing) tasks
 	std::vector<int>* activeTasksIds = new std::vector<int>(n);
 
 public:
@@ -58,7 +62,7 @@ public:
 
 	int GetQueueTasksCount()
 	{
-		return qTasks->GetCount();
+		return qTasks->GetSize();
 	}
 
 	int GetTotalCCs()
@@ -111,11 +115,11 @@ public:
 	{
 		int prevTicksCount = ticksCount;
 		ticksCount++;
-		//1. Обновление прогресса текущих задач на процессорах, удаление завершённых
+		//1. Updating progress of current tasks; removing finished
 
 		for (int i = 0; i < n; i++)
 		{
-			//Для ждущих процессоров
+			//Processor is waiting
 			if (processors[i].isWaiting)
 			{
 				processors[i].ccWaiting++;
@@ -127,7 +131,7 @@ public:
 					"Тактов ожидания: " + processors[i].ccWaiting);
 			}
 
-			//Для работающих
+			//Processor is executing some task
 			else
 			{
 				stat->totalCCs++;
@@ -140,7 +144,7 @@ public:
 					activeTasksIds->end(),
 					processors[i].taskId);
 
-				//Всё ещё выполняет задачу
+				//Is still executing
 				if (processors[i].ccOfTaskCount > 0)
 				{
 					_int64 index = std::distance(activeTasksIds->begin(), it);
@@ -153,7 +157,7 @@ public:
 						"Тактов работы: " + processors[i].ccCount + "\n" +
 						"Тактов ожидания: " + processors[i].ccWaiting);
 				}
-				//Выполнил задачу
+				//Finished
 				else
 				{
 					if (it != activeTasksIds->end())
@@ -184,7 +188,7 @@ public:
 			}
 		}
 
-		//2. Поступление новой задачи с вероятностью P
+		//2. New task generation with P probability
 		if (randomex->RandBool(newTaskP))
 		{
 			stat->tasksReceived++;
@@ -199,7 +203,7 @@ public:
 				newTask.id + " : " + newTask.procCount + " : " + newTask.ccTotal);
 		}
 
-		//3. Получение задачи из очереди и её обработка
+		//3. Getting and processing the next task from the queue
 		if (qTasks->IsNotEmpty())
 		{
 			Task t = qTasks->Pop();
@@ -207,7 +211,7 @@ public:
 			auto tColor = dgQueue->Rows[0]->DefaultCellStyle->ForeColor;
 			dgQueue->Rows->RemoveAt(0);
 
-			//Можно выполнить немедленно
+			//Can be launched immediately
 			if ((n - stat->currentLoad) >= t.procCount)
 			{
 				stat->currentLoad += t.procCount;
@@ -239,7 +243,8 @@ public:
 					}
 				}
 			}
-			//Нельзя выполнить немедленно
+			//Can't be launched immediately
+			//(not enough waiting processors on farm)
 			else
 			{
 				qTasks->Push(t);
