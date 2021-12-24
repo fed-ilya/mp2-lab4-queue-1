@@ -101,7 +101,7 @@ TQueue<T>::TQueue(const TQueue<T>& other)
 	count = other.count;
 	tail = other.tail, head = other.head;
 
-	// опирование активной части очереди
+	//Active part copying
 	for (int tCount = count, i = head; tCount > 0; tCount--)
 	{
 		arr[i] = other.arr[i];
@@ -129,7 +129,7 @@ TQueue<T>& TQueue<T>::operator=(const TQueue<T>& other)
 	count = other.count;
 	tail = other.tail, head = other.head;
 
-	// опирование активной части очереди
+	//Active part copying
 	for (int tCount = count, i = head; tCount > 0; tCount--)
 	{
 		arr[i] = other.arr[i];
