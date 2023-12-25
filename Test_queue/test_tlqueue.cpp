@@ -11,7 +11,6 @@ TEST(TLQueue, new_created_queue_is_empty)
 {
 	TLQueue<int> q;
 	ASSERT_TRUE(q.IsEmpty());
-	ASSERT_FALSE(q.IsNotEmpty());
 }
 
 TEST(TLQueue, not_empty_queue_is_not_empty)
@@ -20,7 +19,6 @@ TEST(TLQueue, not_empty_queue_is_not_empty)
 	q.Push(1); q.Push(2);
 
 	ASSERT_FALSE(q.IsEmpty());
-	ASSERT_TRUE(q.IsNotEmpty());
 }
 
 TEST(TLQueue, can_create_copied_queue)
@@ -142,5 +140,4 @@ TEST(TLQueue, cleared_queue_is_empty)
 
 	q.Clear();
 	ASSERT_TRUE(q.IsEmpty());
-	ASSERT_FALSE(q.IsNotEmpty());
 }

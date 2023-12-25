@@ -59,7 +59,6 @@ public:
 
 	int GetSize() const;
 	bool IsEmpty() const;
-	bool IsNotEmpty() const;
 
 	void Push(T element);
 	T Pop();
@@ -133,12 +132,6 @@ template <class T>
 bool TLQueue<T>::IsEmpty() const
 {
 	return pFirst == nullptr;
-}
-
-template <class T>
-bool TLQueue<T>::IsNotEmpty() const
-{
-	return pFirst != nullptr;
 }
 
 template <class T>
@@ -241,7 +234,7 @@ void TLQueue<T>::CopyNodesFrom(
 	const TLQueue<T>& other
 )
 {
-	if (other.IsNotEmpty())
+	if (!other.IsEmpty())
 	{
 		TNode<T>* newNode;
 		//Копирование первого звена

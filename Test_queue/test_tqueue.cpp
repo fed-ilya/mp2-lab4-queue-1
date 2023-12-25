@@ -21,23 +21,6 @@ TEST(TQueue, new_created_queue_is_empty)
 {
 	TQueue<int> q(5);
 	ASSERT_TRUE(q.IsEmpty());
-	ASSERT_FALSE(q.IsNotEmpty());
-}
-
-TEST(TQueue, new_created_queue_is_not_full)
-{
-	TQueue<int> q(5);
-	ASSERT_FALSE(q.IsFull());
-	ASSERT_TRUE(q.IsNotFull());
-}
-
-TEST(TQueue, full_queue_is_not_empty)
-{
-	TQueue<int> q(3);
-	q.Push(1); q.Push(2); q.Push(3);
-
-	ASSERT_FALSE(q.IsEmpty());
-	ASSERT_TRUE(q.IsNotEmpty());
 }
 
 TEST(TQueue, full_queue_is_full)
@@ -46,25 +29,6 @@ TEST(TQueue, full_queue_is_full)
 	q.Push(1); q.Push(2); q.Push(3);
 
 	ASSERT_TRUE(q.IsFull());
-	ASSERT_FALSE(q.IsNotFull());
-}
-
-TEST(TQueue, not_empty_queue_is_not_empty)
-{
-	TQueue<int> q(3);
-	q.Push(1); q.Push(2);
-
-	ASSERT_FALSE(q.IsEmpty());
-	ASSERT_TRUE(q.IsNotEmpty());
-}
-
-TEST(TQueue, not_empty_queue_is_not_full)
-{
-	TQueue<int> q(3);
-	q.Push(1); q.Push(2);
-
-	ASSERT_FALSE(q.IsFull());
-	ASSERT_TRUE(q.IsNotFull());
 }
 
 TEST(TQueue, can_create_copied_queue)
@@ -227,7 +191,6 @@ TEST(TQueue, cleared_queue_is_empty)
 
 	q.Clear();
 	ASSERT_TRUE(q.IsEmpty());
-	ASSERT_FALSE(q.IsNotEmpty());
 }
 
 TEST(TQueue, cleared_queue_is_not_full)
@@ -238,5 +201,16 @@ TEST(TQueue, cleared_queue_is_not_full)
 
 	q.Clear();
 	ASSERT_FALSE(q.IsFull());
-	ASSERT_TRUE(q.IsNotFull());
+}
+
+TEST(TQueue, can_create_and_pop_big_queue) {
+	TQueue<int> q(100);
+	int a;
+	for (int i = 0; i < q.GetMaxSize(); ++i) {
+		q.Push(i);
+	}
+	for (int i = 0; i < q.GetMaxSize()/2; ++i) {
+		a = q.Pop();
+	}
+	EXPECT_EQ(a, 49);
 }
