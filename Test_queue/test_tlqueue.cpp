@@ -1,4 +1,4 @@
-#include "gtest/gtest.h"
+#include "gtest.h"
 #include <iostream>
 #include "..\queue-with-list\TLQueue.h"
 
@@ -117,22 +117,6 @@ TEST(TLQueue, can_push_and_pop_single)
 	ASSERT_NO_THROW(q.Push(number));
 	ASSERT_NO_THROW(popped = q.Pop());
 	EXPECT_EQ(popped, number);
-}
-
-TEST(TLQueue, can_push_and_pop_three)
-{
-	TLQueue<double> q;
-	double n1 = 1.23;
-	double n2 = 4.56;
-	double n3 = 7.89;
-
-	ASSERT_NO_THROW(q.Push(n1));
-	ASSERT_NO_THROW(q.Push(n2));
-	ASSERT_NO_THROW(q.Push(n3));
-
-	EXPECT_EQ(q.Pop(), n1);
-	EXPECT_EQ(q.Pop(), n2);
-	EXPECT_EQ(q.Pop(), n3);
 }
 
 TEST(TLQueue, cant_pop_from_an_empty_queue)

@@ -2,30 +2,6 @@
 #include <iostream>
 #include <string>
 
-/* ................... TQueueException ................... */
-
-class TQueueException
-{
-private:
-	std::string desc;
-
-public:
-	TQueueException(std::string _desc)
-	{
-		desc = _desc;
-	}
-	TQueueException(const TQueueException& e)
-	{
-		desc = e.desc;
-	}
-
-	friend std::ostream& operator<<(std::ostream& os, const TQueueException& e)
-	{
-		os << "Exception message: " << e.desc << '\n';
-		return os;
-	}
-};
-
 /* ....................... TQueue ........................ */
 
 template <class T>
@@ -82,7 +58,7 @@ template <class T>
 TQueue<T>::TQueue(int _MaxSize)
 {
 	if (_MaxSize <= 1) {
-		throw TQueueException("Queue MaxSize cannot be < 2");
+		throw "Queue MaxSize cannot be < 2";
 	}
 
 	MaxSize = _MaxSize;
@@ -208,7 +184,7 @@ template <class T>
 void TQueue<T>::Push(T element)
 {
 	if (IsFull())
-		throw TQueueException("Can't push to a full queue");
+		throw "Can't push to a full queue";
 
 	tail = (++tail) % MaxSize;
 
@@ -221,7 +197,7 @@ template <class T>
 T TQueue<T>::Pop()
 {
 	if (IsEmpty())
-		throw TQueueException("Can't pop from an empty queue");
+		throw "Can't pop from an empty queue";
 
 	T temp = arr[head];
 	head = (++head) % MaxSize;

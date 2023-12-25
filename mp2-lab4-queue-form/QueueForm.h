@@ -106,12 +106,13 @@ namespace mp2lab4queueform {
 			// pbBackground
 			// 
 			this->pbBackground->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->pbBackground->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pbBackground.Image")));
 			this->pbBackground->Location = System::Drawing::Point(0, 0);
+			this->pbBackground->Margin = System::Windows::Forms::Padding(2);
 			this->pbBackground->Name = L"pbBackground";
-			this->pbBackground->Size = System::Drawing::Size(430, 555);
+			this->pbBackground->Size = System::Drawing::Size(438, 549);
 			this->pbBackground->TabIndex = 0;
 			this->pbBackground->TabStop = false;
+			this->pbBackground->Click += gcnew System::EventHandler(this, &QueueForm::pbBackground_Click);
 			this->pbBackground->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &QueueForm::pbBackground_Paint);
 			// 
 			// labelPopped
@@ -120,10 +121,11 @@ namespace mp2lab4queueform {
 			this->labelPopped->BackColor = System::Drawing::Color::Transparent;
 			this->labelPopped->Font = (gcnew System::Drawing::Font(L"Comic Sans MS", 11.89565F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->labelPopped->ForeColor = System::Drawing::Color::MediumOrchid;
-			this->labelPopped->Location = System::Drawing::Point(267, 515);
+			this->labelPopped->ForeColor = System::Drawing::Color::SeaGreen;
+			this->labelPopped->Location = System::Drawing::Point(101, 510);
+			this->labelPopped->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->labelPopped->Name = L"labelPopped";
-			this->labelPopped->Size = System::Drawing::Size(24, 26);
+			this->labelPopped->Size = System::Drawing::Size(20, 23);
 			this->labelPopped->TabIndex = 11;
 			this->labelPopped->Text = L"0";
 			this->labelPopped->Visible = false;
@@ -134,10 +136,11 @@ namespace mp2lab4queueform {
 			this->labelPushed->BackColor = System::Drawing::Color::Transparent;
 			this->labelPushed->Font = (gcnew System::Drawing::Font(L"Comic Sans MS", 11.89565F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->labelPushed->ForeColor = System::Drawing::Color::MediumOrchid;
-			this->labelPushed->Location = System::Drawing::Point(267, 487);
+			this->labelPushed->ForeColor = System::Drawing::Color::SeaGreen;
+			this->labelPushed->Location = System::Drawing::Point(101, 487);
+			this->labelPushed->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->labelPushed->Name = L"labelPushed";
-			this->labelPushed->Size = System::Drawing::Size(24, 26);
+			this->labelPushed->Size = System::Drawing::Size(20, 23);
 			this->labelPushed->TabIndex = 1;
 			this->labelPushed->Text = L"0";
 			this->labelPushed->Visible = false;
@@ -148,10 +151,11 @@ namespace mp2lab4queueform {
 			this->tbPopProb->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.89565F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->tbPopProb->ForeColor = System::Drawing::Color::White;
-			this->tbPopProb->Location = System::Drawing::Point(312, 142);
+			this->tbPopProb->Location = System::Drawing::Point(285, 118);
+			this->tbPopProb->Margin = System::Windows::Forms::Padding(2);
 			this->tbPopProb->MaxLength = 8;
 			this->tbPopProb->Name = L"tbPopProb";
-			this->tbPopProb->Size = System::Drawing::Size(100, 29);
+			this->tbPopProb->Size = System::Drawing::Size(76, 25);
 			this->tbPopProb->TabIndex = 5;
 			this->tbPopProb->Text = L"0.6";
 			this->tbPopProb->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
@@ -165,10 +169,11 @@ namespace mp2lab4queueform {
 			this->tbSize->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.89565F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->tbSize->ForeColor = System::Drawing::Color::White;
-			this->tbSize->Location = System::Drawing::Point(312, 62);
+			this->tbSize->Location = System::Drawing::Point(285, 51);
+			this->tbSize->Margin = System::Windows::Forms::Padding(2);
 			this->tbSize->MaxLength = 8;
 			this->tbSize->Name = L"tbSize";
-			this->tbSize->Size = System::Drawing::Size(100, 29);
+			this->tbSize->Size = System::Drawing::Size(76, 25);
 			this->tbSize->TabIndex = 3;
 			this->tbSize->Text = L"20";
 			this->tbSize->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
@@ -182,10 +187,11 @@ namespace mp2lab4queueform {
 			this->tbMaxSize->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.89565F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->tbMaxSize->ForeColor = System::Drawing::Color::White;
-			this->tbMaxSize->Location = System::Drawing::Point(312, 22);
+			this->tbMaxSize->Location = System::Drawing::Point(285, 18);
+			this->tbMaxSize->Margin = System::Windows::Forms::Padding(2);
 			this->tbMaxSize->MaxLength = 8;
 			this->tbMaxSize->Name = L"tbMaxSize";
-			this->tbMaxSize->Size = System::Drawing::Size(100, 29);
+			this->tbMaxSize->Size = System::Drawing::Size(76, 25);
 			this->tbMaxSize->TabIndex = 2;
 			this->tbMaxSize->Text = L"100";
 			this->tbMaxSize->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
@@ -199,10 +205,11 @@ namespace mp2lab4queueform {
 			this->tbPushProb->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.89565F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->tbPushProb->ForeColor = System::Drawing::Color::White;
-			this->tbPushProb->Location = System::Drawing::Point(312, 102);
+			this->tbPushProb->Location = System::Drawing::Point(285, 83);
+			this->tbPushProb->Margin = System::Windows::Forms::Padding(2);
 			this->tbPushProb->MaxLength = 8;
 			this->tbPushProb->Name = L"tbPushProb";
-			this->tbPushProb->Size = System::Drawing::Size(100, 29);
+			this->tbPushProb->Size = System::Drawing::Size(76, 25);
 			this->tbPushProb->TabIndex = 4;
 			this->tbPushProb->Text = L"0.4";
 			this->tbPushProb->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
@@ -216,10 +223,11 @@ namespace mp2lab4queueform {
 			this->label6->BackColor = System::Drawing::Color::Transparent;
 			this->label6->Font = (gcnew System::Drawing::Font(L"Comic Sans MS", 11.89565F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->label6->ForeColor = System::Drawing::Color::MediumOrchid;
-			this->label6->Location = System::Drawing::Point(146, 515);
+			this->label6->ForeColor = System::Drawing::Color::SeaGreen;
+			this->label6->Location = System::Drawing::Point(10, 510);
+			this->label6->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(114, 26);
+			this->label6->Size = System::Drawing::Size(95, 23);
 			this->label6->TabIndex = 5;
 			this->label6->Text = L"Извлечено:";
 			this->label6->Visible = false;
@@ -230,10 +238,11 @@ namespace mp2lab4queueform {
 			this->label5->BackColor = System::Drawing::Color::Transparent;
 			this->label5->Font = (gcnew System::Drawing::Font(L"Comic Sans MS", 11.89565F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->label5->ForeColor = System::Drawing::Color::MediumOrchid;
-			this->label5->Location = System::Drawing::Point(146, 487);
+			this->label5->ForeColor = System::Drawing::Color::SeaGreen;
+			this->label5->Location = System::Drawing::Point(10, 487);
+			this->label5->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(118, 26);
+			this->label5->Size = System::Drawing::Size(96, 23);
 			this->label5->TabIndex = 6;
 			this->label5->Text = L"Добавлено:";
 			this->label5->Visible = false;
@@ -244,10 +253,11 @@ namespace mp2lab4queueform {
 			this->label4->BackColor = System::Drawing::Color::Transparent;
 			this->label4->Font = (gcnew System::Drawing::Font(L"Comic Sans MS", 11.89565F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->label4->ForeColor = System::Drawing::Color::MediumOrchid;
-			this->label4->Location = System::Drawing::Point(18, 145);
+			this->label4->ForeColor = System::Drawing::Color::SeaGreen;
+			this->label4->Location = System::Drawing::Point(14, 118);
+			this->label4->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(241, 26);
+			this->label4->Size = System::Drawing::Size(201, 23);
 			this->label4->TabIndex = 7;
 			this->label4->Text = L"Вероятность извлечения:";
 			// 
@@ -257,10 +267,11 @@ namespace mp2lab4queueform {
 			this->label3->BackColor = System::Drawing::Color::Transparent;
 			this->label3->Font = (gcnew System::Drawing::Font(L"Comic Sans MS", 11.89565F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->label3->ForeColor = System::Drawing::Color::MediumOrchid;
-			this->label3->Location = System::Drawing::Point(18, 105);
+			this->label3->ForeColor = System::Drawing::Color::SeaGreen;
+			this->label3->Location = System::Drawing::Point(14, 85);
+			this->label3->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(243, 26);
+			this->label3->Size = System::Drawing::Size(201, 23);
 			this->label3->TabIndex = 8;
 			this->label3->Text = L"Вероятность добавления:";
 			// 
@@ -270,10 +281,11 @@ namespace mp2lab4queueform {
 			this->label2->BackColor = System::Drawing::Color::Transparent;
 			this->label2->Font = (gcnew System::Drawing::Font(L"Comic Sans MS", 11.89565F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->label2->ForeColor = System::Drawing::Color::MediumOrchid;
-			this->label2->Location = System::Drawing::Point(18, 65);
+			this->label2->ForeColor = System::Drawing::Color::SeaGreen;
+			this->label2->Location = System::Drawing::Point(14, 53);
+			this->label2->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(248, 26);
+			this->label2->Size = System::Drawing::Size(205, 23);
 			this->label2->TabIndex = 9;
 			this->label2->Text = L"Исходная длина очереди:";
 			// 
@@ -283,12 +295,14 @@ namespace mp2lab4queueform {
 			this->label1->BackColor = System::Drawing::Color::Transparent;
 			this->label1->Font = (gcnew System::Drawing::Font(L"Comic Sans MS", 11.89565F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->label1->ForeColor = System::Drawing::Color::MediumOrchid;
-			this->label1->Location = System::Drawing::Point(18, 25);
+			this->label1->ForeColor = System::Drawing::Color::SeaGreen;
+			this->label1->Location = System::Drawing::Point(14, 20);
+			this->label1->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(294, 26);
+			this->label1->Size = System::Drawing::Size(245, 23);
 			this->label1->TabIndex = 10;
 			this->label1->Text = L"Максимальная длина очереди:";
+			this->label1->Click += gcnew System::EventHandler(this, &QueueForm::label1_Click);
 			// 
 			// timer
 			// 
@@ -301,9 +315,10 @@ namespace mp2lab4queueform {
 			this->btnStartStop->Font = (gcnew System::Drawing::Font(L"Comic Sans MS", 18.15652F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->btnStartStop->ForeColor = System::Drawing::Color::White;
-			this->btnStartStop->Location = System::Drawing::Point(18, 193);
+			this->btnStartStop->Location = System::Drawing::Point(14, 171);
+			this->btnStartStop->Margin = System::Windows::Forms::Padding(2);
 			this->btnStartStop->Name = L"btnStartStop";
-			this->btnStartStop->Size = System::Drawing::Size(393, 56);
+			this->btnStartStop->Size = System::Drawing::Size(295, 46);
 			this->btnStartStop->TabIndex = 1;
 			this->btnStartStop->Text = L"Запуск";
 			this->btnStartStop->UseVisualStyleBackColor = false;
@@ -314,10 +329,11 @@ namespace mp2lab4queueform {
 			this->labelQueueSize->BackColor = System::Drawing::Color::Transparent;
 			this->labelQueueSize->Font = (gcnew System::Drawing::Font(L"Comic Sans MS", 23.7913F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->labelQueueSize->ForeColor = System::Drawing::Color::DodgerBlue;
-			this->labelQueueSize->Location = System::Drawing::Point(159, 351);
+			this->labelQueueSize->ForeColor = System::Drawing::Color::DarkSlateBlue;
+			this->labelQueueSize->Location = System::Drawing::Point(179, 374);
+			this->labelQueueSize->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->labelQueueSize->Name = L"labelQueueSize";
-			this->labelQueueSize->Size = System::Drawing::Size(121, 55);
+			this->labelQueueSize->Size = System::Drawing::Size(91, 45);
 			this->labelQueueSize->TabIndex = 13;
 			this->labelQueueSize->Text = L"0";
 			this->labelQueueSize->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
@@ -326,9 +342,9 @@ namespace mp2lab4queueform {
 			// 
 			// QueueForm
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(430, 555);
+			this->ClientSize = System::Drawing::Size(438, 549);
 			this->Controls->Add(this->labelQueueSize);
 			this->Controls->Add(this->btnStartStop);
 			this->Controls->Add(this->labelPopped);
@@ -346,6 +362,7 @@ namespace mp2lab4queueform {
 			this->Controls->Add(this->pbBackground);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
+			this->Margin = System::Windows::Forms::Padding(2);
 			this->MaximizeBox = false;
 			this->Name = L"QueueForm";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
@@ -402,45 +419,45 @@ namespace mp2lab4queueform {
 		Void tbMaxSize_Enter(System::Object^ sender, System::EventArgs^ e)
 		{
 			if(FocusRecolorEnabled)
-				label1->ForeColor = Color::DodgerBlue;
+				label1->ForeColor = Color::SeaGreen; ///123
 		}
 		Void tbMaxSize_Leave(System::Object^ sender, System::EventArgs^ e)
 		{
 			if (FocusRecolorEnabled)
-				label1->ForeColor = Color::MediumOrchid;
+				label1->ForeColor = Color::SeaGreen;
 		}
 
 		Void tbSize_Enter(System::Object^ sender, System::EventArgs^ e)
 		{
 			if (FocusRecolorEnabled)
-				label2->ForeColor = Color::DodgerBlue;
+				label2->ForeColor = Color::SeaGreen;
 		}
 		Void tbSize_Leave(System::Object^ sender, System::EventArgs^ e)
 		{
 			if (FocusRecolorEnabled)
-				label2->ForeColor = Color::MediumOrchid;
+				label2->ForeColor = Color::SeaGreen;
 		}
 
 		Void tbPushProb_Enter(System::Object^ sender, System::EventArgs^ e)
 		{
 			if (FocusRecolorEnabled)
-				label3->ForeColor = Color::DodgerBlue;
+				label3->ForeColor = Color::SeaGreen;
 		}
 		Void tbPushProb_Leave(System::Object^ sender, System::EventArgs^ e)
 		{
 			if (FocusRecolorEnabled)
-				label3->ForeColor = Color::MediumOrchid;
+				label3->ForeColor = Color::SeaGreen;
 		}
 
 		Void tbPopProb_Enter(System::Object^ sender, System::EventArgs^ e)
 		{
 			if (FocusRecolorEnabled)
-				label4->ForeColor = Color::DodgerBlue;
+				label4->ForeColor = Color::SeaGreen;
 		}
 		Void tbPopProb_Leave(System::Object^ sender, System::EventArgs^ e)
 		{
 			if (FocusRecolorEnabled)
-				label4->ForeColor = Color::MediumOrchid;
+				label4->ForeColor = Color::SeaGreen;
 		}
 
 		Void labelQueueSize_Click(Object^ sender, EventArgs^ e)
@@ -541,7 +558,7 @@ namespace mp2lab4queueform {
 				}
 				else
 				{
-					label1->ForeColor = ForeColor.MediumOrchid;
+					label1->ForeColor = ForeColor.SeaGreen;
 				}
 			}
 			catch (...)
@@ -559,7 +576,7 @@ namespace mp2lab4queueform {
 					incorrect2 = true;
 					label2->ForeColor = ForeColor.Red;
 				}
-				else label2->ForeColor = ForeColor.MediumOrchid;
+				else label2->ForeColor = ForeColor.SeaGreen;
 			}
 			catch (...)
 			{
@@ -575,7 +592,7 @@ namespace mp2lab4queueform {
 					incorrect3 = true;
 					label3->ForeColor = ForeColor.Red;
 				}
-				else label3->ForeColor = ForeColor.MediumOrchid;
+				else label3->ForeColor = ForeColor.SeaGreen;
 			}
 			catch (...)
 			{
@@ -591,7 +608,7 @@ namespace mp2lab4queueform {
 					incorrect4 = true;
 					label4->ForeColor = ForeColor.Red;
 				}
-				else label4->ForeColor = ForeColor.MediumOrchid;
+				else label4->ForeColor = ForeColor.SeaGreen;
 			}
 			catch (...)
 			{
@@ -656,10 +673,14 @@ namespace mp2lab4queueform {
 			Graphics^ gr;
 			gr = pbBackground->CreateGraphics();
 
-			Pen^ ColoredPen = gcnew Pen(Color::DodgerBlue);
+			Pen^ ColoredPen = gcnew Pen(Color::DarkSlateBlue);
 			ColoredPen->Width = 13.0F;
 
 			gr->DrawArc(ColoredPen, 136, 300, 160, 160, angleStart, angleFinish);
 		}
+private: System::Void pbBackground_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
+}
 };
 }

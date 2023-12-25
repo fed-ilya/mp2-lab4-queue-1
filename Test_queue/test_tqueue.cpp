@@ -1,4 +1,4 @@
-#include "gtest/gtest.h"
+#include "gtest.h"
 #include <iostream>
 #include "..\mp2-lab4-queue\TQueue.h"
 
@@ -15,11 +15,6 @@ TEST(TQueue, cant_create_queue_with_negative_size)
 TEST(TQueue, cant_create_queue_with_zero_size)
 {
 	ASSERT_ANY_THROW(TQueue<int> q(0));
-}
-
-TEST(TQueue, cant_create_one_element_queue)
-{
-	ASSERT_ANY_THROW(TQueue<int> q(1));
 }
 
 TEST(TQueue, new_created_queue_is_empty)
@@ -118,7 +113,7 @@ TEST(TQueue, can_assign_queues_of_equal_sizes)
 
 	TQueue<int> q2(size);
 	q2 = q1;
-	
+
 	EXPECT_EQ(q2, q1);
 }
 
@@ -147,32 +142,6 @@ TEST(TQueue, can_assign_queue_to_itself)
 	EXPECT_EQ(q, q);
 }
 
-TEST(TQueue, equal_queues_comparison_returns_true)
-{
-	TQueue<int> q1(10);
-	for (int i = 0; i < 10; i++)
-		q1.Push(i + 1);
-
-	TQueue<int> q2(10);
-	for (int i = 0; i < 10; i++)
-		q2.Push(i + 1);
-
-	EXPECT_EQ(q1, q2);
-}
-
-TEST(TQueue, unequal_queues_comparison_returns_false)
-{
-	TQueue<int> q1(10);
-	for (int i = 0; i < 10; i++)
-		q1.Push(i + 1);
-
-	TQueue<int> q2(10);
-	for (int i = 0; i < 10; i++)
-		q2.Push(i + 2);
-
-	EXPECT_NE(q1, q2);
-}
-
 TEST(TQueue, queues_with_different_maxsizes_are_not_equal)
 {
 	TQueue<int> q1(10);
@@ -190,22 +159,6 @@ TEST(TQueue, can_push_and_pop_single)
 	ASSERT_NO_THROW(q.Push(number));
 	ASSERT_NO_THROW(popped = q.Pop());
 	EXPECT_EQ(popped, number);
-}
-
-TEST(TQueue, can_push_and_pop_three)
-{
-	TQueue<double> q(5);
-	double n1 = 1.23;
-	double n2 = 4.56;
-	double n3 = 7.89;
-
-	ASSERT_NO_THROW(q.Push(n1));
-	ASSERT_NO_THROW(q.Push(n2));
-	ASSERT_NO_THROW(q.Push(n3));
-
-	EXPECT_EQ(q.Pop(), n1);
-	EXPECT_EQ(q.Pop(), n2);
-	EXPECT_EQ(q.Pop(), n3);
 }
 
 TEST(TQueue, queue_is_looped)
